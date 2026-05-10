@@ -36,3 +36,4 @@ Single-page editorial website for VUSA Consultancy. Static HTML, zero build step
 - Logo is rendered as inline SVG in the nav for crispness; the PNG is in `/assets` for fallback
 - Replace `contact@vusaconsultancy.com` once your VUSA domain email is set up
 - Companies House number, registered name, and copy are accurate to current records
+- 
