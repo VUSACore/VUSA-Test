@@ -1,0 +1,1448 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VUSA Consultancy — Commodity Trade & Cross-Border Supply Chain Execution</title>
+<meta name="description" content="VUSA Consultancy is an execution-led commercial consultancy embedded in international commodity trade. Agro-commodities, fertilisers, and cross-border supply chains.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bone: #F5F1EA;
+  --bone-deep: #EBE5D9;
+  --ink: #1A1816;
+  --ink-soft: #3A352E;
+  --tan: #B8997A;
+  --tan-deep: #8A6F52;
+  --forest: #2C3A2E;
+  --rust: #8B4A2B;
+  --line: rgba(26, 24, 22, 0.12);
+  --line-strong: rgba(26, 24, 22, 0.25);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--bone);
+  color: var(--ink);
+  font-family: 'Inter Tight', -apple-system, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.6;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.serif { font-family: 'Fraunces', serif; font-weight: 300; letter-spacing: -0.02em; }
+.serif-italic { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; }
+
+/* ====== NAVIGATION ====== */
+.nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  padding: 28px 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  mix-blend-mode: difference;
+  transition: padding 0.4s ease;
+}
+
+.nav.scrolled { padding: 18px 48px; }
+
+.nav-mark {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 22px;
+  letter-spacing: -0.01em;
+  color: var(--bone);
+  text-decoration: none;
+}
+
+.nav-mark span {
+  font-style: italic;
+  color: var(--tan);
+}
+
+.nav-links {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--bone);
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 400;
+  transition: color 0.3s;
+  position: relative;
+}
+
+.nav-links a::after {
+  content: '';
+  position: absolute;
+  bottom: -4px; left: 0;
+  width: 0; height: 1px;
+  background: var(--tan);
+  transition: width 0.4s ease;
+}
+
+.nav-links a:hover::after { width: 100%; }
+
+.nav-cta {
+  color: var(--bone);
+  text-decoration: none;
+  font-size: 13px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  border: 1px solid var(--bone);
+  padding: 10px 20px;
+  border-radius: 100px;
+  transition: all 0.3s;
+}
+
+.nav-cta:hover { background: var(--bone); color: var(--ink); }
+
+@media (max-width: 768px) {
+  .nav { padding: 20px 24px; }
+  .nav-links { display: none; }
+}
+
+/* ====== HERO ====== */
+.hero {
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 48px 80px;
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--bone);
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(ellipse at 20% 30%, rgba(184, 153, 122, 0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 70%, rgba(44, 58, 46, 0.2) 0%, transparent 50%),
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.09 0 0 0 0 0.08 0 0 0 0.4 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  opacity: 0.95;
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(245, 241, 234, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(245, 241, 234, 0.04) 1px, transparent 1px);
+  background-size: 80px 80px;
+}
+
+.hero-meta {
+  position: absolute;
+  top: 140px; left: 48px;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--tan);
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.hero-meta-line { width: 60px; height: 1px; background: var(--tan); opacity: 0.5; }
+
+.hero-content { position: relative; z-index: 2; max-width: 1400px; }
+
+.hero-eyebrow {
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--tan);
+  margin-bottom: 32px;
+  opacity: 0;
+  animation: fadeUp 1s ease 0.2s forwards;
+}
+
+.hero-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(48px, 9vw, 144px);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin-bottom: 48px;
+  color: var(--bone);
+}
+
+.hero-title .word {
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeUp 1s ease forwards;
+}
+
+.hero-title .word:nth-child(1) { animation-delay: 0.4s; }
+.hero-title .word:nth-child(2) { animation-delay: 0.55s; }
+.hero-title .word:nth-child(3) { animation-delay: 0.7s; }
+.hero-title .word:nth-child(4) { animation-delay: 0.85s; }
+.hero-title .word:nth-child(5) { animation-delay: 1.0s; }
+
+.hero-title em {
+  font-style: italic;
+  font-weight: 300;
+  color: var(--tan);
+}
+
+.hero-bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  gap: 40px;
+  opacity: 0;
+  animation: fadeUp 1s ease 1.2s forwards;
+}
+
+.hero-lede {
+  max-width: 480px;
+  font-size: 17px;
+  line-height: 1.6;
+  color: rgba(245, 241, 234, 0.75);
+  font-weight: 300;
+}
+
+.hero-scroll {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--tan);
+}
+
+.hero-scroll-line {
+  width: 60px; height: 1px;
+  background: var(--tan);
+  position: relative;
+  overflow: hidden;
+}
+
+.hero-scroll-line::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--bone);
+  animation: scrollPulse 2s ease infinite;
+}
+
+@keyframes scrollPulse {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes fadeUp {
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@media (max-width: 768px) {
+  .hero { padding: 0 24px 60px; }
+  .hero-meta { left: 24px; top: 100px; gap: 16px; }
+  .hero-meta-line { width: 30px; }
+}
+
+/* ====== MARQUEE ====== */
+.marquee {
+  background: var(--ink);
+  color: var(--bone);
+  padding: 24px 0;
+  overflow: hidden;
+  border-top: 1px solid rgba(245, 241, 234, 0.1);
+  border-bottom: 1px solid rgba(245, 241, 234, 0.1);
+  position: relative;
+}
+
+.marquee::before, .marquee::after {
+  content: '';
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 120px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.marquee::before { left: 0; background: linear-gradient(to right, var(--ink), transparent); }
+.marquee::after { right: 0; background: linear-gradient(to left, var(--ink), transparent); }
+
+.marquee-track {
+  display: flex;
+  gap: 80px;
+  animation: marquee 40s linear infinite;
+  white-space: nowrap;
+  width: max-content;
+}
+
+.marquee-item {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 32px;
+  color: var(--bone);
+  display: flex;
+  align-items: center;
+  gap: 80px;
+}
+
+.marquee-item::after {
+  content: '✦';
+  color: var(--tan);
+  font-size: 14px;
+  font-style: normal;
+}
+
+@keyframes marquee {
+  to { transform: translateX(-50%); }
+}
+
+/* ====== SECTION COMMONS ====== */
+.section { padding: 140px 48px; position: relative; }
+
+.section-label {
+  font-size: 11px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--tan-deep);
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.section-label::before {
+  content: '';
+  width: 32px; height: 1px;
+  background: var(--tan-deep);
+}
+
+.section-heading {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(40px, 6vw, 88px);
+  line-height: 1.0;
+  letter-spacing: -0.025em;
+  margin-bottom: 60px;
+}
+
+.section-heading em {
+  font-style: italic;
+  color: var(--tan-deep);
+}
+
+@media (max-width: 768px) {
+  .section { padding: 80px 24px; }
+}
+
+/* ====== MANIFEST / ABOUT ====== */
+.manifest { background: var(--bone); position: relative; }
+
+.manifest-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.manifest-side {
+  position: sticky;
+  top: 120px;
+}
+
+.manifest-number {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 220px;
+  line-height: 0.8;
+  color: var(--ink);
+  letter-spacing: -0.05em;
+  position: relative;
+}
+
+.manifest-number sup {
+  font-size: 32px;
+  font-style: italic;
+  color: var(--tan-deep);
+  vertical-align: super;
+  margin-left: 12px;
+}
+
+.manifest-side-label {
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-top: 32px;
+  max-width: 240px;
+  line-height: 1.6;
+}
+
+.manifest-prose p {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 28px;
+  line-height: 1.4;
+  margin-bottom: 32px;
+  letter-spacing: -0.01em;
+}
+
+.manifest-prose p em { color: var(--tan-deep); font-style: italic; }
+.manifest-prose p strong { font-weight: 500; color: var(--ink); }
+
+.manifest-divider {
+  width: 80px; height: 1px;
+  background: var(--ink);
+  margin: 60px 0;
+}
+
+.manifest-meta {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 40px;
+  margin-top: 60px;
+}
+
+.manifest-meta-item {
+  border-top: 1px solid var(--line-strong);
+  padding-top: 16px;
+}
+
+.manifest-meta-label {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+
+.manifest-meta-value {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 1.3;
+}
+
+@media (max-width: 968px) {
+  .manifest-grid { grid-template-columns: 1fr; gap: 40px; }
+  .manifest-side { position: relative; top: 0; }
+  .manifest-number { font-size: 140px; }
+  .manifest-prose p { font-size: 22px; }
+}
+
+/* ====== SECTORS ====== */
+.sectors {
+  background: var(--ink);
+  color: var(--bone);
+  position: relative;
+  overflow: hidden;
+}
+
+.sectors-intro {
+  max-width: 1400px;
+  margin: 0 auto 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
+}
+
+.sectors .section-label { color: var(--tan); }
+.sectors .section-label::before { background: var(--tan); }
+.sectors .section-heading { color: var(--bone); }
+.sectors .section-heading em { color: var(--tan); }
+
+.sectors-intro-text {
+  font-size: 18px;
+  line-height: 1.6;
+  color: rgba(245, 241, 234, 0.7);
+  max-width: 480px;
+  font-weight: 300;
+}
+
+.sector-list {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.sector-row {
+  border-top: 1px solid rgba(245, 241, 234, 0.15);
+  padding: 60px 0;
+  display: grid;
+  grid-template-columns: 80px 1fr 2fr 200px;
+  gap: 40px;
+  align-items: start;
+  cursor: pointer;
+  transition: background 0.5s ease;
+  position: relative;
+}
+
+.sector-row:last-child { border-bottom: 1px solid rgba(245, 241, 234, 0.15); }
+
+.sector-row:hover { background: rgba(184, 153, 122, 0.04); }
+.sector-row:hover .sector-arrow { transform: translateX(8px); color: var(--tan); }
+
+.sector-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--tan);
+  letter-spacing: 0.1em;
+  padding-top: 8px;
+}
+
+.sector-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 44px;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+}
+
+.sector-title em { font-style: italic; color: var(--tan); }
+
+.sector-desc {
+  font-size: 16px;
+  line-height: 1.6;
+  color: rgba(245, 241, 234, 0.65);
+  max-width: 520px;
+  font-weight: 300;
+}
+
+.sector-tags {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-end;
+}
+
+.sector-tag {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--tan);
+  padding: 6px 14px;
+  border: 1px solid rgba(184, 153, 122, 0.3);
+  border-radius: 100px;
+}
+
+.sector-arrow {
+  position: absolute;
+  right: -30px; top: 60px;
+  font-size: 24px;
+  color: rgba(245, 241, 234, 0.3);
+  transition: all 0.4s ease;
+}
+
+@media (max-width: 968px) {
+  .sectors-intro { grid-template-columns: 1fr; gap: 32px; }
+  .sector-row { grid-template-columns: 1fr; gap: 16px; padding: 32px 0; }
+  .sector-tags { flex-direction: row; flex-wrap: wrap; align-items: flex-start; }
+  .sector-title { font-size: 32px; }
+  .sector-arrow { display: none; }
+}
+
+/* ====== APPROACH ====== */
+.approach {
+  background: var(--bone-deep);
+  position: relative;
+}
+
+.approach-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.approach-header {
+  display: grid;
+  grid-template-columns: 1fr 1.5fr;
+  gap: 80px;
+  margin-bottom: 100px;
+  align-items: end;
+}
+
+.approach-quote {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 32px;
+  line-height: 1.4;
+  color: var(--ink-soft);
+  border-left: 2px solid var(--tan-deep);
+  padding-left: 32px;
+}
+
+.approach-pillars {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--ink);
+  border-bottom: 1px solid var(--ink);
+}
+
+.pillar {
+  padding: 60px 40px;
+  border-right: 1px solid var(--line-strong);
+  position: relative;
+  transition: background 0.4s;
+}
+
+.pillar:last-child { border-right: none; }
+
+.pillar:hover { background: var(--bone); }
+
+.pillar-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--tan-deep);
+  letter-spacing: 0.1em;
+  margin-bottom: 32px;
+}
+
+.pillar-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 32px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+  color: var(--ink);
+}
+
+.pillar-text {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  font-weight: 300;
+}
+
+@media (max-width: 968px) {
+  .approach-header { grid-template-columns: 1fr; gap: 32px; }
+  .approach-pillars { grid-template-columns: 1fr; }
+  .pillar { border-right: none; border-bottom: 1px solid var(--line-strong); }
+  .pillar:last-child { border-bottom: none; }
+  .approach-quote { font-size: 22px; padding-left: 20px; }
+}
+
+/* ====== TEAM ====== */
+.team {
+  background: var(--bone);
+  padding: 140px 48px;
+  border-top: 1px solid var(--line-strong);
+}
+
+.team-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.team-header {
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 80px;
+  margin-bottom: 100px;
+  align-items: end;
+}
+
+.team-intro-text {
+  font-size: 18px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  max-width: 520px;
+  font-weight: 300;
+}
+
+.team-list {
+  border-top: 1px solid var(--ink);
+}
+
+.team-row {
+  display: grid;
+  grid-template-columns: 80px 1.2fr 1.5fr 1fr;
+  gap: 40px;
+  align-items: center;
+  padding: 36px 0;
+  border-bottom: 1px solid var(--line-strong);
+  transition: background 0.4s, padding 0.4s;
+  position: relative;
+}
+
+.team-row:hover {
+  background: var(--bone-deep);
+  padding-left: 24px;
+  padding-right: 24px;
+}
+
+.team-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 14px;
+  color: var(--tan-deep);
+  letter-spacing: 0.1em;
+}
+
+.team-name {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 36px;
+  line-height: 1.0;
+  letter-spacing: -0.02em;
+  color: var(--ink);
+}
+
+.team-name em { font-style: italic; color: var(--tan-deep); }
+
+.team-role {
+  font-size: 14px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  font-weight: 400;
+}
+
+.team-discipline {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-weight: 300;
+  font-size: 16px;
+  color: var(--ink-soft);
+  text-align: right;
+  opacity: 0.7;
+}
+
+@media (max-width: 968px) {
+  .team { padding: 80px 24px; }
+  .team-header { grid-template-columns: 1fr; gap: 32px; }
+  .team-row {
+    grid-template-columns: 40px 1fr;
+    grid-template-rows: auto auto;
+    gap: 8px 16px;
+    padding: 24px 0;
+  }
+  .team-row:hover { padding-left: 0; padding-right: 0; }
+  .team-num { grid-row: 1; }
+  .team-name { grid-column: 2; grid-row: 1; font-size: 26px; }
+  .team-role { grid-column: 2; grid-row: 2; font-size: 12px; }
+  .team-discipline { display: none; }
+}
+
+/* ====== STATS ====== */
+.stats {
+  background: var(--ink);
+  color: var(--bone);
+  padding: 100px 48px;
+  border-top: 1px solid rgba(245, 241, 234, 0.1);
+}
+
+.stats-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+}
+
+.stat-item {
+  border-left: 1px solid rgba(245, 241, 234, 0.2);
+  padding-left: 32px;
+}
+
+.stat-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 80px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--bone);
+  margin-bottom: 16px;
+}
+
+.stat-num em { font-style: italic; color: var(--tan); }
+.stat-num small { font-size: 32px; vertical-align: top; margin-left: 4px; opacity: 0.6; }
+
+.stat-label {
+  font-size: 12px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: rgba(245, 241, 234, 0.5);
+  line-height: 1.5;
+}
+
+@media (max-width: 968px) {
+  .stats { padding: 60px 24px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  .stat-num { font-size: 56px; }
+}
+
+/* ====== ENGAGEMENT ====== */
+.engagement {
+  background: var(--bone);
+  padding: 140px 48px;
+}
+
+.engagement-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.engagement-header {
+  text-align: left;
+  margin-bottom: 80px;
+  max-width: 900px;
+}
+
+.engagement-flow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  position: relative;
+}
+
+.engagement-flow::before {
+  content: '';
+  position: absolute;
+  top: 28px;
+  left: 5%;
+  right: 5%;
+  height: 1px;
+  background: var(--line-strong);
+  z-index: 0;
+}
+
+.flow-step {
+  position: relative;
+  z-index: 1;
+}
+
+.flow-marker {
+  width: 56px; height: 56px;
+  border-radius: 50%;
+  background: var(--bone);
+  border: 1px solid var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-style: italic;
+  font-size: 20px;
+  color: var(--ink);
+  margin-bottom: 32px;
+  transition: all 0.4s;
+}
+
+.flow-step:hover .flow-marker {
+  background: var(--ink);
+  color: var(--bone);
+}
+
+.flow-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.2;
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+
+.flow-text {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--ink-soft);
+  font-weight: 300;
+}
+
+@media (max-width: 968px) {
+  .engagement-flow { grid-template-columns: 1fr; gap: 32px; }
+  .engagement-flow::before { display: none; }
+}
+
+/* ====== CONTACT ====== */
+.contact {
+  background: var(--ink);
+  color: var(--bone);
+  padding: 160px 48px 80px;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse at 70% 40%, rgba(184, 153, 122, 0.12) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.contact-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.contact-headline {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: clamp(48px, 8vw, 120px);
+  line-height: 0.95;
+  letter-spacing: -0.03em;
+  margin-bottom: 80px;
+  max-width: 1100px;
+}
+
+.contact-headline em { font-style: italic; color: var(--tan); }
+
+.contact-info {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) auto;
+  gap: 40px;
+  align-items: end;
+  border-top: 1px solid rgba(245, 241, 234, 0.2);
+  padding-top: 40px;
+}
+
+.contact-block-label {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--tan);
+  margin-bottom: 16px;
+}
+
+.contact-block-value {
+  font-family: 'Fraunces', serif;
+  font-weight: 300;
+  font-size: 22px;
+  line-height: 1.3;
+  color: var(--bone);
+}
+
+.contact-block-value a {
+  color: var(--bone);
+  text-decoration: none;
+  border-bottom: 1px solid rgba(245, 241, 234, 0.3);
+  transition: border-color 0.3s;
+}
+
+.contact-block-value a:hover { border-color: var(--tan); }
+
+.contact-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 16px;
+  background: var(--tan);
+  color: var(--ink);
+  padding: 20px 32px;
+  border-radius: 100px;
+  text-decoration: none;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  font-weight: 500;
+  transition: all 0.3s;
+  white-space: nowrap;
+}
+
+.contact-cta:hover {
+  background: var(--bone);
+  transform: translateX(4px);
+}
+
+.contact-cta-arrow { font-size: 18px; transition: transform 0.3s; }
+.contact-cta:hover .contact-cta-arrow { transform: translateX(4px); }
+
+@media (max-width: 968px) {
+  .contact { padding: 100px 24px 60px; }
+  .contact-info { grid-template-columns: 1fr; gap: 32px; }
+}
+
+/* ====== FOOTER ====== */
+.footer {
+  background: var(--ink);
+  color: rgba(245, 241, 234, 0.5);
+  padding: 60px 48px 40px;
+  border-top: 1px solid rgba(245, 241, 234, 0.1);
+  font-size: 13px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 24px;
+  align-items: center;
+}
+
+.footer-mark {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 18px;
+  color: var(--bone);
+}
+
+.footer-mark span { font-style: italic; color: var(--tan); }
+
+.footer-meta {
+  display: flex;
+  gap: 32px;
+  flex-wrap: wrap;
+  font-size: 12px;
+  letter-spacing: 0.05em;
+}
+
+@media (max-width: 768px) {
+  .footer { padding: 40px 24px 24px; flex-direction: column; align-items: flex-start; }
+}
+
+/* ====== SCROLL REVEAL ====== */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.reveal.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-stagger > * {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.reveal-stagger.in-view > *:nth-child(1) { transition-delay: 0.05s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.in-view > *:nth-child(2) { transition-delay: 0.15s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.in-view > *:nth-child(3) { transition-delay: 0.25s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.in-view > *:nth-child(4) { transition-delay: 0.35s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.in-view > *:nth-child(5) { transition-delay: 0.45s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.in-view > *:nth-child(6) { transition-delay: 0.55s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.in-view > *:nth-child(7) { transition-delay: 0.65s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.in-view > *:nth-child(8) { transition-delay: 0.75s; opacity: 1; transform: translateY(0); }
+
+/* SVG mark for nav */
+.brand-mark-svg {
+  width: 28px; height: 28px;
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 12px;
+}
+
+</style>
+</head>
+<body>
+
+<!-- ===================== NAV ===================== -->
+<nav class="nav" id="nav">
+  <a href="#" class="nav-mark">
+    <svg class="brand-mark-svg" viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+      <path d="M15 18 L35 18 L50 80 L65 18 L85 18 L58 92 L42 92 Z M48 18 L52 18 L52 65 L48 65 Z"/>
+    </svg>
+    VUSA<span>·</span>Consultancy
+  </a>
+  <ul class="nav-links">
+    <li><a href="#manifest">Practice</a></li>
+    <li><a href="#sectors">Sectors</a></li>
+    <li><a href="#approach">Approach</a></li>
+    <li><a href="#team">Team</a></li>
+    <li><a href="#engagement">Engagement</a></li>
+  </ul>
+  <a href="#contact" class="nav-cta">Begin a brief</a>
+</nav>
+
+<!-- ===================== HERO ===================== -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-grid"></div>
+
+  <div class="hero-meta">
+    <span>EST 2025 · UNITED KINGDOM</span>
+    <div class="hero-meta-line"></div>
+    <span>VOL. I — COMMODITY TRADE</span>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">Commercial Consultancy · Commodity Trade</div>
+    <h1 class="hero-title">
+      <span class="word">Embedded</span>
+      <span class="word"><em>execution</em></span>
+      <span class="word">in</span>
+      <span class="word">global</span>
+      <span class="word">trade.</span>
+    </h1>
+    <div class="hero-bottom">
+      <p class="hero-lede">
+        VUSA Consultancy works inside the operations of importers, exporters, and trading houses. We do not write reports from the outside. We sit at the desk, draft the contracts, run the documentation, and move the cargo.
+      </p>
+      <div class="hero-scroll">
+        <span>Scroll</span>
+        <div class="hero-scroll-line"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== MARQUEE ===================== -->
+<div class="marquee">
+  <div class="marquee-track">
+    <span class="marquee-item">Lentils</span>
+    <span class="marquee-item">Legumes</span>
+    <span class="marquee-item">Fertilisers</span>
+    <span class="marquee-item">Proteins</span>
+    <span class="marquee-item">Industrial Materials</span>
+    <span class="marquee-item">Agro-Commodities</span>
+    <span class="marquee-item">Cross-Border Supply</span>
+    <span class="marquee-item">Lentils</span>
+    <span class="marquee-item">Legumes</span>
+    <span class="marquee-item">Fertilisers</span>
+    <span class="marquee-item">Proteins</span>
+    <span class="marquee-item">Industrial Materials</span>
+    <span class="marquee-item">Agro-Commodities</span>
+    <span class="marquee-item">Cross-Border Supply</span>
+  </div>
+</div>
+
+<!-- ===================== MANIFEST ===================== -->
+<section class="section manifest" id="manifest">
+  <div class="manifest-grid">
+    <div class="manifest-side reveal">
+      <div class="manifest-number">01<sup>·</sup></div>
+      <div class="manifest-side-label">Practice — A note on what we do, and what we refuse to do.</div>
+    </div>
+    <div class="manifest-prose reveal">
+      <div class="section-label">The Practice</div>
+      <h2 class="section-heading">A consultancy that <em>operates</em>, not one that observes.</h2>
+
+      <p>VUSA Consultancy is a UK-registered commercial consultancy specialising in international commodity trade and cross-border supply chains. We are <strong>execution-led</strong>. Our clients are mid-market importers, exporters, and trading companies across North America and Europe.</p>
+
+      <p>Most consultancies sell <em>frameworks</em>. We sell <em>movement</em>. The contracts that close. The shipments that clear. The supplier relationships that hold under pressure. The documentation that survives a bank's compliance desk on a Friday afternoon.</p>
+
+      <p>We do not provide regulated financial or investment advice. We support the commercial and documentation discipline that real trades require — and we hold ourselves to the standard of being useful by Tuesday morning, not impressive in a deck.</p>
+
+      <div class="manifest-divider"></div>
+
+      <div class="manifest-meta">
+        <div class="manifest-meta-item">
+          <div class="manifest-meta-label">Registered</div>
+          <div class="manifest-meta-value">VUSA Group UK Ltd<br>Companies House 16124195</div>
+        </div>
+        <div class="manifest-meta-item">
+          <div class="manifest-meta-label">Operating</div>
+          <div class="manifest-meta-value">United Kingdom<br>United States · Canada · Tanzania</div>
+        </div>
+        <div class="manifest-meta-item">
+          <div class="manifest-meta-label">Founded</div>
+          <div class="manifest-meta-value">2025</div>
+        </div>
+        <div class="manifest-meta-item">
+          <div class="manifest-meta-label">Discipline</div>
+          <div class="manifest-meta-value">Commodity trade execution<br>and supply chain integration</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== SECTORS ===================== -->
+<section class="section sectors" id="sectors">
+  <div class="sectors-intro">
+    <div>
+      <div class="section-label">The Sectors</div>
+      <h2 class="section-heading">Three pillars. <em>One discipline.</em></h2>
+    </div>
+    <p class="sectors-intro-text">
+      Our work concentrates where the documentation is heaviest, the margins are tightest, and the consequences of getting it wrong are unforgiving. We chose these sectors deliberately.
+    </p>
+  </div>
+
+  <div class="sector-list reveal-stagger">
+    <a href="#contact" class="sector-row">
+      <span class="sector-num">— 01</span>
+      <h3 class="sector-title">Agro-<em>commodities</em></h3>
+      <p class="sector-desc">
+        Lentils, legumes, pulses, and proteins. Sourcing relationships across origin markets, contract structuring with end-buyers, and documentation discipline through SGS inspection, LC at sight, and CAD settlement.
+      </p>
+      <div class="sector-tags">
+        <span class="sector-tag">Lentils</span>
+        <span class="sector-tag">Legumes</span>
+        <span class="sector-tag">Proteins</span>
+      </div>
+      <span class="sector-arrow">→</span>
+    </a>
+
+    <a href="#contact" class="sector-row">
+      <span class="sector-num">— 02</span>
+      <h3 class="sector-title">Fertilisers &amp; <em>industrial materials</em></h3>
+      <p class="sector-desc">
+        High-volume cross-border movement of fertilisers and industrial inputs. We engage where transaction values exceed standard merchant capacity and bespoke commercial structures are required.
+      </p>
+      <div class="sector-tags">
+        <span class="sector-tag">Fertilisers</span>
+        <span class="sector-tag">Industrial</span>
+        <span class="sector-tag">Bulk</span>
+      </div>
+      <span class="sector-arrow">→</span>
+    </a>
+
+    <a href="#contact" class="sector-row">
+      <span class="sector-num">— 03</span>
+      <h3 class="sector-title">Cross-border <em>supply chain execution</em></h3>
+      <p class="sector-desc">
+        Embedded operational support spanning origin, transit, and destination. We integrate with procurement, finance, and compliance teams to carry deals from LOI through final delivery and settlement.
+      </p>
+      <div class="sector-tags">
+        <span class="sector-tag">SPA / LOI</span>
+        <span class="sector-tag">SGS</span>
+        <span class="sector-tag">LC · SBLC · CAD</span>
+      </div>
+      <span class="sector-arrow">→</span>
+    </a>
+  </div>
+</section>
+
+<!-- ===================== APPROACH ===================== -->
+<section class="section approach" id="approach">
+  <div class="approach-grid">
+    <div class="approach-header">
+      <div>
+        <div class="section-label">The Approach</div>
+        <h2 class="section-heading">Three disciplines, <em>uncompromised.</em></h2>
+      </div>
+      <p class="approach-quote reveal">
+        "The deals that close are not the deals that were pitched best. They are the deals that were prepared best, drafted tightest, and chased hardest."
+      </p>
+    </div>
+
+    <div class="approach-pillars reveal-stagger">
+      <div class="pillar">
+        <div class="pillar-num">— I.</div>
+        <h3 class="pillar-title">Embedded, not advisory</h3>
+        <p class="pillar-text">
+          We sit inside client operations rather than presenting from outside them. Daily standups, shared workflows, and a seat in the procurement and compliance reviews that matter. The output is movement, not slides.
+        </p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">— II.</div>
+        <h3 class="pillar-title">Documentation discipline</h3>
+        <p class="pillar-text">
+          Sales and Purchase Agreements drafted to survive bank scrutiny. Letters of Intent, ICPOs, FCOs, and Incoterms applied correctly the first time. We treat every clause as the one that will eventually be read by a lawyer.
+        </p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-num">— III.</div>
+        <h3 class="pillar-title">Selective engagement</h3>
+        <p class="pillar-text">
+          We work with a deliberately small number of clients each quarter. The economics of execution-led work mean we cannot be everywhere. We choose the engagements where our discipline genuinely changes the outcome.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TEAM ===================== -->
+<section class="team" id="team">
+  <div class="team-grid">
+    <div class="team-header reveal">
+      <div>
+        <div class="section-label">The Team</div>
+        <h2 class="section-heading">A small team. <em>By design.</em></h2>
+      </div>
+      <p class="team-intro-text">
+        Execution-led work does not scale through headcount. Every engagement is led by a named practitioner with direct accountability. No analyst layers, no account managers between the work and the client.
+      </p>
+    </div>
+
+    <div class="team-list reveal-stagger">
+      <div class="team-row">
+        <span class="team-num">— 01</span>
+        <h3 class="team-name">Shamim <em>A.</em></h3>
+        <div class="team-role">Managing Director</div>
+        <div class="team-discipline">Operational leadership</div>
+      </div>
+      <div class="team-row">
+        <span class="team-num">— 02</span>
+        <h3 class="team-name">Jay <em>M.</em></h3>
+        <div class="team-role">Partner</div>
+        <div class="team-discipline">Commercial &amp; trade strategy</div>
+      </div>
+      <div class="team-row">
+        <span class="team-num">— 03</span>
+        <h3 class="team-name">Talha <em>A.</em></h3>
+        <div class="team-role">Senior Consultant</div>
+        <div class="team-discipline">Deal execution</div>
+      </div>
+      <div class="team-row">
+        <span class="team-num">— 04</span>
+        <h3 class="team-name">Suzie <em>S.</em></h3>
+        <div class="team-role">Financial Consultant</div>
+        <div class="team-discipline">Settlement &amp; structuring</div>
+      </div>
+      <div class="team-row">
+        <span class="team-num">— 05</span>
+        <h3 class="team-name">Bri <em>K.</em></h3>
+        <div class="team-role">Process Auditor</div>
+        <div class="team-discipline">Compliance &amp; documentation</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== STATS ===================== -->
+<section class="stats">
+  <div class="stats-grid reveal-stagger">
+    <div class="stat-item">
+      <div class="stat-num"><em>4</em></div>
+      <div class="stat-label">Operating jurisdictions<br>UK · US · Canada · Tanzania</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">3<small>+</small></div>
+      <div class="stat-label">Core sectors<br>under active engagement</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num">100<small>%</small></div>
+      <div class="stat-label">Engagements led<br>by senior practitioners</div>
+    </div>
+    <div class="stat-item">
+      <div class="stat-num"><em>0</em></div>
+      <div class="stat-label">Reliance on<br>off-the-shelf playbooks</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== ENGAGEMENT ===================== -->
+<section class="engagement" id="engagement">
+  <div class="engagement-grid">
+    <div class="engagement-header reveal">
+      <div class="section-label">The Engagement</div>
+      <h2 class="section-heading">From brief to <em>delivery.</em></h2>
+      <p style="font-size: 18px; color: var(--ink-soft); max-width: 720px; margin-top: 24px; font-weight: 300;">
+        A four-stage process that holds across every engagement, regardless of sector. Disciplined at the front so the back is clean.
+      </p>
+    </div>
+
+    <div class="engagement-flow reveal-stagger">
+      <div class="flow-step">
+        <div class="flow-marker">i</div>
+        <h4 class="flow-title">Brief</h4>
+        <p class="flow-text">Direct conversation with the principal. Scope, sector, transaction profile, and counterparty exposure assessed inside the first call.</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-marker">ii</div>
+        <h4 class="flow-title">Structure</h4>
+        <p class="flow-text">Engagement scope, commercial structure, and documentation roadmap agreed in writing. No work begins on a handshake.</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-marker">iii</div>
+        <h4 class="flow-title">Embed</h4>
+        <p class="flow-text">Integration with client procurement, finance, and compliance functions. Shared workflows, weekly delivery cadence.</p>
+      </div>
+      <div class="flow-step">
+        <div class="flow-marker">iv</div>
+        <h4 class="flow-title">Execute</h4>
+        <p class="flow-text">Contracts drafted, supplier and buyer relationships managed, shipments coordinated, settlement closed. Delivery, not deliverables.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACT ===================== -->
+<section class="contact" id="contact">
+  <div class="contact-bg"></div>
+  <div class="contact-grid">
+    <div class="section-label" style="color: var(--tan);">
+      <span style="background: var(--tan); width: 32px; height: 1px; display: inline-block;"></span>
+      Begin a Brief
+    </div>
+    <h2 class="contact-headline reveal">
+      Tell us the <em>deal</em>. We will tell you whether we are the right house to <em>execute it.</em>
+    </h2>
+
+    <div class="contact-info">
+      <div>
+        <div class="contact-block-label">Direct</div>
+        <div class="contact-block-value">
+          <a href="mailto:talha@vusaconsultancy.com">talha@vusaconsultancy.com</a>
+        </div>
+      </div>
+      <div>
+        <div class="contact-block-label">Office</div>
+        <div class="contact-block-value">Box Trees Craft Centre<br>Stratford Road, Hockley Heath<br>Solihull, B94 6EA</div>
+      </div>
+      <div>
+        <div class="contact-block-label">Operating Hours</div>
+        <div class="contact-block-value">Mon — Fri<br>09:00 — 18:00 GMT</div>
+      </div>
+      <a href="mailto:talha@vusaconsultancy.com?subject=New%20brief%20—%20VUSA%20Consultancy" class="contact-cta">
+        Begin a brief
+        <span class="contact-cta-arrow">→</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FOOTER ===================== -->
+<footer class="footer">
+  <div class="footer-mark">VUSA<span>·</span>Consultancy</div>
+  <div class="footer-meta">
+    <span>© 2025 VUSA Group UK Ltd</span>
+    <span>Companies House 16124195</span>
+    <span>United Kingdom</span>
+  </div>
+</footer>
+
+<script>
+// Nav scroll state
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 60) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+});
+
+// Intersection observer for reveals
+const revealObserver = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('in-view');
+      revealObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.15, rootMargin: '0px 0px -80px 0px' });
+
+document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => {
+  revealObserver.observe(el);
+});
+
+// Subtle parallax on hero grid
+const heroGrid = document.querySelector('.hero-grid');
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  if (scrolled < window.innerHeight && heroGrid) {
+    heroGrid.style.transform = `translateY(${scrolled * 0.3}px)`;
+  }
+});
+</script>
+
+</body>
+</html>
