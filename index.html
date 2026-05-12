@@ -3,29 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VUSA Consultancy — Commodity Trade & Cross-Border Supply Chain Execution</title>
-<meta name="description" content="VUSA Consultancy is an execution-led commercial consultancy embedded in international commodity trade. Agro-commodities, fertilisers, and cross-border supply chains.">
+<title>VUSA — Commercial Consultancy for International Operations</title>
+<meta name="description" content="VUSA is an execution-led commercial consultancy embedded in international business operations.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;1,9..144,300;1,9..144,400&family=Inter+Tight:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bone: #F5F1EA;
-  --bone-deep: #EBE5D9;
+  --bone: #F2EDE3;
+  --bone-deep: #E8E0D0;
+  --paper: #EEE7D7;
   --ink: #1A1816;
   --ink-soft: #3A352E;
+  --ink-fade: #6B6359;
   --tan: #B8997A;
   --tan-deep: #8A6F52;
+  --tan-rich: #6B5238;
   --forest: #2C3A2E;
   --rust: #8B4A2B;
+  --burgundy: #5C2A2A;
   --line: rgba(26, 24, 22, 0.12);
   --line-strong: rgba(26, 24, 22, 0.25);
+  --line-soft: rgba(26, 24, 22, 0.08);
 }
-
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
 html { scroll-behavior: smooth; }
-
 body {
   background: var(--bone);
   color: var(--ink);
@@ -36,1003 +38,810 @@ body {
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  position: relative;
 }
-
-.serif { font-family: 'Fraunces', serif; font-weight: 300; letter-spacing: -0.02em; }
-.serif-italic { font-family: 'Fraunces', serif; font-style: italic; font-weight: 300; }
-
-/* ====== NAVIGATION ====== */
-.nav {
+body::before {
+  content: '';
   position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
+  inset: 0;
+  pointer-events: none;
+  z-index: 200;
+  opacity: 0.4;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.09 0 0 0 0 0.08 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+.mono { font-family: 'JetBrains Mono', monospace; font-weight: 300; }
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
   padding: 28px 48px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  display: flex; justify-content: space-between; align-items: center;
   mix-blend-mode: difference;
   transition: padding 0.4s ease;
 }
-
 .nav.scrolled { padding: 18px 48px; }
-
 .nav-mark {
-  font-family: 'Fraunces', serif;
-  font-weight: 400;
-  font-size: 22px;
-  letter-spacing: -0.01em;
-  color: var(--bone);
-  text-decoration: none;
+  font-family: 'Fraunces', serif; font-weight: 500;
+  font-size: 24px; letter-spacing: 0.04em;
+  color: var(--bone); text-decoration: none;
+  display: flex; align-items: center; gap: 14px;
 }
-
-.nav-mark span {
-  font-style: italic;
-  color: var(--tan);
+.nav-mark-symbol {
+  width: 26px; height: 26px;
+  border: 1.5px solid var(--bone);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Fraunces', serif; font-weight: 400;
+  font-size: 12px; font-style: italic;
 }
-
-.nav-links {
-  display: flex;
-  gap: 40px;
-  list-style: none;
-}
-
+.nav-links { display: flex; gap: 36px; list-style: none; counter-reset: navi; }
 .nav-links a {
-  color: var(--bone);
-  text-decoration: none;
-  font-size: 13px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  font-weight: 400;
-  transition: color 0.3s;
-  position: relative;
+  color: var(--bone); text-decoration: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+  font-weight: 400; transition: opacity 0.3s;
+  position: relative; opacity: 0.85;
 }
-
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: -4px; left: 0;
-  width: 0; height: 1px;
-  background: var(--tan);
-  transition: width 0.4s ease;
+.nav-links a:hover { opacity: 1; }
+.nav-links a::before {
+  content: counter(navi, decimal-leading-zero) ' ';
+  counter-increment: navi;
+  opacity: 0.5; margin-right: 4px;
 }
-
-.nav-links a:hover::after { width: 100%; }
-
 .nav-cta {
-  color: var(--bone);
-  text-decoration: none;
-  font-size: 13px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  border: 1px solid var(--bone);
-  padding: 10px 20px;
-  border-radius: 100px;
+  color: var(--bone); text-decoration: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
+  border: 1px solid var(--bone); padding: 10px 18px;
   transition: all 0.3s;
 }
-
 .nav-cta:hover { background: var(--bone); color: var(--ink); }
-
 @media (max-width: 768px) {
   .nav { padding: 20px 24px; }
   .nav-links { display: none; }
 }
-
-/* ====== HERO ====== */
 .hero {
-  min-height: 100vh;
-  position: relative;
-  display: flex;
-  align-items: flex-end;
-  padding: 0 48px 80px;
-  overflow: hidden;
-  background: var(--ink);
-  color: var(--bone);
+  min-height: 100vh; position: relative;
+  display: flex; align-items: flex-end;
+  padding: 0 48px 80px; overflow: hidden;
+  background: var(--ink); color: var(--bone);
 }
-
 .hero-bg {
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   background-image:
-    radial-gradient(ellipse at 20% 30%, rgba(184, 153, 122, 0.15) 0%, transparent 50%),
-    radial-gradient(ellipse at 80% 70%, rgba(44, 58, 46, 0.2) 0%, transparent 50%),
-    url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' /%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.09 0 0 0 0 0.08 0 0 0 0.4 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-  opacity: 0.95;
+    radial-gradient(ellipse at 15% 25%, rgba(184, 153, 122, 0.18) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 75%, rgba(92, 42, 42, 0.15) 0%, transparent 50%),
+    radial-gradient(circle at 50% 50%, rgba(0,0,0,0.3) 0%, transparent 70%);
 }
-
 .hero-grid {
-  position: absolute;
-  inset: 0;
+  position: absolute; inset: 0;
   background-image:
-    linear-gradient(to right, rgba(245, 241, 234, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(245, 241, 234, 0.04) 1px, transparent 1px);
+    linear-gradient(to right, rgba(245, 241, 234, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(245, 241, 234, 0.03) 1px, transparent 1px);
   background-size: 80px 80px;
 }
-
+.hero-numeral {
+  position: absolute; right: -40px; top: 50%;
+  transform: translateY(-50%);
+  font-family: 'Fraunces', serif; font-weight: 300; font-style: italic;
+  font-size: clamp(280px, 50vw, 720px);
+  line-height: 0.8;
+  color: rgba(184, 153, 122, 0.08);
+  letter-spacing: -0.08em;
+  pointer-events: none; z-index: 1;
+}
+.hero-mark {
+  position: absolute; top: 50%; left: 48px;
+  transform: translateY(-50%) rotate(-90deg);
+  transform-origin: left center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.4em;
+  color: var(--tan); text-transform: uppercase;
+  opacity: 0.6; z-index: 2;
+}
 .hero-meta {
-  position: absolute;
-  top: 140px; left: 48px;
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  position: absolute; top: 140px; left: 48px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
   color: var(--tan);
-  display: flex;
-  gap: 32px;
-  align-items: center;
+  display: flex; gap: 32px; align-items: center; z-index: 3;
 }
-
 .hero-meta-line { width: 60px; height: 1px; background: var(--tan); opacity: 0.5; }
-
-.hero-content { position: relative; z-index: 2; max-width: 1400px; }
-
+.hero-content { position: relative; z-index: 5; max-width: 1400px; }
 .hero-eyebrow {
-  font-size: 12px;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--tan);
-  margin-bottom: 32px;
-  opacity: 0;
-  animation: fadeUp 1s ease 0.2s forwards;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--tan); margin-bottom: 32px;
+  opacity: 0; animation: fadeUp 1s ease 0.2s forwards;
+  display: flex; align-items: center; gap: 16px;
 }
-
+.hero-eyebrow::before, .hero-eyebrow::after {
+  content: ''; flex: 0 0 24px; height: 1px;
+  background: var(--tan); opacity: 0.6;
+}
+.hero-eyebrow::after { flex: 1; max-width: 80px; }
 .hero-title {
-  font-family: 'Fraunces', serif;
-  font-weight: 300;
+  font-family: 'Fraunces', serif; font-weight: 300;
   font-size: clamp(48px, 9vw, 144px);
-  line-height: 0.95;
-  letter-spacing: -0.03em;
-  margin-bottom: 48px;
-  color: var(--bone);
+  line-height: 0.95; letter-spacing: -0.03em;
+  margin-bottom: 48px; color: var(--bone);
 }
-
 .hero-title .word {
-  display: inline-block;
-  opacity: 0;
+  display: inline-block; opacity: 0;
   transform: translateY(40px);
   animation: fadeUp 1s ease forwards;
 }
-
 .hero-title .word:nth-child(1) { animation-delay: 0.4s; }
 .hero-title .word:nth-child(2) { animation-delay: 0.55s; }
 .hero-title .word:nth-child(3) { animation-delay: 0.7s; }
 .hero-title .word:nth-child(4) { animation-delay: 0.85s; }
 .hero-title .word:nth-child(5) { animation-delay: 1.0s; }
-
-.hero-title em {
-  font-style: italic;
-  font-weight: 300;
-  color: var(--tan);
-}
-
+.hero-title em { font-style: italic; font-weight: 300; color: var(--tan); }
 .hero-bottom {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  flex-wrap: wrap;
-  gap: 40px;
-  opacity: 0;
-  animation: fadeUp 1s ease 1.2s forwards;
+  display: flex; justify-content: space-between; align-items: flex-end;
+  flex-wrap: wrap; gap: 40px;
+  opacity: 0; animation: fadeUp 1s ease 1.2s forwards;
 }
-
 .hero-lede {
-  max-width: 480px;
-  font-size: 17px;
-  line-height: 1.6;
-  color: rgba(245, 241, 234, 0.75);
-  font-weight: 300;
+  max-width: 480px; font-size: 17px; line-height: 1.65;
+  color: rgba(245, 241, 234, 0.78); font-weight: 300;
 }
-
+.hero-lede::first-letter {
+  font-family: 'Fraunces', serif;
+  font-size: 3.5em; float: left; line-height: 0.85;
+  margin: 6px 12px 0 0; color: var(--tan);
+  font-style: italic; font-weight: 400;
+}
 .hero-scroll {
-  display: flex;
-  align-items: center;
-  gap: 16px;
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+  display: flex; align-items: center; gap: 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
   color: var(--tan);
 }
-
 .hero-scroll-line {
-  width: 60px; height: 1px;
-  background: var(--tan);
-  position: relative;
-  overflow: hidden;
+  width: 50px; height: 1px;
+  background: rgba(184, 153, 122, 0.3);
+  position: relative; overflow: hidden;
 }
-
 .hero-scroll-line::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: var(--bone);
-  animation: scrollPulse 2s ease infinite;
+  content: ''; position: absolute; inset: 0;
+  background: var(--tan);
+  animation: scrollPulse 2.5s ease infinite;
 }
-
 @keyframes scrollPulse {
   0% { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
 }
-
-@keyframes fadeUp {
-  to { opacity: 1; transform: translateY(0); }
-}
-
+@keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
 @media (max-width: 768px) {
   .hero { padding: 0 24px 60px; }
   .hero-meta { left: 24px; top: 100px; gap: 16px; }
   .hero-meta-line { width: 30px; }
+  .hero-mark { display: none; }
+  .hero-numeral { font-size: 200px; right: -20px; }
 }
-
-/* ====== MARQUEE ====== */
 .marquee {
-  background: var(--ink);
-  color: var(--bone);
-  padding: 24px 0;
-  overflow: hidden;
-  border-top: 1px solid rgba(245, 241, 234, 0.1);
-  border-bottom: 1px solid rgba(245, 241, 234, 0.1);
+  background: var(--ink); color: var(--bone);
+  padding: 32px 0; overflow: hidden;
+  border-top: 1px solid rgba(245, 241, 234, 0.08);
+  border-bottom: 1px solid rgba(245, 241, 234, 0.08);
   position: relative;
 }
-
 .marquee::before, .marquee::after {
-  content: '';
-  position: absolute;
-  top: 0; bottom: 0;
-  width: 120px;
-  z-index: 2;
-  pointer-events: none;
+  content: ''; position: absolute; top: 0; bottom: 0;
+  width: 140px; z-index: 2; pointer-events: none;
 }
-
 .marquee::before { left: 0; background: linear-gradient(to right, var(--ink), transparent); }
 .marquee::after { right: 0; background: linear-gradient(to left, var(--ink), transparent); }
-
 .marquee-track {
-  display: flex;
-  gap: 80px;
-  animation: marquee 40s linear infinite;
-  white-space: nowrap;
-  width: max-content;
+  display: flex; gap: 80px;
+  animation: marquee 50s linear infinite;
+  white-space: nowrap; width: max-content;
 }
-
 .marquee-item {
-  font-family: 'Fraunces', serif;
-  font-style: italic;
-  font-weight: 300;
-  font-size: 32px;
-  color: var(--bone);
-  display: flex;
-  align-items: center;
-  gap: 80px;
+  font-family: 'Fraunces', serif; font-style: italic; font-weight: 300;
+  font-size: 36px; color: var(--bone);
+  display: flex; align-items: center; gap: 80px;
 }
-
 .marquee-item::after {
-  content: '✦';
-  color: var(--tan);
-  font-size: 14px;
-  font-style: normal;
+  content: '✦'; color: var(--tan);
+  font-size: 16px; font-style: normal;
 }
-
-@keyframes marquee {
-  to { transform: translateX(-50%); }
+@keyframes marquee { to { transform: translateX(-50%); } }
+.section-divider {
+  padding: 60px 48px; text-align: center;
+  background: var(--bone); position: relative;
 }
-
-/* ====== SECTION COMMONS ====== */
+.section-divider svg {
+  display: inline-block; height: 24px;
+  color: var(--tan-deep); opacity: 0.6;
+}
 .section { padding: 140px 48px; position: relative; }
-
 .section-label {
-  font-size: 11px;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
-  color: var(--tan-deep);
-  margin-bottom: 24px;
-  display: flex;
-  align-items: center;
-  gap: 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--tan-deep); margin-bottom: 24px;
+  display: flex; align-items: center; gap: 16px;
 }
-
 .section-label::before {
-  content: '';
-  width: 32px; height: 1px;
+  content: ''; width: 32px; height: 1px;
   background: var(--tan-deep);
 }
-
+.section-label-num {
+  font-family: 'Fraunces', serif; font-style: italic;
+  font-weight: 400; font-size: 13px;
+  color: var(--tan-deep); letter-spacing: 0; margin-left: 4px;
+}
 .section-heading {
-  font-family: 'Fraunces', serif;
-  font-weight: 300;
+  font-family: 'Fraunces', serif; font-weight: 300;
   font-size: clamp(40px, 6vw, 88px);
-  line-height: 1.0;
-  letter-spacing: -0.025em;
+  line-height: 1.0; letter-spacing: -0.025em;
   margin-bottom: 60px;
 }
-
-.section-heading em {
-  font-style: italic;
-  color: var(--tan-deep);
+.section-heading em { font-style: italic; color: var(--tan-deep); }
+@media (max-width: 768px) { .section { padding: 80px 24px; } }
+.manifest {
+  background: var(--bone); position: relative; overflow: hidden;
 }
-
-@media (max-width: 768px) {
-  .section { padding: 80px 24px; }
+.manifest-glyph {
+  position: absolute; right: -100px; top: 100px;
+  font-family: 'Fraunces', serif; font-style: italic; font-weight: 300;
+  font-size: 560px; line-height: 0.8;
+  color: rgba(184, 153, 122, 0.08);
+  pointer-events: none; z-index: 0;
 }
-
-/* ====== MANIFEST / ABOUT ====== */
-.manifest { background: var(--bone); position: relative; }
-
 .manifest-grid {
-  max-width: 1400px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  gap: 80px;
-  align-items: start;
+  max-width: 1400px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1.4fr;
+  gap: 80px; align-items: start;
+  position: relative; z-index: 1;
 }
-
-.manifest-side {
-  position: sticky;
-  top: 120px;
-}
-
+.manifest-side { position: sticky; top: 120px; }
 .manifest-number {
-  font-family: 'Fraunces', serif;
-  font-weight: 300;
-  font-size: 220px;
-  line-height: 0.8;
-  color: var(--ink);
-  letter-spacing: -0.05em;
+  font-family: 'Fraunces', serif; font-weight: 300;
+  font-size: 220px; line-height: 0.8;
+  color: var(--ink); letter-spacing: -0.05em;
   position: relative;
 }
-
 .manifest-number sup {
-  font-size: 32px;
-  font-style: italic;
-  color: var(--tan-deep);
-  vertical-align: super;
-  margin-left: 12px;
+  font-size: 32px; font-style: italic;
+  color: var(--tan-deep); vertical-align: super; margin-left: 12px;
 }
-
 .manifest-side-label {
-  font-size: 12px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin-top: 32px;
-  max-width: 240px;
-  line-height: 1.6;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--ink-soft); margin-top: 32px;
+  max-width: 240px; line-height: 1.7;
 }
-
+.manifest-ornament {
+  margin-top: 48px; width: 80px;
+  opacity: 0.4; color: var(--tan-deep);
+}
 .manifest-prose p {
-  font-family: 'Fraunces', serif;
-  font-weight: 300;
-  font-size: 28px;
-  line-height: 1.4;
-  margin-bottom: 32px;
-  letter-spacing: -0.01em;
+  font-family: 'Fraunces', serif; font-weight: 300;
+  font-size: 28px; line-height: 1.45;
+  margin-bottom: 32px; letter-spacing: -0.01em;
 }
-
+.manifest-prose p:first-of-type::first-letter {
+  font-family: 'Fraunces', serif; font-weight: 400; font-style: italic;
+  font-size: 4em; float: left; line-height: 0.85;
+  margin: 8px 16px 0 0; color: var(--tan-deep);
+}
 .manifest-prose p em { color: var(--tan-deep); font-style: italic; }
 .manifest-prose p strong { font-weight: 500; color: var(--ink); }
-
 .manifest-divider {
-  width: 80px; height: 1px;
-  background: var(--ink);
-  margin: 60px 0;
+  display: flex; align-items: center; gap: 16px;
+  margin: 60px 0; color: var(--tan-deep);
 }
-
+.manifest-divider::before, .manifest-divider::after {
+  content: ''; flex: 1; height: 1px; background: var(--line-strong);
+}
+.manifest-divider-mark {
+  font-family: 'Fraunces', serif; font-style: italic;
+  font-size: 18px; opacity: 0.6;
+}
 .manifest-meta {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 40px;
-  margin-top: 60px;
+  display: grid; grid-template-columns: repeat(2, 1fr);
+  gap: 40px; counter-reset: meta;
 }
-
 .manifest-meta-item {
   border-top: 1px solid var(--line-strong);
-  padding-top: 16px;
+  padding-top: 16px; position: relative;
 }
-
+.manifest-meta-item::before {
+  content: counter(meta, decimal-leading-zero);
+  counter-increment: meta;
+  position: absolute; top: -8px; right: 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; color: var(--tan-deep);
+  background: var(--bone); padding: 0 6px; letter-spacing: 0.1em;
+}
 .manifest-meta-label {
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  margin-bottom: 8px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--ink-fade); margin-bottom: 8px;
 }
-
 .manifest-meta-value {
-  font-family: 'Fraunces', serif;
-  font-weight: 300;
-  font-size: 22px;
-  line-height: 1.3;
+  font-family: 'Fraunces', serif; font-weight: 300;
+  font-size: 22px; line-height: 1.3;
 }
-
 @media (max-width: 968px) {
   .manifest-grid { grid-template-columns: 1fr; gap: 40px; }
   .manifest-side { position: relative; top: 0; }
   .manifest-number { font-size: 140px; }
   .manifest-prose p { font-size: 22px; }
+  .manifest-glyph { font-size: 300px; right: -50px; }
 }
-
-/* ====== SECTORS ====== */
 .sectors {
-  background: var(--ink);
-  color: var(--bone);
-  position: relative;
-  overflow: hidden;
+  background: var(--ink); color: var(--bone);
+  position: relative; overflow: hidden;
 }
-
+.sectors::before {
+  content: ''; position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(184, 153, 122, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(184, 153, 122, 0.04) 1px, transparent 1px);
+  background-size: 100px 100px; pointer-events: none;
+}
 .sectors-intro {
-  max-width: 1400px;
-  margin: 0 auto 80px;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 80px;
-  align-items: end;
+  max-width: 1400px; margin: 0 auto 80px;
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 80px; align-items: end;
+  position: relative; z-index: 1;
 }
-
 .sectors .section-label { color: var(--tan); }
 .sectors .section-label::before { background: var(--tan); }
 .sectors .section-heading { color: var(--bone); }
 .sectors .section-heading em { color: var(--tan); }
-
 .sectors-intro-text {
-  font-size: 18px;
-  line-height: 1.6;
+  font-size: 18px; line-height: 1.65;
   color: rgba(245, 241, 234, 0.7);
-  max-width: 480px;
-  font-weight: 300;
+  max-width: 480px; font-weight: 300;
 }
-
 .sector-list {
-  max-width: 1400px;
-  margin: 0 auto;
+  max-width: 1400px; margin: 0 auto;
+  position: relative; z-index: 1;
 }
-
 .sector-row {
   border-top: 1px solid rgba(245, 241, 234, 0.15);
   padding: 60px 0;
-  display: grid;
-  grid-template-columns: 80px 1fr 2fr 200px;
-  gap: 40px;
-  align-items: start;
-  cursor: pointer;
-  transition: background 0.5s ease;
-  position: relative;
+  display: grid; grid-template-columns: 60px 100px 1fr 1.8fr 180px;
+  gap: 40px; align-items: start;
+  cursor: pointer; transition: background 0.5s ease;
+  position: relative; color: inherit; text-decoration: none;
 }
-
 .sector-row:last-child { border-bottom: 1px solid rgba(245, 241, 234, 0.15); }
-
 .sector-row:hover { background: rgba(184, 153, 122, 0.04); }
 .sector-row:hover .sector-arrow { transform: translateX(8px); color: var(--tan); }
-
+.sector-row:hover .sector-graphic { opacity: 1; transform: scale(1.05); }
 .sector-num {
-  font-family: 'Fraunces', serif;
-  font-weight: 300;
-  font-style: italic;
-  font-size: 14px;
-  color: var(--tan);
-  letter-spacing: 0.1em;
-  padding-top: 8px;
+  font-family: 'Fraunces', serif; font-weight: 300; font-style: italic;
+  font-size: 14px; color: var(--tan);
+  letter-spacing: 0.1em; padding-top: 8px;
 }
-
+.sector-graphic {
+  width: 80px; height: 80px; opacity: 0.7;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  color: var(--tan);
+}
 .sector-title {
-  font-family: 'Fraunces', serif;
-  font-weight: 300;
-  font-size: 44px;
-  line-height: 1.0;
-  letter-spacing: -0.02em;
+  font-family: 'Fraunces', serif; font-weight: 300;
+  font-size: 44px; line-height: 1.0;
+  letter-spacing: -0.02em; padding-top: 12px;
 }
-
 .sector-title em { font-style: italic; color: var(--tan); }
-
 .sector-desc {
-  font-size: 16px;
-  line-height: 1.6;
+  font-size: 16px; line-height: 1.65;
   color: rgba(245, 241, 234, 0.65);
-  max-width: 520px;
-  font-weight: 300;
+  max-width: 520px; font-weight: 300; padding-top: 16px;
 }
-
 .sector-tags {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  align-items: flex-end;
+  display: flex; flex-direction: column; gap: 8px;
+  align-items: flex-end; padding-top: 12px;
 }
-
 .sector-tag {
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--tan);
-  padding: 6px 14px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--tan); padding: 5px 12px;
   border: 1px solid rgba(184, 153, 122, 0.3);
-  border-radius: 100px;
 }
-
 .sector-arrow {
-  position: absolute;
-  right: -30px; top: 60px;
-  font-size: 24px;
-  color: rgba(245, 241, 234, 0.3);
+  position: absolute; right: -30px; top: 70px;
+  font-size: 24px; color: rgba(245, 241, 234, 0.3);
   transition: all 0.4s ease;
 }
-
 @media (max-width: 968px) {
   .sectors-intro { grid-template-columns: 1fr; gap: 32px; }
-  .sector-row { grid-template-columns: 1fr; gap: 16px; padding: 32px 0; }
-  .sector-tags { flex-direction: row; flex-wrap: wrap; align-items: flex-start; }
-  .sector-title { font-size: 32px; }
+  .sector-row { grid-template-columns: 60px 1fr; gap: 16px; padding: 32px 0; }
+  .sector-graphic { display: none; }
+  .sector-tags { flex-direction: row; flex-wrap: wrap; align-items: flex-start; grid-column: 2; }
+  .sector-title { font-size: 32px; grid-column: 2; }
+  .sector-desc { grid-column: 2; }
   .sector-arrow { display: none; }
 }
-
-/* ====== APPROACH ====== */
 .approach {
-  background: var(--bone-deep);
-  position: relative;
+  background: var(--bone-deep); position: relative; overflow: hidden;
 }
-
-.approach-grid {
-  max-width: 1400px;
-  margin: 0 auto;
+.approach::before {
+  content: ''; position: absolute; inset: 0;
+  background-image: repeating-linear-gradient(45deg, transparent, transparent 60px, rgba(138, 111, 82, 0.025) 60px, rgba(138, 111, 82, 0.025) 61px);
+  pointer-events: none;
 }
-
+.approach-grid { max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; }
 .approach-header {
-  display: grid;
-  grid-template-columns: 1fr 1.5fr;
-  gap: 80px;
-  margin-bottom: 100px;
-  align-items: end;
+  display: grid; grid-template-columns: 1fr 1.5fr;
+  gap: 80px; margin-bottom: 100px; align-items: end;
 }
-
 .approach-quote {
-  font-family: 'Fraunces', serif;
-  font-weight: 300;
-  font-style: italic;
-  font-size: 32px;
-  line-height: 1.4;
+  font-family: 'Fraunces', serif; font-weight: 300; font-style: italic;
+  font-size: 30px; line-height: 1.45;
   color: var(--ink-soft);
-  border-left: 2px solid var(--tan-deep);
-  padding-left: 32px;
+  position: relative; padding-left: 40px;
 }
-
+.approach-quote::before {
+  content: '"'; position: absolute; left: 0; top: -8px;
+  font-family: 'Fraunces', serif; font-size: 80px;
+  color: var(--tan-deep); line-height: 1; font-style: italic;
+}
 .approach-pillars {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 0;
-  border-top: 1px solid var(--ink);
-  border-bottom: 1px solid var(--ink);
+  display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
+  border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink);
 }
-
 .pillar {
   padding: 60px 40px;
   border-right: 1px solid var(--line-strong);
-  position: relative;
-  transition: background 0.4s;
+  position: relative; transition: background 0.4s;
 }
-
 .pillar:last-child { border-right: none; }
-
-.pillar:hover { background: var(--bone); }
-
+.pillar:hover { background: rgba(255, 255, 255, 0.3); }
+.pillar:hover .pillar-icon { opacity: 1; transform: rotate(0deg); }
 .pillar-num {
-  font-family: 'Fraunces', serif;
-  font-weight: 300;
-  font-style: italic;
-  font-size: 14px;
-  color: var(--tan-deep);
-  letter-spacing: 0.1em;
-  margin-bottom: 32px;
+  font-family: 'Fraunces', serif; font-weight: 300; font-style: italic;
+  font-size: 14px; color: var(--tan-deep);
+  letter-spacing: 0.1em; margin-bottom: 24px;
+  display: flex; align-items: center; gap: 12px;
 }
-
+.pillar-num::before { content: ''; width: 24px; height: 1px; background: var(--tan-deep); }
+.pillar-icon {
+  width: 36px; height: 36px; margin-bottom: 32px;
+  color: var(--tan-deep); opacity: 0.6;
+  transform: rotate(-6deg);
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
 .pillar-title {
-  font-family: 'Fraunces', serif;
-  font-weight: 300;
-  font-size: 32px;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  margin-bottom: 24px;
-  color: var(--ink);
+  font-family: 'Fraunces', serif; font-weight: 300;
+  font-size: 30px; line-height: 1.1;
+  letter-spacing: -0.02em; margin-bottom: 24px; color: var(--ink);
 }
-
 .pillar-text {
-  font-size: 15px;
-  line-height: 1.6;
-  color: var(--ink-soft);
-  font-weight: 300;
+  font-size: 15px; line-height: 1.65;
+  color: var(--ink-soft); font-weight: 300;
 }
-
 @media (max-width: 968px) {
   .approach-header { grid-template-columns: 1fr; gap: 32px; }
   .approach-pillars { grid-template-columns: 1fr; }
   .pillar { border-right: none; border-bottom: 1px solid var(--line-strong); }
   .pillar:last-child { border-bottom: none; }
-  .approach-quote { font-size: 22px; padding-left: 20px; }
+  .approach-quote { font-size: 22px; padding-left: 28px; }
+  .approach-quote::before { font-size: 60px; }
 }
-
-/* ====== TEAM ====== */
+.index-spread {
+  background: var(--ink); color: var(--bone);
+  padding: 120px 48px; position: relative; overflow: hidden;
+}
+.index-grid {
+  max-width: 1400px; margin: 0 auto;
+  display: grid; grid-template-columns: 1fr 1.5fr;
+  gap: 80px; align-items: center;
+  position: relative; z-index: 1;
+}
+.index-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--tan); margin-bottom: 32px;
+  display: flex; align-items: center; gap: 16px;
+}
+.index-label::before {
+  content: '✦'; font-size: 14px;
+  font-family: 'Fraunces', serif; font-style: normal;
+}
+.index-quote {
+  font-family: 'Fraunces', serif; font-weight: 300;
+  font-size: clamp(36px, 5vw, 64px);
+  line-height: 1.15; letter-spacing: -0.02em;
+  color: var(--bone); margin-bottom: 40px;
+}
+.index-quote em { font-style: italic; color: var(--tan); }
+.index-attribution {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
+  color: var(--tan); opacity: 0.7;
+}
+.index-attribution::before { content: '— '; }
+.index-art {
+  position: relative; aspect-ratio: 4/5;
+  display: flex; align-items: center; justify-content: center;
+}
+.index-art svg { width: 100%; height: 100%; }
+@media (max-width: 968px) {
+  .index-grid { grid-template-columns: 1fr; gap: 40px; }
+  .index-art { aspect-ratio: 1; max-width: 320px; margin: 0 auto; }
+}
 .team {
-  background: var(--bone);
-  padding: 140px 48px;
+  background: var(--bone); padding: 140px 48px;
   border-top: 1px solid var(--line-strong);
+  position: relative; overflow: hidden;
 }
-
-.team-grid {
-  max-width: 1400px;
-  margin: 0 auto;
+.team-glyph {
+  position: absolute; left: -80px; top: 100px;
+  font-family: 'Fraunces', serif; font-style: italic; font-weight: 300;
+  font-size: 480px; line-height: 0.8;
+  color: rgba(138, 111, 82, 0.06);
+  pointer-events: none; z-index: 0;
 }
-
+.team-grid { max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; }
 .team-header {
-  display: grid;
-  grid-template-columns: 1fr 1.4fr;
-  gap: 80px;
-  margin-bottom: 100px;
-  align-items: end;
+  display: grid; grid-template-columns: 1fr 1.4fr;
+  gap: 80px; margin-bottom: 100px; align-items: end;
 }
-
 .team-intro-text {
-  font-size: 18px;
-  line-height: 1.6;
-  color: var(--ink-soft);
-  max-width: 520px;
-  font-weight: 300;
+  font-size: 18px; line-height: 1.65;
+  color: var(--ink-soft); max-width: 520px; font-weight: 300;
 }
-
-.team-list {
-  border-top: 1px solid var(--ink);
-}
-
+.team-list { border-top: 1px solid var(--ink); }
 .team-row {
-  display: grid;
-  grid-template-columns: 80px 1.2fr 1.5fr 1fr;
-  gap: 40px;
-  align-items: center;
-  padding: 36px 0;
+  display: grid; grid-template-columns: 60px 80px 1.4fr 1.5fr 1fr;
+  gap: 32px; align-items: center;
+  padding: 32px 0;
   border-bottom: 1px solid var(--line-strong);
   transition: background 0.4s, padding 0.4s;
   position: relative;
 }
-
 .team-row:hover {
   background: var(--bone-deep);
-  padding-left: 24px;
-  padding-right: 24px;
+  padding-left: 24px; padding-right: 24px;
 }
-
 .team-num {
-  font-family: 'Fraunces', serif;
-  font-weight: 300;
-  font-style: italic;
-  font-size: 14px;
-  color: var(--tan-deep);
-  letter-spacing: 0.1em;
+  font-family: 'Fraunces', serif; font-weight: 300; font-style: italic;
+  font-size: 14px; color: var(--tan-deep); letter-spacing: 0.1em;
 }
-
+.team-monogram {
+  width: 56px; height: 56px;
+  border: 1px solid var(--ink);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Fraunces', serif; font-weight: 400; font-style: italic;
+  font-size: 20px; color: var(--ink); background: var(--bone);
+  transition: all 0.4s; letter-spacing: 0.02em;
+}
+.team-row:hover .team-monogram { background: var(--ink); color: var(--bone); }
 .team-name {
-  font-family: 'Fraunces', serif;
-  font-weight: 300;
-  font-size: 36px;
-  line-height: 1.0;
-  letter-spacing: -0.02em;
-  color: var(--ink);
+  font-family: 'Fraunces', serif; font-weight: 300;
+  font-size: 32px; line-height: 1.0;
+  letter-spacing: -0.02em; color: var(--ink);
 }
-
 .team-name em { font-style: italic; color: var(--tan-deep); }
-
 .team-role {
-  font-size: 14px;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--ink-soft);
-  font-weight: 400;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: var(--ink-soft); font-weight: 400;
 }
-
 .team-discipline {
-  font-family: 'Fraunces', serif;
-  font-style: italic;
-  font-weight: 300;
-  font-size: 16px;
-  color: var(--ink-soft);
-  text-align: right;
-  opacity: 0.7;
+  font-family: 'Fraunces', serif; font-style: italic; font-weight: 300;
+  font-size: 15px; color: var(--ink-soft);
+  text-align: right; opacity: 0.7;
 }
-
 @media (max-width: 968px) {
   .team { padding: 80px 24px; }
   .team-header { grid-template-columns: 1fr; gap: 32px; }
   .team-row {
-    grid-template-columns: 40px 1fr;
+    grid-template-columns: 56px 1fr;
     grid-template-rows: auto auto;
-    gap: 8px 16px;
-    padding: 24px 0;
+    gap: 12px 16px; padding: 20px 0;
   }
   .team-row:hover { padding-left: 0; padding-right: 0; }
-  .team-num { grid-row: 1; }
-  .team-name { grid-column: 2; grid-row: 1; font-size: 26px; }
-  .team-role { grid-column: 2; grid-row: 2; font-size: 12px; }
+  .team-num { display: none; }
+  .team-monogram { grid-row: 1 / 3; }
+  .team-name { grid-column: 2; grid-row: 1; font-size: 24px; }
+  .team-role { grid-column: 2; grid-row: 2; font-size: 11px; }
   .team-discipline { display: none; }
+  .team-glyph { font-size: 240px; }
 }
-
-/* ====== STATS ====== */
 .stats {
-  background: var(--ink);
-  color: var(--bone);
-  padding: 100px 48px;
+  background: var(--ink); color: var(--bone);
+  padding: 120px 48px;
   border-top: 1px solid rgba(245, 241, 234, 0.1);
+  position: relative; overflow: hidden;
 }
-
+.stats-header {
+  max-width: 1400px; margin: 0 auto 60px;
+  display: flex; justify-content: space-between; align-items: end;
+  flex-wrap: wrap; gap: 24px;
+}
+.stats-title {
+  font-family: 'Fraunces', serif; font-weight: 300; font-style: italic;
+  font-size: 24px; color: var(--tan);
+}
+.stats-meta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
+  color: rgba(245, 241, 234, 0.4);
+}
 .stats-grid {
-  max-width: 1400px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 40px;
+  max-width: 1400px; margin: 0 auto;
+  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+  border-top: 1px solid rgba(245, 241, 234, 0.2);
+  border-bottom: 1px solid rgba(245, 241, 234, 0.2);
+  counter-reset: stat;
 }
-
 .stat-item {
-  border-left: 1px solid rgba(245, 241, 234, 0.2);
-  padding-left: 32px;
+  padding: 40px 32px;
+  border-right: 1px solid rgba(245, 241, 234, 0.1);
+  position: relative;
 }
-
+.stat-item:last-child { border-right: none; }
+.stat-item::before {
+  content: counter(stat, decimal-leading-zero);
+  counter-increment: stat;
+  position: absolute; top: 16px; right: 24px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; color: rgba(184, 153, 122, 0.5);
+  letter-spacing: 0.1em;
+}
 .stat-num {
-  font-family: 'Fraunces', serif;
-  font-weight: 300;
-  font-size: 80px;
-  line-height: 1;
-  letter-spacing: -0.04em;
-  color: var(--bone);
-  margin-bottom: 16px;
+  font-family: 'Fraunces', serif; font-weight: 300;
+  font-size: 76px; line-height: 1;
+  letter-spacing: -0.04em; color: var(--bone); margin-bottom: 24px;
 }
-
 .stat-num em { font-style: italic; color: var(--tan); }
-.stat-num small { font-size: 32px; vertical-align: top; margin-left: 4px; opacity: 0.6; }
-
+.stat-num small { font-size: 28px; vertical-align: top; margin-left: 4px; opacity: 0.6; }
 .stat-label {
-  font-size: 12px;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: rgba(245, 241, 234, 0.5);
-  line-height: 1.5;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
+  color: rgba(245, 241, 234, 0.55); line-height: 1.6;
 }
-
 @media (max-width: 968px) {
-  .stats { padding: 60px 24px; }
-  .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 32px; }
+  .stats { padding: 80px 24px; }
+  .stats-grid { grid-template-columns: repeat(2, 1fr); }
+  .stat-item { border-right: 1px solid rgba(245, 241, 234, 0.1); }
+  .stat-item:nth-child(2n) { border-right: none; }
+  .stat-item:nth-child(-n+2) { border-bottom: 1px solid rgba(245, 241, 234, 0.1); }
   .stat-num { font-size: 56px; }
 }
-
-/* ====== ENGAGEMENT ====== */
 .engagement {
-  background: var(--bone);
-  padding: 140px 48px;
+  background: var(--bone); padding: 140px 48px;
+  position: relative; overflow: hidden;
 }
-
-.engagement-grid {
-  max-width: 1400px;
-  margin: 0 auto;
+.engagement-grid { max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; }
+.engagement-header { text-align: left; margin-bottom: 80px; max-width: 900px; }
+.engagement-intro {
+  font-size: 18px; color: var(--ink-soft);
+  max-width: 720px; margin-top: 24px;
+  font-weight: 300; line-height: 1.65;
 }
-
-.engagement-header {
-  text-align: left;
-  margin-bottom: 80px;
-  max-width: 900px;
-}
-
 .engagement-flow {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-  position: relative;
+  display: grid; grid-template-columns: repeat(4, 1fr);
+  gap: 32px; position: relative;
 }
-
 .engagement-flow::before {
-  content: '';
-  position: absolute;
-  top: 28px;
-  left: 5%;
-  right: 5%;
-  height: 1px;
-  background: var(--line-strong);
-  z-index: 0;
+  content: ''; position: absolute;
+  top: 32px; left: 5%; right: 5%; height: 1px;
+  background-image: linear-gradient(to right, var(--line-strong) 50%, transparent 50%);
+  background-size: 12px 1px; z-index: 0;
 }
-
-.flow-step {
-  position: relative;
-  z-index: 1;
-}
-
+.flow-step { position: relative; z-index: 1; }
 .flow-marker {
-  width: 56px; height: 56px;
-  border-radius: 50%;
-  background: var(--bone);
-  border: 1px solid var(--ink);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Fraunces', serif;
-  font-weight: 300;
-  font-style: italic;
-  font-size: 20px;
-  color: var(--ink);
-  margin-bottom: 32px;
-  transition: all 0.4s;
+  width: 64px; height: 64px; border-radius: 50%;
+  background: var(--bone); border: 1px solid var(--ink);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Fraunces', serif; font-weight: 300; font-style: italic;
+  font-size: 22px; color: var(--ink); margin-bottom: 32px;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
 }
-
 .flow-step:hover .flow-marker {
-  background: var(--ink);
-  color: var(--bone);
+  background: var(--ink); color: var(--tan); transform: rotate(-8deg);
 }
-
 .flow-title {
-  font-family: 'Fraunces', serif;
-  font-weight: 400;
-  font-size: 22px;
-  line-height: 1.2;
-  margin-bottom: 12px;
-  letter-spacing: -0.01em;
+  font-family: 'Fraunces', serif; font-weight: 400;
+  font-size: 24px; line-height: 1.2;
+  margin-bottom: 12px; letter-spacing: -0.01em;
 }
-
 .flow-text {
-  font-size: 14px;
-  line-height: 1.6;
-  color: var(--ink-soft);
-  font-weight: 300;
+  font-size: 14px; line-height: 1.65;
+  color: var(--ink-soft); font-weight: 300;
 }
-
 @media (max-width: 968px) {
   .engagement-flow { grid-template-columns: 1fr; gap: 32px; }
   .engagement-flow::before { display: none; }
 }
-
-/* ====== CONTACT ====== */
 .contact {
-  background: var(--ink);
-  color: var(--bone);
+  background: var(--ink); color: var(--bone);
   padding: 160px 48px 80px;
-  position: relative;
-  overflow: hidden;
+  position: relative; overflow: hidden;
 }
-
 .contact-bg {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse at 70% 40%, rgba(184, 153, 122, 0.12) 0%, transparent 60%);
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 70% 40%, rgba(184, 153, 122, 0.14) 0%, transparent 60%);
   pointer-events: none;
 }
-
-.contact-grid {
-  max-width: 1400px;
-  margin: 0 auto;
-  position: relative;
-  z-index: 1;
+.contact-bg-mark {
+  position: absolute; left: -50px; bottom: -50px;
+  font-family: 'Fraunces', serif; font-style: italic; font-weight: 300;
+  font-size: 400px; line-height: 0.8;
+  color: rgba(184, 153, 122, 0.06);
+  pointer-events: none;
 }
-
+.contact-grid { max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; }
 .contact-headline {
-  font-family: 'Fraunces', serif;
-  font-weight: 300;
+  font-family: 'Fraunces', serif; font-weight: 300;
   font-size: clamp(48px, 8vw, 120px);
-  line-height: 0.95;
-  letter-spacing: -0.03em;
-  margin-bottom: 80px;
-  max-width: 1100px;
+  line-height: 0.95; letter-spacing: -0.03em;
+  margin-bottom: 80px; max-width: 1100px;
 }
-
 .contact-headline em { font-style: italic; color: var(--tan); }
-
 .contact-info {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr) auto;
-  gap: 40px;
-  align-items: end;
+  display: grid; grid-template-columns: repeat(3, 1fr) auto;
+  gap: 40px; align-items: end;
   border-top: 1px solid rgba(245, 241, 234, 0.2);
   padding-top: 40px;
 }
-
 .contact-block-label {
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--tan);
-  margin-bottom: 16px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
+  color: var(--tan); margin-bottom: 16px;
 }
-
 .contact-block-value {
-  font-family: 'Fraunces', serif;
-  font-weight: 300;
-  font-size: 22px;
-  line-height: 1.3;
-  color: var(--bone);
+  font-family: 'Fraunces', serif; font-weight: 300;
+  font-size: 22px; line-height: 1.35; color: var(--bone);
 }
-
 .contact-block-value a {
-  color: var(--bone);
-  text-decoration: none;
+  color: var(--bone); text-decoration: none;
   border-bottom: 1px solid rgba(245, 241, 234, 0.3);
   transition: border-color 0.3s;
 }
-
 .contact-block-value a:hover { border-color: var(--tan); }
-
 .contact-cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 16px;
-  background: var(--tan);
-  color: var(--ink);
-  padding: 20px 32px;
-  border-radius: 100px;
-  text-decoration: none;
-  font-size: 14px;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  font-weight: 500;
-  transition: all 0.3s;
-  white-space: nowrap;
+  display: inline-flex; align-items: center; gap: 16px;
+  background: var(--tan); color: var(--ink);
+  padding: 22px 36px; text-decoration: none;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
+  font-weight: 500; transition: all 0.3s; white-space: nowrap;
 }
-
-.contact-cta:hover {
-  background: var(--bone);
-  transform: translateX(4px);
-}
-
+.contact-cta:hover { background: var(--bone); transform: translateX(4px); }
 .contact-cta-arrow { font-size: 18px; transition: transform 0.3s; }
 .contact-cta:hover .contact-cta-arrow { transform: translateX(4px); }
-
 @media (max-width: 968px) {
   .contact { padding: 100px 24px 60px; }
   .contact-info { grid-template-columns: 1fr; gap: 32px; }
+  .contact-bg-mark { font-size: 200px; }
 }
-
-/* ====== FOOTER ====== */
 .footer {
-  background: var(--ink);
-  color: rgba(245, 241, 234, 0.5);
+  background: var(--ink); color: rgba(245, 241, 234, 0.5);
   padding: 60px 48px 40px;
   border-top: 1px solid rgba(245, 241, 234, 0.1);
-  font-size: 13px;
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 24px;
-  align-items: center;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  display: flex; justify-content: space-between; flex-wrap: wrap;
+  gap: 24px; align-items: center; letter-spacing: 0.05em;
 }
-
 .footer-mark {
-  font-family: 'Fraunces', serif;
-  font-weight: 400;
-  font-size: 18px;
-  color: var(--bone);
+  font-family: 'Fraunces', serif; font-weight: 500;
+  font-size: 20px; color: var(--bone); letter-spacing: 0.04em;
 }
-
-.footer-mark span { font-style: italic; color: var(--tan); }
-
 .footer-meta {
-  display: flex;
-  gap: 32px;
-  flex-wrap: wrap;
-  font-size: 12px;
-  letter-spacing: 0.05em;
+  display: flex; gap: 32px; flex-wrap: wrap;
+  font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
 }
-
 @media (max-width: 768px) {
   .footer { padding: 40px 24px 24px; flex-direction: column; align-items: flex-start; }
 }
-
-/* ====== SCROLL REVEAL ====== */
 .reveal {
-  opacity: 0;
-  transform: translateY(40px);
+  opacity: 0; transform: translateY(40px);
   transition: opacity 1s ease, transform 1s ease;
 }
-
-.reveal.in-view {
-  opacity: 1;
-  transform: translateY(0);
-}
-
+.reveal.in-view { opacity: 1; transform: translateY(0); }
 .reveal-stagger > * {
-  opacity: 0;
-  transform: translateY(30px);
+  opacity: 0; transform: translateY(30px);
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
-
 .reveal-stagger.in-view > *:nth-child(1) { transition-delay: 0.05s; opacity: 1; transform: translateY(0); }
 .reveal-stagger.in-view > *:nth-child(2) { transition-delay: 0.15s; opacity: 1; transform: translateY(0); }
 .reveal-stagger.in-view > *:nth-child(3) { transition-delay: 0.25s; opacity: 1; transform: translateY(0); }
@@ -1041,27 +850,12 @@ body {
 .reveal-stagger.in-view > *:nth-child(6) { transition-delay: 0.55s; opacity: 1; transform: translateY(0); }
 .reveal-stagger.in-view > *:nth-child(7) { transition-delay: 0.65s; opacity: 1; transform: translateY(0); }
 .reveal-stagger.in-view > *:nth-child(8) { transition-delay: 0.75s; opacity: 1; transform: translateY(0); }
-
-/* SVG mark for nav */
-.brand-mark-svg {
-  width: 28px; height: 28px;
-  display: inline-block;
-  vertical-align: middle;
-  margin-right: 12px;
-}
-
 </style>
 </head>
 <body>
 
-<!-- ===================== NAV ===================== -->
 <nav class="nav" id="nav">
-  <a href="#" class="nav-mark">
-    <svg class="brand-mark-svg" viewBox="0 0 100 100" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-      <path d="M15 18 L35 18 L50 80 L65 18 L85 18 L58 92 L42 92 Z M48 18 L52 18 L52 65 L48 65 Z"/>
-    </svg>
-    VUSA<span>·</span>Consultancy
-  </a>
+  <a href="#" class="nav-mark"><span class="nav-mark-symbol">V</span>VUSA</a>
   <ul class="nav-links">
     <li><a href="#manifest">Practice</a></li>
     <li><a href="#sectors">Sectors</a></li>
@@ -1072,77 +866,81 @@ body {
   <a href="#contact" class="nav-cta">Begin a brief</a>
 </nav>
 
-<!-- ===================== HERO ===================== -->
 <section class="hero">
   <div class="hero-bg"></div>
   <div class="hero-grid"></div>
-
+  <div class="hero-numeral">V</div>
+  <div class="hero-mark">MMXXV · INDEX · I</div>
   <div class="hero-meta">
-    <span>EST 2025 · UNITED KINGDOM</span>
+    <span>EST · MMXXV</span>
     <div class="hero-meta-line"></div>
-    <span>VOL. I — COMMODITY TRADE</span>
+    <span>UNITED KINGDOM</span>
+    <div class="hero-meta-line"></div>
+    <span>VOL. I</span>
   </div>
-
   <div class="hero-content">
-    <div class="hero-eyebrow">Commercial Consultancy · Commodity Trade</div>
+    <div class="hero-eyebrow">Commercial Consultancy</div>
     <h1 class="hero-title">
       <span class="word">Embedded</span>
       <span class="word"><em>execution</em></span>
       <span class="word">in</span>
-      <span class="word">global</span>
-      <span class="word">trade.</span>
+      <span class="word">international</span>
+      <span class="word">operations.</span>
     </h1>
     <div class="hero-bottom">
-      <p class="hero-lede">
-        VUSA Consultancy works inside the operations of importers, exporters, and trading houses. We do not write reports from the outside. We sit at the desk, draft the contracts, run the documentation, and move the cargo.
-      </p>
+      <p class="hero-lede">VUSA works inside the operations of corporate clients managing complex international business. We do not write reports from the outside. We sit at the desk, draft the commercial documentation, and move the work forward.</p>
       <div class="hero-scroll">
-        <span>Scroll</span>
+        <span>Read on</span>
         <div class="hero-scroll-line"></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== MARQUEE ===================== -->
 <div class="marquee">
   <div class="marquee-track">
-    <span class="marquee-item">Lentils</span>
-    <span class="marquee-item">Legumes</span>
-    <span class="marquee-item">Fertilisers</span>
-    <span class="marquee-item">Proteins</span>
-    <span class="marquee-item">Industrial Materials</span>
-    <span class="marquee-item">Agro-Commodities</span>
-    <span class="marquee-item">Cross-Border Supply</span>
-    <span class="marquee-item">Lentils</span>
-    <span class="marquee-item">Legumes</span>
-    <span class="marquee-item">Fertilisers</span>
-    <span class="marquee-item">Proteins</span>
-    <span class="marquee-item">Industrial Materials</span>
-    <span class="marquee-item">Agro-Commodities</span>
-    <span class="marquee-item">Cross-Border Supply</span>
+    <span class="marquee-item">Advisory</span>
+    <span class="marquee-item">Execution</span>
+    <span class="marquee-item">Documentation</span>
+    <span class="marquee-item">Operations</span>
+    <span class="marquee-item">Due Diligence</span>
+    <span class="marquee-item">Supplier Relations</span>
+    <span class="marquee-item">Project Delivery</span>
+    <span class="marquee-item">Advisory</span>
+    <span class="marquee-item">Execution</span>
+    <span class="marquee-item">Documentation</span>
+    <span class="marquee-item">Operations</span>
+    <span class="marquee-item">Due Diligence</span>
+    <span class="marquee-item">Supplier Relations</span>
+    <span class="marquee-item">Project Delivery</span>
   </div>
 </div>
 
-<!-- ===================== MANIFEST ===================== -->
+<div class="section-divider">
+  <svg viewBox="0 0 200 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+    <line x1="0" y1="12" x2="80" y2="12" stroke="currentColor" stroke-width="0.5"/>
+    <text x="100" y="17" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-size="14" fill="currentColor">§</text>
+    <line x1="120" y1="12" x2="200" y2="12" stroke="currentColor" stroke-width="0.5"/>
+  </svg>
+</div>
+
 <section class="section manifest" id="manifest">
+  <div class="manifest-glyph">M</div>
   <div class="manifest-grid">
     <div class="manifest-side reveal">
       <div class="manifest-number">01<sup>·</sup></div>
-      <div class="manifest-side-label">Practice — A note on what we do, and what we refuse to do.</div>
+      <div class="manifest-side-label">The Practice — A note on what we do, and what we refuse to do.</div>
+      <svg class="manifest-ornament" viewBox="0 0 80 16" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 8 L24 8 M30 8 L34 4 L38 12 L42 4 L46 12 L50 8 M56 8 L80 8" stroke="currentColor" fill="none" stroke-width="0.5"/>
+      </svg>
     </div>
     <div class="manifest-prose reveal">
-      <div class="section-label">The Practice</div>
+      <div class="section-label">The Practice <span class="section-label-num">§ 01</span></div>
       <h2 class="section-heading">A consultancy that <em>operates</em>, not one that observes.</h2>
-
-      <p>VUSA Consultancy is a UK-registered commercial consultancy specialising in international commodity trade and cross-border supply chains. We are <strong>execution-led</strong>. Our clients are mid-market importers, exporters, and trading companies across North America and Europe.</p>
-
-      <p>Most consultancies sell <em>frameworks</em>. We sell <em>movement</em>. The contracts that close. The shipments that clear. The supplier relationships that hold under pressure. The documentation that survives a bank's compliance desk on a Friday afternoon.</p>
-
-      <p>We do not provide regulated financial or investment advice. We support the commercial and documentation discipline that real trades require — and we hold ourselves to the standard of being useful by Tuesday morning, not impressive in a deck.</p>
-
-      <div class="manifest-divider"></div>
-
+      <p>VUSA is a UK-registered commercial consultancy specialising in advisory and operational support for corporate clients managing complex international business. We are <strong>execution-led</strong>. Our clients are mid-market corporate entities operating across multiple jurisdictions.</p>
+      <p>Most consultancies sell <em>frameworks</em>. We sell <em>movement</em>. The agreements that close. The relationships that hold under pressure. The documentation that survives professional scrutiny. The operational discipline that turns intent into delivery.</p>
+      <p>We do not provide regulated financial, investment, or money transmission services. We support the commercial and operational discipline that real engagements require, and we hold ourselves to the standard of being useful by Tuesday morning, not impressive in a deck.</p>
+      <div class="manifest-divider"><span class="manifest-divider-mark">✦</span></div>
       <div class="manifest-meta">
         <div class="manifest-meta-item">
           <div class="manifest-meta-label">Registered</div>
@@ -1150,157 +948,209 @@ body {
         </div>
         <div class="manifest-meta-item">
           <div class="manifest-meta-label">Operating</div>
-          <div class="manifest-meta-value">United Kingdom<br>United States · Canada · Tanzania</div>
+          <div class="manifest-meta-value">United Kingdom<br>with international engagement reach</div>
         </div>
         <div class="manifest-meta-item">
           <div class="manifest-meta-label">Founded</div>
-          <div class="manifest-meta-value">2025</div>
+          <div class="manifest-meta-value">MMXXV<br>(2025)</div>
         </div>
         <div class="manifest-meta-item">
           <div class="manifest-meta-label">Discipline</div>
-          <div class="manifest-meta-value">Commodity trade execution<br>and supply chain integration</div>
+          <div class="manifest-meta-value">Commercial consultancy<br>and operational execution</div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== SECTORS ===================== -->
 <section class="section sectors" id="sectors">
   <div class="sectors-intro">
     <div>
-      <div class="section-label">The Sectors</div>
+      <div class="section-label">The Sectors <span class="section-label-num">§ 02</span></div>
       <h2 class="section-heading">Three pillars. <em>One discipline.</em></h2>
     </div>
-    <p class="sectors-intro-text">
-      Our work concentrates where the documentation is heaviest, the margins are tightest, and the consequences of getting it wrong are unforgiving. We chose these sectors deliberately.
-    </p>
+    <p class="sectors-intro-text">Our work concentrates where the documentation is heaviest, the margins are tightest, and the consequences of getting it wrong are unforgiving. We chose these sectors deliberately.</p>
   </div>
-
   <div class="sector-list reveal-stagger">
     <a href="#contact" class="sector-row">
       <span class="sector-num">— 01</span>
-      <h3 class="sector-title">Agro-<em>commodities</em></h3>
-      <p class="sector-desc">
-        Lentils, legumes, pulses, and proteins. Sourcing relationships across origin markets, contract structuring with end-buyers, and documentation discipline through SGS inspection, LC at sight, and CAD settlement.
-      </p>
+      <svg class="sector-graphic" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <circle cx="40" cy="40" r="36" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
+        <circle cx="40" cy="40" r="28" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.5"/>
+        <circle cx="40" cy="40" r="20" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.7"/>
+        <circle cx="40" cy="40" r="4" fill="currentColor"/>
+        <path d="M40 4 L40 16 M76 40 L64 40 M40 76 L40 64 M4 40 L16 40" stroke="currentColor" stroke-width="0.5" opacity="0.6"/>
+      </svg>
+      <h3 class="sector-title">Goods supply <em>operations</em></h3>
+      <p class="sector-desc">Operational support for corporate clients managing the supply of consumable goods at scale. Engagement covers commercial agreement structuring, supplier diligence, and documentation discipline through each stage of delivery.</p>
       <div class="sector-tags">
-        <span class="sector-tag">Lentils</span>
-        <span class="sector-tag">Legumes</span>
-        <span class="sector-tag">Proteins</span>
+        <span class="sector-tag">Advisory</span>
+        <span class="sector-tag">Diligence</span>
+        <span class="sector-tag">Documentation</span>
       </div>
       <span class="sector-arrow">→</span>
     </a>
-
     <a href="#contact" class="sector-row">
       <span class="sector-num">— 02</span>
-      <h3 class="sector-title">Fertilisers &amp; <em>industrial materials</em></h3>
-      <p class="sector-desc">
-        High-volume cross-border movement of fertilisers and industrial inputs. We engage where transaction values exceed standard merchant capacity and bespoke commercial structures are required.
-      </p>
+      <svg class="sector-graphic" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <rect x="8" y="58" width="64" height="14" fill="none" stroke="currentColor" stroke-width="0.5"/>
+        <rect x="14" y="40" width="52" height="14" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.7"/>
+        <rect x="20" y="22" width="40" height="14" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.5"/>
+        <rect x="26" y="6" width="28" height="12" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
+        <line x1="40" y1="0" x2="40" y2="80" stroke="currentColor" stroke-width="0.3" stroke-dasharray="2 2" opacity="0.4"/>
+      </svg>
+      <h3 class="sector-title">Manufacturing <em>inputs</em></h3>
+      <p class="sector-desc">Advisory and execution support for clients sourcing industrial inputs at volume. We engage where commercial structures are bespoke, transaction values are substantial, and discipline matters more than scale.</p>
       <div class="sector-tags">
-        <span class="sector-tag">Fertilisers</span>
         <span class="sector-tag">Industrial</span>
-        <span class="sector-tag">Bulk</span>
+        <span class="sector-tag">Volume</span>
+        <span class="sector-tag">Bespoke</span>
       </div>
       <span class="sector-arrow">→</span>
     </a>
-
     <a href="#contact" class="sector-row">
       <span class="sector-num">— 03</span>
-      <h3 class="sector-title">Cross-border <em>supply chain execution</em></h3>
-      <p class="sector-desc">
-        Embedded operational support spanning origin, transit, and destination. We integrate with procurement, finance, and compliance teams to carry deals from LOI through final delivery and settlement.
-      </p>
+      <svg class="sector-graphic" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+        <line x1="20" y1="20" x2="60" y2="20" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
+        <line x1="60" y1="20" x2="40" y2="60" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
+        <line x1="40" y1="60" x2="20" y2="20" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
+        <line x1="20" y1="20" x2="40" y2="40" stroke="currentColor" stroke-width="0.5" opacity="0.6"/>
+        <line x1="60" y1="20" x2="40" y2="40" stroke="currentColor" stroke-width="0.5" opacity="0.6"/>
+        <line x1="40" y1="60" x2="40" y2="40" stroke="currentColor" stroke-width="0.5" opacity="0.6"/>
+        <circle cx="20" cy="20" r="3" fill="currentColor"/>
+        <circle cx="60" cy="20" r="3" fill="currentColor"/>
+        <circle cx="40" cy="60" r="3" fill="currentColor"/>
+        <circle cx="40" cy="40" r="4" fill="currentColor" opacity="0.8"/>
+      </svg>
+      <h3 class="sector-title">International <em>logistics</em></h3>
+      <p class="sector-desc">Embedded operational support across multi-jurisdictional delivery. We integrate with procurement, finance, and compliance teams to carry engagements from initial agreement through final completion.</p>
       <div class="sector-tags">
-        <span class="sector-tag">SPA / LOI</span>
-        <span class="sector-tag">SGS</span>
-        <span class="sector-tag">LC · SBLC · CAD</span>
+        <span class="sector-tag">Operations</span>
+        <span class="sector-tag">Compliance</span>
+        <span class="sector-tag">Delivery</span>
       </div>
       <span class="sector-arrow">→</span>
     </a>
   </div>
 </section>
 
-<!-- ===================== APPROACH ===================== -->
 <section class="section approach" id="approach">
   <div class="approach-grid">
     <div class="approach-header">
       <div>
-        <div class="section-label">The Approach</div>
+        <div class="section-label">The Approach <span class="section-label-num">§ 03</span></div>
         <h2 class="section-heading">Three disciplines, <em>uncompromised.</em></h2>
       </div>
-      <p class="approach-quote reveal">
-        "The deals that close are not the deals that were pitched best. They are the deals that were prepared best, drafted tightest, and chased hardest."
-      </p>
+      <p class="approach-quote reveal">The engagements that succeed are not the ones that were pitched best. They are the ones that were prepared best, drafted tightest, and chased hardest.</p>
     </div>
-
     <div class="approach-pillars reveal-stagger">
       <div class="pillar">
-        <div class="pillar-num">— I.</div>
+        <div class="pillar-num">I.</div>
+        <svg class="pillar-icon" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+          <rect x="2" y="2" width="32" height="32" fill="none" stroke="currentColor" stroke-width="0.8"/>
+          <rect x="8" y="8" width="20" height="20" fill="none" stroke="currentColor" stroke-width="0.8"/>
+          <rect x="14" y="14" width="8" height="8" fill="currentColor"/>
+        </svg>
         <h3 class="pillar-title">Embedded, not advisory</h3>
-        <p class="pillar-text">
-          We sit inside client operations rather than presenting from outside them. Daily standups, shared workflows, and a seat in the procurement and compliance reviews that matter. The output is movement, not slides.
-        </p>
+        <p class="pillar-text">We sit inside client operations rather than presenting from outside them. Daily standups, shared workflows, and a seat in the procurement and compliance reviews that matter. The output is movement, not slides.</p>
       </div>
       <div class="pillar">
-        <div class="pillar-num">— II.</div>
+        <div class="pillar-num">II.</div>
+        <svg class="pillar-icon" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+          <rect x="6" y="2" width="24" height="32" fill="none" stroke="currentColor" stroke-width="0.8"/>
+          <line x1="10" y1="10" x2="26" y2="10" stroke="currentColor" stroke-width="0.6"/>
+          <line x1="10" y1="14" x2="22" y2="14" stroke="currentColor" stroke-width="0.6"/>
+          <line x1="10" y1="18" x2="26" y2="18" stroke="currentColor" stroke-width="0.6"/>
+          <line x1="10" y1="22" x2="20" y2="22" stroke="currentColor" stroke-width="0.6"/>
+          <line x1="10" y1="26" x2="24" y2="26" stroke="currentColor" stroke-width="0.6"/>
+          <circle cx="28" cy="29" r="3" fill="currentColor"/>
+        </svg>
         <h3 class="pillar-title">Documentation discipline</h3>
-        <p class="pillar-text">
-          Sales and Purchase Agreements drafted to survive bank scrutiny. Letters of Intent, ICPOs, FCOs, and Incoterms applied correctly the first time. We treat every clause as the one that will eventually be read by a lawyer.
-        </p>
+        <p class="pillar-text">Commercial agreements drafted to survive professional scrutiny. Operational documents prepared correctly the first time. We treat every clause as the one that will eventually be read by a lawyer.</p>
       </div>
       <div class="pillar">
-        <div class="pillar-num">— III.</div>
+        <div class="pillar-num">III.</div>
+        <svg class="pillar-icon" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
+          <path d="M4 6 L32 6 L22 18 L22 32 L14 30 L14 18 Z" fill="none" stroke="currentColor" stroke-width="0.8"/>
+          <circle cx="10" cy="10" r="1.2" fill="currentColor"/>
+          <circle cx="18" cy="10" r="1.2" fill="currentColor"/>
+          <circle cx="26" cy="10" r="1.2" fill="currentColor"/>
+          <circle cx="18" cy="26" r="2" fill="currentColor"/>
+        </svg>
         <h3 class="pillar-title">Selective engagement</h3>
-        <p class="pillar-text">
-          We work with a deliberately small number of clients each quarter. The economics of execution-led work mean we cannot be everywhere. We choose the engagements where our discipline genuinely changes the outcome.
-        </p>
+        <p class="pillar-text">We work with a deliberately small number of clients each quarter. The economics of execution-led work mean we cannot be everywhere. We choose the engagements where our discipline genuinely changes the outcome.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== TEAM ===================== -->
+<section class="index-spread">
+  <div class="index-grid">
+    <div class="index-art">
+      <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+        <rect x="20" y="20" width="360" height="460" fill="none" stroke="#B8997A" stroke-width="0.5" opacity="0.4"/>
+        <text x="200" y="80" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#B8997A" letter-spacing="4" opacity="0.7">A NOTE ON METHOD</text>
+        <line x1="100" y1="100" x2="300" y2="100" stroke="#B8997A" stroke-width="0.5" opacity="0.4"/>
+        <text x="200" y="290" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-weight="300" font-size="240" fill="#B8997A" opacity="0.85">§</text>
+        <line x1="100" y1="340" x2="300" y2="340" stroke="#B8997A" stroke-width="0.5" opacity="0.4"/>
+        <text x="200" y="370" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-size="18" fill="#F2EDE3" opacity="0.9">on the standard of work</text>
+        <text x="200" y="440" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#B8997A" letter-spacing="3" opacity="0.5">FOLIO · 04</text>
+        <path d="M30 30 L30 50 L50 30" fill="none" stroke="#B8997A" stroke-width="0.5" opacity="0.5"/>
+        <path d="M370 30 L370 50 L350 30" fill="none" stroke="#B8997A" stroke-width="0.5" opacity="0.5"/>
+        <path d="M30 470 L30 450 L50 470" fill="none" stroke="#B8997A" stroke-width="0.5" opacity="0.5"/>
+        <path d="M370 470 L370 450 L350 470" fill="none" stroke="#B8997A" stroke-width="0.5" opacity="0.5"/>
+      </svg>
+    </div>
+    <div>
+      <div class="index-label">Folio IV · A Note on Method</div>
+      <p class="index-quote">Execution is the <em>only</em> deliverable. Everything else is preparation, or it is theatre.</p>
+      <div class="index-attribution">VUSA Practice Note, MMXXV</div>
+    </div>
+  </div>
+</section>
+
 <section class="team" id="team">
+  <div class="team-glyph">T</div>
   <div class="team-grid">
     <div class="team-header reveal">
       <div>
-        <div class="section-label">The Team</div>
+        <div class="section-label">The Team <span class="section-label-num">§ 04</span></div>
         <h2 class="section-heading">A small team. <em>By design.</em></h2>
       </div>
-      <p class="team-intro-text">
-        Execution-led work does not scale through headcount. Every engagement is led by a named practitioner with direct accountability. No analyst layers, no account managers between the work and the client.
-      </p>
+      <p class="team-intro-text">Execution-led work does not scale through headcount. Every engagement is led by a named practitioner with direct accountability. No analyst layers, no account managers between the work and the client.</p>
     </div>
-
     <div class="team-list reveal-stagger">
       <div class="team-row">
         <span class="team-num">— 01</span>
+        <div class="team-monogram">SA</div>
         <h3 class="team-name">Shamim <em>A.</em></h3>
         <div class="team-role">Managing Director</div>
         <div class="team-discipline">Operational leadership</div>
       </div>
       <div class="team-row">
         <span class="team-num">— 02</span>
+        <div class="team-monogram">JM</div>
         <h3 class="team-name">Jay <em>M.</em></h3>
         <div class="team-role">Partner</div>
-        <div class="team-discipline">Commercial &amp; trade strategy</div>
+        <div class="team-discipline">Commercial strategy</div>
       </div>
       <div class="team-row">
         <span class="team-num">— 03</span>
+        <div class="team-monogram">TA</div>
         <h3 class="team-name">Talha <em>A.</em></h3>
         <div class="team-role">Senior Consultant</div>
-        <div class="team-discipline">Deal execution</div>
+        <div class="team-discipline">Engagement execution</div>
       </div>
       <div class="team-row">
         <span class="team-num">— 04</span>
+        <div class="team-monogram">SS</div>
         <h3 class="team-name">Suzie <em>S.</em></h3>
         <div class="team-role">Financial Consultant</div>
         <div class="team-discipline">Settlement &amp; structuring</div>
       </div>
       <div class="team-row">
         <span class="team-num">— 05</span>
+        <div class="team-monogram">BK</div>
         <h3 class="team-name">Bri <em>K.</em></h3>
         <div class="team-role">Process Auditor</div>
         <div class="team-discipline">Compliance &amp; documentation</div>
@@ -1309,12 +1159,15 @@ body {
   </div>
 </section>
 
-<!-- ===================== STATS ===================== -->
 <section class="stats">
+  <div class="stats-header">
+    <div class="stats-title">— By the numbers</div>
+    <div class="stats-meta">§ 05 · Folio V</div>
+  </div>
   <div class="stats-grid reveal-stagger">
     <div class="stat-item">
-      <div class="stat-num"><em>4</em></div>
-      <div class="stat-label">Operating jurisdictions<br>UK · US · Canada · Tanzania</div>
+      <div class="stat-num"><em>1</em></div>
+      <div class="stat-label">Operating base<br>United Kingdom</div>
     </div>
     <div class="stat-item">
       <div class="stat-num">3<small>+</small></div>
@@ -1331,22 +1184,18 @@ body {
   </div>
 </section>
 
-<!-- ===================== ENGAGEMENT ===================== -->
 <section class="engagement" id="engagement">
   <div class="engagement-grid">
     <div class="engagement-header reveal">
-      <div class="section-label">The Engagement</div>
+      <div class="section-label">The Engagement <span class="section-label-num">§ 06</span></div>
       <h2 class="section-heading">From brief to <em>delivery.</em></h2>
-      <p style="font-size: 18px; color: var(--ink-soft); max-width: 720px; margin-top: 24px; font-weight: 300;">
-        A four-stage process that holds across every engagement, regardless of sector. Disciplined at the front so the back is clean.
-      </p>
+      <p class="engagement-intro">A four-stage process that holds across every engagement, regardless of sector. Disciplined at the front so the back is clean.</p>
     </div>
-
     <div class="engagement-flow reveal-stagger">
       <div class="flow-step">
         <div class="flow-marker">i</div>
         <h4 class="flow-title">Brief</h4>
-        <p class="flow-text">Direct conversation with the principal. Scope, sector, transaction profile, and counterparty exposure assessed inside the first call.</p>
+        <p class="flow-text">Direct conversation with the principal. Scope, sector, and engagement profile assessed inside the first call.</p>
       </div>
       <div class="flow-step">
         <div class="flow-marker">ii</div>
@@ -1361,40 +1210,35 @@ body {
       <div class="flow-step">
         <div class="flow-marker">iv</div>
         <h4 class="flow-title">Execute</h4>
-        <p class="flow-text">Contracts drafted, supplier and buyer relationships managed, shipments coordinated, settlement closed. Delivery, not deliverables.</p>
+        <p class="flow-text">Agreements drafted, relationships managed, operations coordinated, engagement closed. Delivery, not deliverables.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ===================== CONTACT ===================== -->
 <section class="contact" id="contact">
   <div class="contact-bg"></div>
+  <div class="contact-bg-mark">V</div>
   <div class="contact-grid">
     <div class="section-label" style="color: var(--tan);">
       <span style="background: var(--tan); width: 32px; height: 1px; display: inline-block;"></span>
-      Begin a Brief
+      Begin a Brief <span class="section-label-num" style="color: var(--tan);">§ 07</span>
     </div>
-    <h2 class="contact-headline reveal">
-      Tell us the <em>deal</em>. We will tell you whether we are the right house to <em>execute it.</em>
-    </h2>
-
+    <h2 class="contact-headline reveal">Tell us the <em>engagement</em>. We will tell you whether we are the right house to <em>execute it.</em></h2>
     <div class="contact-info">
       <div>
         <div class="contact-block-label">Direct</div>
-        <div class="contact-block-value">
-          <a href="mailto:talha@vusaconsultancy.com">talha@vusaconsultancy.com</a>
-        </div>
+        <div class="contact-block-value"><a href="mailto:talha@vusaconsultancy.com">talha@vusaconsultancy.com</a></div>
       </div>
       <div>
         <div class="contact-block-label">Office</div>
         <div class="contact-block-value">Box Trees Craft Centre<br>Stratford Road, Hockley Heath<br>Solihull, B94 6EA</div>
       </div>
       <div>
-        <div class="contact-block-label">Operating Hours</div>
+        <div class="contact-block-label">Hours</div>
         <div class="contact-block-value">Mon — Fri<br>09:00 — 18:00 GMT</div>
       </div>
-      <a href="mailto:talha@vusaconsultancy.com?subject=New%20brief%20—%20VUSA%20Consultancy" class="contact-cta">
+      <a href="mailto:talha@vusaconsultancy.com?subject=New%20brief%20—%20VUSA" class="contact-cta">
         Begin a brief
         <span class="contact-cta-arrow">→</span>
       </a>
@@ -1402,25 +1246,22 @@ body {
   </div>
 </section>
 
-<!-- ===================== FOOTER ===================== -->
 <footer class="footer">
-  <div class="footer-mark">VUSA<span>·</span>Consultancy</div>
+  <div class="footer-mark">VUSA</div>
   <div class="footer-meta">
-    <span>© 2025 VUSA Group UK Ltd</span>
+    <span>© MMXXV · VUSA Group UK Ltd</span>
     <span>Companies House 16124195</span>
     <span>United Kingdom</span>
   </div>
 </footer>
 
 <script>
-// Nav scroll state
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => {
   if (window.scrollY > 60) nav.classList.add('scrolled');
   else nav.classList.remove('scrolled');
 });
 
-// Intersection observer for reveals
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
@@ -1434,12 +1275,13 @@ document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => {
   revealObserver.observe(el);
 });
 
-// Subtle parallax on hero grid
 const heroGrid = document.querySelector('.hero-grid');
+const heroNumeral = document.querySelector('.hero-numeral');
 window.addEventListener('scroll', () => {
   const scrolled = window.scrollY;
-  if (scrolled < window.innerHeight && heroGrid) {
-    heroGrid.style.transform = `translateY(${scrolled * 0.3}px)`;
+  if (scrolled < window.innerHeight) {
+    if (heroGrid) heroGrid.style.transform = `translateY(${scrolled * 0.3}px)`;
+    if (heroNumeral) heroNumeral.style.transform = `translateY(calc(-50% + ${scrolled * 0.2}px))`;
   }
 });
 </script>
