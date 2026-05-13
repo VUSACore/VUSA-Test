@@ -7,956 +7,1021 @@
 <meta name="description" content="VUSA is an execution-led commercial consultancy embedded in international business operations.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,300;1,9..144,400;1,9..144,500&family=Inter+Tight:wght@300;400;500;600&family=JetBrains+Mono:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@300;400;500;600&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bone: #F2EDE3;
-  --bone-deep: #E8E0D0;
-  --paper: #EEE7D7;
-  --ink: #1A1816;
-  --ink-soft: #3A352E;
-  --ink-fade: #6B6359;
-  --tan: #B8997A;
-  --tan-deep: #8A6F52;
-  --tan-rich: #6B5238;
-  --forest: #2C3A2E;
-  --rust: #8B4A2B;
-  --burgundy: #5C2A2A;
-  --line: rgba(26, 24, 22, 0.12);
-  --line-strong: rgba(26, 24, 22, 0.25);
-  --line-soft: rgba(26, 24, 22, 0.08);
+  --black: #0A0A0A;
+  --black-deep: #000000;
+  --charcoal: #1A1A1A;
+  --grey-900: #2A2A2A;
+  --grey-700: #4A4A4A;
+  --grey-500: #767676;
+  --grey-300: #C8C8C8;
+  --grey-200: #E5E5E5;
+  --grey-100: #F5F5F5;
+  --grey-50: #FAFAFA;
+  --white: #FFFFFF;
+  --lime: #D4FF3D;
+  --lime-bright: #E0FF5C;
+  --line-light: rgba(10, 10, 10, 0.08);
+  --line-mid: rgba(10, 10, 10, 0.15);
+  --line-dark: rgba(255, 255, 255, 0.12);
 }
 * { margin: 0; padding: 0; box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 body {
-  background: var(--bone);
-  color: var(--ink);
+  background: var(--white);
+  color: var(--charcoal);
   font-family: 'Inter Tight', -apple-system, sans-serif;
   font-weight: 400;
   font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.55;
   overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  position: relative;
 }
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 200;
-  opacity: 0.4;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0.1 0 0 0 0 0.09 0 0 0 0 0.08 0 0 0 0.08 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-  mix-blend-mode: multiply;
-}
-.mono { font-family: 'JetBrains Mono', monospace; font-weight: 300; }
+.serif { font-family: 'Fraunces', serif; }
+
+/* ====== NAVIGATION ====== */
 .nav {
   position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  padding: 28px 48px;
+  padding: 22px 56px;
   display: flex; justify-content: space-between; align-items: center;
-  mix-blend-mode: difference;
-  transition: padding 0.4s ease;
+  background: var(--black);
+  border-bottom: 1px solid var(--line-dark);
+  transition: padding 0.3s ease;
 }
-.nav.scrolled { padding: 18px 48px; }
+.nav.scrolled { padding: 16px 56px; }
 .nav-mark {
-  font-family: 'Fraunces', serif; font-weight: 500;
-  font-size: 24px; letter-spacing: 0.04em;
-  color: var(--bone); text-decoration: none;
-  display: flex; align-items: center; gap: 14px;
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  text-decoration: none;
+  display: flex; align-items: center; gap: 12px;
 }
-.nav-mark-symbol {
-  width: 26px; height: 26px;
-  border: 1.5px solid var(--bone);
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Fraunces', serif; font-weight: 400;
-  font-size: 12px; font-style: italic;
+.nav-mark-dot {
+  width: 8px; height: 8px;
+  background: var(--lime);
+  display: inline-block;
 }
-.nav-links { display: flex; gap: 36px; list-style: none; counter-reset: navi; }
+.nav-links { display: flex; gap: 36px; list-style: none; }
 .nav-links a {
-  color: var(--bone); text-decoration: none;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
-  font-weight: 400; transition: opacity 0.3s;
-  position: relative; opacity: 0.85;
+  color: var(--white);
+  text-decoration: none;
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  font-weight: 500;
+  transition: color 0.2s;
+  position: relative;
 }
-.nav-links a:hover { opacity: 1; }
-.nav-links a::before {
-  content: counter(navi, decimal-leading-zero) ' ';
-  counter-increment: navi;
-  opacity: 0.5; margin-right: 4px;
-}
+.nav-links a:hover { color: var(--lime); }
 .nav-cta {
-  color: var(--bone); text-decoration: none;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase;
-  border: 1px solid var(--bone); padding: 10px 18px;
-  transition: all 0.3s;
+  color: var(--black);
+  background: var(--lime);
+  text-decoration: none;
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  font-weight: 600;
+  padding: 12px 24px;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
 }
-.nav-cta:hover { background: var(--bone); color: var(--ink); }
+.nav-cta:hover { background: var(--lime-bright); transform: translateY(-1px); }
+.nav-cta::after { content: '→'; transition: transform 0.2s; }
+.nav-cta:hover::after { transform: translateX(3px); }
 @media (max-width: 768px) {
-  .nav { padding: 20px 24px; }
+  .nav { padding: 18px 24px; }
+  .nav.scrolled { padding: 14px 24px; }
   .nav-links { display: none; }
 }
+
+/* ====== HERO ====== */
 .hero {
-  min-height: 100vh; position: relative;
-  display: flex; align-items: flex-end;
-  padding: 0 48px 80px; overflow: hidden;
-  background: var(--ink); color: var(--bone);
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  padding: 0 56px 64px;
+  background: var(--black);
+  color: var(--white);
+  overflow: hidden;
 }
-.hero-bg {
+.hero-grid-bg {
   position: absolute; inset: 0;
   background-image:
-    radial-gradient(ellipse at 15% 25%, rgba(184, 153, 122, 0.18) 0%, transparent 55%),
-    radial-gradient(ellipse at 85% 75%, rgba(92, 42, 42, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 50% 50%, rgba(0,0,0,0.3) 0%, transparent 70%);
-}
-.hero-grid {
-  position: absolute; inset: 0;
-  background-image:
-    linear-gradient(to right, rgba(245, 241, 234, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(245, 241, 234, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
   background-size: 80px 80px;
 }
-.hero-numeral {
-  position: absolute; right: -40px; top: 50%;
-  transform: translateY(-50%);
-  font-family: 'Fraunces', serif; font-weight: 300; font-style: italic;
-  font-size: clamp(280px, 50vw, 720px);
-  line-height: 0.8;
-  color: rgba(184, 153, 122, 0.08);
-  letter-spacing: -0.08em;
-  pointer-events: none; z-index: 1;
+.hero-top-bar {
+  position: absolute;
+  top: 100px; left: 56px; right: 56px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--grey-500);
+  font-weight: 500;
+  z-index: 3;
 }
-.hero-mark {
-  position: absolute; top: 50%; left: 48px;
-  transform: translateY(-50%) rotate(-90deg);
-  transform-origin: left center;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px; letter-spacing: 0.4em;
-  color: var(--tan); text-transform: uppercase;
-  opacity: 0.6; z-index: 2;
+.hero-top-bar .lime-dot {
+  display: inline-block;
+  width: 6px; height: 6px;
+  background: var(--lime);
+  margin-right: 8px;
+  vertical-align: middle;
 }
-.hero-meta {
-  position: absolute; top: 140px; left: 48px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--tan);
-  display: flex; gap: 32px; align-items: center; z-index: 3;
+.hero-content {
+  position: relative; z-index: 2;
+  max-width: 1320px;
+  width: 100%;
 }
-.hero-meta-line { width: 60px; height: 1px; background: var(--tan); opacity: 0.5; }
-.hero-content { position: relative; z-index: 5; max-width: 1400px; }
 .hero-eyebrow {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
-  color: var(--tan); margin-bottom: 32px;
-  opacity: 0; animation: fadeUp 1s ease 0.2s forwards;
-  display: flex; align-items: center; gap: 16px;
+  font-size: 12px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 32px;
+  font-weight: 600;
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.1s forwards;
 }
-.hero-eyebrow::before, .hero-eyebrow::after {
-  content: ''; flex: 0 0 24px; height: 1px;
-  background: var(--tan); opacity: 0.6;
-}
-.hero-eyebrow::after { flex: 1; max-width: 80px; }
 .hero-title {
-  font-family: 'Fraunces', serif; font-weight: 300;
-  font-size: clamp(48px, 9vw, 144px);
-  line-height: 0.95; letter-spacing: -0.03em;
-  margin-bottom: 48px; color: var(--bone);
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: clamp(48px, 8vw, 124px);
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  margin-bottom: 56px;
+  color: var(--white);
+  max-width: 1100px;
 }
 .hero-title .word {
-  display: inline-block; opacity: 0;
-  transform: translateY(40px);
-  animation: fadeUp 1s ease forwards;
+  display: inline-block;
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 0.8s ease forwards;
 }
-.hero-title .word:nth-child(1) { animation-delay: 0.4s; }
-.hero-title .word:nth-child(2) { animation-delay: 0.55s; }
-.hero-title .word:nth-child(3) { animation-delay: 0.7s; }
-.hero-title .word:nth-child(4) { animation-delay: 0.85s; }
-.hero-title .word:nth-child(5) { animation-delay: 1.0s; }
-.hero-title em { font-style: italic; font-weight: 300; color: var(--tan); }
+.hero-title .word:nth-child(1) { animation-delay: 0.3s; }
+.hero-title .word:nth-child(2) { animation-delay: 0.4s; }
+.hero-title .word:nth-child(3) { animation-delay: 0.5s; }
+.hero-title .word:nth-child(4) { animation-delay: 0.6s; }
+.hero-title .word:nth-child(5) { animation-delay: 0.7s; }
+.hero-title .accent {
+  color: var(--lime);
+  font-style: italic;
+  font-weight: 400;
+}
 .hero-bottom {
-  display: flex; justify-content: space-between; align-items: flex-end;
-  flex-wrap: wrap; gap: 40px;
-  opacity: 0; animation: fadeUp 1s ease 1.2s forwards;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 40px;
+  align-items: end;
+  padding-top: 48px;
+  border-top: 1px solid var(--line-dark);
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.9s forwards;
 }
 .hero-lede {
-  max-width: 480px; font-size: 17px; line-height: 1.65;
-  color: rgba(245, 241, 234, 0.78); font-weight: 300;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--grey-300);
+  font-weight: 400;
+  max-width: 520px;
 }
-.hero-lede::first-letter {
+.hero-stat-label {
+  font-size: 10px;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--grey-500);
+  margin-bottom: 8px;
+  font-weight: 600;
+}
+.hero-stat-value {
   font-family: 'Fraunces', serif;
-  font-size: 3.5em; float: left; line-height: 0.85;
-  margin: 6px 12px 0 0; color: var(--tan);
-  font-style: italic; font-weight: 400;
-}
-.hero-scroll {
-  display: flex; align-items: center; gap: 16px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px; letter-spacing: 0.3em; text-transform: uppercase;
-  color: var(--tan);
-}
-.hero-scroll-line {
-  width: 50px; height: 1px;
-  background: rgba(184, 153, 122, 0.3);
-  position: relative; overflow: hidden;
-}
-.hero-scroll-line::after {
-  content: ''; position: absolute; inset: 0;
-  background: var(--tan);
-  animation: scrollPulse 2.5s ease infinite;
-}
-@keyframes scrollPulse {
-  0% { transform: translateX(-100%); }
-  100% { transform: translateX(100%); }
+  font-weight: 400;
+  font-size: 22px;
+  color: var(--white);
+  line-height: 1.2;
 }
 @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
-@media (max-width: 768px) {
-  .hero { padding: 0 24px 60px; }
-  .hero-meta { left: 24px; top: 100px; gap: 16px; }
-  .hero-meta-line { width: 30px; }
-  .hero-mark { display: none; }
-  .hero-numeral { font-size: 200px; right: -20px; }
+@media (max-width: 968px) {
+  .hero { padding: 0 24px 48px; }
+  .hero-top-bar { left: 24px; right: 24px; top: 90px; }
+  .hero-bottom { grid-template-columns: 1fr; gap: 24px; }
+  .hero-stat { display: none; }
 }
-.marquee {
-  background: var(--ink); color: var(--bone);
-  padding: 32px 0; overflow: hidden;
-  border-top: 1px solid rgba(245, 241, 234, 0.08);
-  border-bottom: 1px solid rgba(245, 241, 234, 0.08);
+
+/* ====== CATEGORY STRIP (under hero) ====== */
+.category-strip {
+  background: var(--black);
+  border-top: 1px solid var(--line-dark);
+  padding: 24px 56px;
+  display: flex;
+  justify-content: center;
+  gap: 48px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+.category-strip-item {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--white);
+  font-weight: 600;
+}
+.category-strip-divider {
+  width: 4px; height: 4px;
+  background: var(--lime);
+}
+@media (max-width: 768px) {
+  .category-strip { padding: 20px 24px; gap: 24px; }
+  .category-strip-item { font-size: 10px; letter-spacing: 0.18em; }
+}
+
+/* ====== SECTION COMMON ====== */
+.section {
+  padding: 120px 56px;
   position: relative;
 }
-.marquee::before, .marquee::after {
-  content: ''; position: absolute; top: 0; bottom: 0;
-  width: 140px; z-index: 2; pointer-events: none;
+.section-wrap {
+  max-width: 1320px;
+  margin: 0 auto;
 }
-.marquee::before { left: 0; background: linear-gradient(to right, var(--ink), transparent); }
-.marquee::after { right: 0; background: linear-gradient(to left, var(--ink), transparent); }
-.marquee-track {
-  display: flex; gap: 80px;
-  animation: marquee 50s linear infinite;
-  white-space: nowrap; width: max-content;
-}
-.marquee-item {
-  font-family: 'Fraunces', serif; font-style: italic; font-weight: 300;
-  font-size: 36px; color: var(--bone);
-  display: flex; align-items: center; gap: 80px;
-}
-.marquee-item::after {
-  content: '✦'; color: var(--tan);
-  font-size: 16px; font-style: normal;
-}
-@keyframes marquee { to { transform: translateX(-50%); } }
-.section-divider {
-  padding: 60px 48px; text-align: center;
-  background: var(--bone); position: relative;
-}
-.section-divider svg {
-  display: inline-block; height: 24px;
-  color: var(--tan-deep); opacity: 0.6;
-}
-.section { padding: 140px 48px; position: relative; }
 .section-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px; letter-spacing: 0.25em; text-transform: uppercase;
-  color: var(--tan-deep); margin-bottom: 24px;
-  display: flex; align-items: center; gap: 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--grey-500);
+  font-weight: 600;
+  margin-bottom: 32px;
 }
 .section-label::before {
-  content: ''; width: 32px; height: 1px;
-  background: var(--tan-deep);
+  content: '';
+  width: 24px; height: 1px;
+  background: var(--lime);
 }
 .section-label-num {
-  font-family: 'Fraunces', serif; font-style: italic;
-  font-weight: 400; font-size: 13px;
-  color: var(--tan-deep); letter-spacing: 0; margin-left: 4px;
+  color: var(--lime);
 }
 .section-heading {
-  font-family: 'Fraunces', serif; font-weight: 300;
-  font-size: clamp(40px, 6vw, 88px);
-  line-height: 1.0; letter-spacing: -0.025em;
-  margin-bottom: 60px;
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: clamp(36px, 5vw, 72px);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  color: var(--charcoal);
+  max-width: 1000px;
 }
-.section-heading em { font-style: italic; color: var(--tan-deep); }
-@media (max-width: 768px) { .section { padding: 80px 24px; } }
-.manifest {
-  background: var(--bone); position: relative; overflow: hidden;
-}
-.manifest-glyph {
-  position: absolute; right: -100px; top: 100px;
-  font-family: 'Fraunces', serif; font-style: italic; font-weight: 300;
-  font-size: 560px; line-height: 0.8;
-  color: rgba(184, 153, 122, 0.08);
-  pointer-events: none; z-index: 0;
-}
-.manifest-grid {
-  max-width: 1400px; margin: 0 auto;
-  display: grid; grid-template-columns: 1fr 1.4fr;
-  gap: 80px; align-items: start;
-  position: relative; z-index: 1;
-}
-.manifest-side { position: sticky; top: 120px; }
-.manifest-number {
-  font-family: 'Fraunces', serif; font-weight: 300;
-  font-size: 220px; line-height: 0.8;
-  color: var(--ink); letter-spacing: -0.05em;
+.section-heading .accent {
+  color: var(--charcoal);
+  font-style: italic;
   position: relative;
 }
-.manifest-number sup {
-  font-size: 32px; font-style: italic;
-  color: var(--tan-deep); vertical-align: super; margin-left: 12px;
+.section-heading .accent::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -2px;
+  height: 3px;
+  background: var(--lime);
 }
-.manifest-side-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--ink-soft); margin-top: 32px;
-  max-width: 240px; line-height: 1.7;
+@media (max-width: 768px) { .section { padding: 80px 24px; } }
+
+/* ====== PRACTICE / MANIFEST ====== */
+.practice {
+  background: var(--white);
+  border-bottom: 1px solid var(--line-mid);
 }
-.manifest-ornament {
-  margin-top: 48px; width: 80px;
-  opacity: 0.4; color: var(--tan-deep);
+.practice-grid {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 80px;
+  align-items: start;
 }
-.manifest-prose p {
-  font-family: 'Fraunces', serif; font-weight: 300;
-  font-size: 28px; line-height: 1.45;
-  margin-bottom: 32px; letter-spacing: -0.01em;
+.practice-side {
+  position: sticky;
+  top: 100px;
 }
-.manifest-prose p:first-of-type::first-letter {
-  font-family: 'Fraunces', serif; font-weight: 400; font-style: italic;
-  font-size: 4em; float: left; line-height: 0.85;
-  margin: 8px 16px 0 0; color: var(--tan-deep);
+.practice-prose p {
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 400;
+  font-size: 20px;
+  line-height: 1.5;
+  margin-bottom: 24px;
+  color: var(--charcoal);
 }
-.manifest-prose p em { color: var(--tan-deep); font-style: italic; }
-.manifest-prose p strong { font-weight: 500; color: var(--ink); }
-.manifest-divider {
-  display: flex; align-items: center; gap: 16px;
-  margin: 60px 0; color: var(--tan-deep);
+.practice-prose p strong { font-weight: 600; }
+.practice-prose p em {
+  font-style: italic;
+  position: relative;
+  display: inline-block;
 }
-.manifest-divider::before, .manifest-divider::after {
-  content: ''; flex: 1; height: 1px; background: var(--line-strong);
+.practice-prose p em::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0; bottom: -1px;
+  height: 2px;
+  background: var(--lime);
 }
-.manifest-divider-mark {
-  font-family: 'Fraunces', serif; font-style: italic;
-  font-size: 18px; opacity: 0.6;
+.practice-meta {
+  margin-top: 56px;
+  border-top: 1px solid var(--line-mid);
+  padding-top: 40px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
 }
-.manifest-meta {
-  display: grid; grid-template-columns: repeat(2, 1fr);
-  gap: 40px; counter-reset: meta;
+.practice-meta-item {
+  border-left: 2px solid var(--lime);
+  padding-left: 20px;
 }
-.manifest-meta-item {
-  border-top: 1px solid var(--line-strong);
-  padding-top: 16px; position: relative;
+.practice-meta-label {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--grey-500);
+  margin-bottom: 8px;
+  font-weight: 600;
 }
-.manifest-meta-item::before {
-  content: counter(meta, decimal-leading-zero);
-  counter-increment: meta;
-  position: absolute; top: -8px; right: 0;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px; color: var(--tan-deep);
-  background: var(--bone); padding: 0 6px; letter-spacing: 0.1em;
-}
-.manifest-meta-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--ink-fade); margin-bottom: 8px;
-}
-.manifest-meta-value {
-  font-family: 'Fraunces', serif; font-weight: 300;
-  font-size: 22px; line-height: 1.3;
+.practice-meta-value {
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.4;
+  color: var(--charcoal);
 }
 @media (max-width: 968px) {
-  .manifest-grid { grid-template-columns: 1fr; gap: 40px; }
-  .manifest-side { position: relative; top: 0; }
-  .manifest-number { font-size: 140px; }
-  .manifest-prose p { font-size: 22px; }
-  .manifest-glyph { font-size: 300px; right: -50px; }
+  .practice-grid { grid-template-columns: 1fr; gap: 48px; }
+  .practice-side { position: relative; top: 0; }
+  .practice-prose p { font-size: 17px; }
 }
+
+/* ====== SECTORS ====== */
 .sectors {
-  background: var(--ink); color: var(--bone);
-  position: relative; overflow: hidden;
-}
-.sectors::before {
-  content: ''; position: absolute; inset: 0;
-  background-image:
-    linear-gradient(to right, rgba(184, 153, 122, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(184, 153, 122, 0.04) 1px, transparent 1px);
-  background-size: 100px 100px; pointer-events: none;
+  background: var(--grey-100);
+  border-bottom: 1px solid var(--line-mid);
 }
 .sectors-intro {
-  max-width: 1400px; margin: 0 auto 80px;
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 80px; align-items: end;
-  position: relative; z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: end;
+  margin-bottom: 80px;
 }
-.sectors .section-label { color: var(--tan); }
-.sectors .section-label::before { background: var(--tan); }
-.sectors .section-heading { color: var(--bone); }
-.sectors .section-heading em { color: var(--tan); }
 .sectors-intro-text {
-  font-size: 18px; line-height: 1.65;
-  color: rgba(245, 241, 234, 0.7);
-  max-width: 480px; font-weight: 300;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--grey-700);
+  max-width: 480px;
 }
-.sector-list {
-  max-width: 1400px; margin: 0 auto;
-  position: relative; z-index: 1;
+.sector-card-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
 }
-.sector-row {
-  border-top: 1px solid rgba(245, 241, 234, 0.15);
-  padding: 60px 0;
-  display: grid; grid-template-columns: 60px 100px 1fr 1.8fr 180px;
-  gap: 40px; align-items: start;
-  cursor: pointer; transition: background 0.5s ease;
-  position: relative; color: inherit; text-decoration: none;
+.sector-card {
+  background: var(--white);
+  border: 1px solid var(--line-mid);
+  padding: 40px 32px;
+  text-decoration: none;
+  color: var(--charcoal);
+  transition: all 0.3s ease;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 340px;
 }
-.sector-row:last-child { border-bottom: 1px solid rgba(245, 241, 234, 0.15); }
-.sector-row:hover { background: rgba(184, 153, 122, 0.04); }
-.sector-row:hover .sector-arrow { transform: translateX(8px); color: var(--tan); }
-.sector-row:hover .sector-graphic { opacity: 1; transform: scale(1.05); }
-.sector-num {
-  font-family: 'Fraunces', serif; font-weight: 300; font-style: italic;
-  font-size: 14px; color: var(--tan);
-  letter-spacing: 0.1em; padding-top: 8px;
+.sector-card:hover {
+  border-color: var(--charcoal);
+  transform: translateY(-4px);
 }
-.sector-graphic {
-  width: 80px; height: 80px; opacity: 0.7;
-  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-  color: var(--tan);
+.sector-card:hover .sector-card-arrow { background: var(--lime); transform: rotate(-45deg); }
+.sector-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: start;
+  margin-bottom: 40px;
 }
-.sector-title {
-  font-family: 'Fraunces', serif; font-weight: 300;
-  font-size: 44px; line-height: 1.0;
-  letter-spacing: -0.02em; padding-top: 12px;
+.sector-card-num {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  font-weight: 600;
+  color: var(--lime);
+  background: var(--charcoal);
+  padding: 6px 10px;
 }
-.sector-title em { font-style: italic; color: var(--tan); }
-.sector-desc {
-  font-size: 16px; line-height: 1.65;
-  color: rgba(245, 241, 234, 0.65);
-  max-width: 520px; font-weight: 300; padding-top: 16px;
+.sector-card-arrow {
+  width: 36px; height: 36px;
+  border: 1px solid var(--line-mid);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  color: var(--charcoal);
+  transition: all 0.3s ease;
 }
-.sector-tags {
-  display: flex; flex-direction: column; gap: 8px;
-  align-items: flex-end; padding-top: 12px;
+.sector-card-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 28px;
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  color: var(--charcoal);
+}
+.sector-card-desc {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--grey-700);
+  margin-bottom: 28px;
+  flex: 1;
+}
+.sector-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  padding-top: 20px;
+  border-top: 1px solid var(--line-mid);
 }
 .sector-tag {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--tan); padding: 5px 12px;
-  border: 1px solid rgba(184, 153, 122, 0.3);
-}
-.sector-arrow {
-  position: absolute; right: -30px; top: 70px;
-  font-size: 24px; color: rgba(245, 241, 234, 0.3);
-  transition: all 0.4s ease;
+  font-size: 10px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--grey-700);
+  padding: 4px 10px;
+  background: var(--grey-100);
+  font-weight: 600;
 }
 @media (max-width: 968px) {
   .sectors-intro { grid-template-columns: 1fr; gap: 32px; }
-  .sector-row { grid-template-columns: 60px 1fr; gap: 16px; padding: 32px 0; }
-  .sector-graphic { display: none; }
-  .sector-tags { flex-direction: row; flex-wrap: wrap; align-items: flex-start; grid-column: 2; }
-  .sector-title { font-size: 32px; grid-column: 2; }
-  .sector-desc { grid-column: 2; }
-  .sector-arrow { display: none; }
+  .sector-card-grid { grid-template-columns: 1fr; }
 }
+
+/* ====== APPROACH ====== */
 .approach {
-  background: var(--bone-deep); position: relative; overflow: hidden;
+  background: var(--white);
+  border-bottom: 1px solid var(--line-mid);
 }
-.approach::before {
-  content: ''; position: absolute; inset: 0;
-  background-image: repeating-linear-gradient(45deg, transparent, transparent 60px, rgba(138, 111, 82, 0.025) 60px, rgba(138, 111, 82, 0.025) 61px);
-  pointer-events: none;
-}
-.approach-grid { max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; }
 .approach-header {
-  display: grid; grid-template-columns: 1fr 1.5fr;
-  gap: 80px; margin-bottom: 100px; align-items: end;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-bottom: 80px;
+  align-items: end;
 }
 .approach-quote {
-  font-family: 'Fraunces', serif; font-weight: 300; font-style: italic;
-  font-size: 30px; line-height: 1.45;
-  color: var(--ink-soft);
-  position: relative; padding-left: 40px;
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 24px;
+  line-height: 1.4;
+  color: var(--charcoal);
+  border-left: 3px solid var(--lime);
+  padding-left: 28px;
 }
-.approach-quote::before {
-  content: '"'; position: absolute; left: 0; top: -8px;
-  font-family: 'Fraunces', serif; font-size: 80px;
-  color: var(--tan-deep); line-height: 1; font-style: italic;
-}
-.approach-pillars {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 0;
-  border-top: 1px solid var(--ink); border-bottom: 1px solid var(--ink);
+.approach-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0;
+  border-top: 2px solid var(--charcoal);
+  border-bottom: 2px solid var(--charcoal);
 }
 .pillar {
-  padding: 60px 40px;
-  border-right: 1px solid var(--line-strong);
-  position: relative; transition: background 0.4s;
+  padding: 48px 36px;
+  border-right: 1px solid var(--line-mid);
+  position: relative;
+  background: var(--white);
+  transition: background 0.3s ease;
 }
 .pillar:last-child { border-right: none; }
-.pillar:hover { background: rgba(255, 255, 255, 0.3); }
-.pillar:hover .pillar-icon { opacity: 1; transform: rotate(0deg); }
+.pillar:hover { background: var(--grey-50); }
 .pillar-num {
-  font-family: 'Fraunces', serif; font-weight: 300; font-style: italic;
-  font-size: 14px; color: var(--tan-deep);
-  letter-spacing: 0.1em; margin-bottom: 24px;
-  display: flex; align-items: center; gap: 12px;
-}
-.pillar-num::before { content: ''; width: 24px; height: 1px; background: var(--tan-deep); }
-.pillar-icon {
-  width: 36px; height: 36px; margin-bottom: 32px;
-  color: var(--tan-deep); opacity: 0.6;
-  transform: rotate(-6deg);
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  font-weight: 600;
+  color: var(--charcoal);
+  background: var(--lime);
+  display: inline-block;
+  padding: 4px 10px;
+  margin-bottom: 32px;
 }
 .pillar-title {
-  font-family: 'Fraunces', serif; font-weight: 300;
-  font-size: 30px; line-height: 1.1;
-  letter-spacing: -0.02em; margin-bottom: 24px; color: var(--ink);
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 26px;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin-bottom: 16px;
+  color: var(--charcoal);
 }
 .pillar-text {
-  font-size: 15px; line-height: 1.65;
-  color: var(--ink-soft); font-weight: 300;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--grey-700);
 }
 @media (max-width: 968px) {
   .approach-header { grid-template-columns: 1fr; gap: 32px; }
-  .approach-pillars { grid-template-columns: 1fr; }
-  .pillar { border-right: none; border-bottom: 1px solid var(--line-strong); }
+  .approach-grid { grid-template-columns: 1fr; }
+  .pillar { border-right: none; border-bottom: 1px solid var(--line-mid); }
   .pillar:last-child { border-bottom: none; }
-  .approach-quote { font-size: 22px; padding-left: 28px; }
-  .approach-quote::before { font-size: 60px; }
+  .approach-quote { font-size: 19px; padding-left: 20px; }
 }
-.index-spread {
-  background: var(--ink); color: var(--bone);
-  padding: 120px 48px; position: relative; overflow: hidden;
-}
-.index-grid {
-  max-width: 1400px; margin: 0 auto;
-  display: grid; grid-template-columns: 1fr 1.5fr;
-  gap: 80px; align-items: center;
-  position: relative; z-index: 1;
-}
-.index-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
-  color: var(--tan); margin-bottom: 32px;
-  display: flex; align-items: center; gap: 16px;
-}
-.index-label::before {
-  content: '✦'; font-size: 14px;
-  font-family: 'Fraunces', serif; font-style: normal;
-}
-.index-quote {
-  font-family: 'Fraunces', serif; font-weight: 300;
-  font-size: clamp(36px, 5vw, 64px);
-  line-height: 1.15; letter-spacing: -0.02em;
-  color: var(--bone); margin-bottom: 40px;
-}
-.index-quote em { font-style: italic; color: var(--tan); }
-.index-attribution {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase;
-  color: var(--tan); opacity: 0.7;
-}
-.index-attribution::before { content: '— '; }
-.index-art {
-  position: relative; aspect-ratio: 4/5;
-  display: flex; align-items: center; justify-content: center;
-}
-.index-art svg { width: 100%; height: 100%; }
-@media (max-width: 968px) {
-  .index-grid { grid-template-columns: 1fr; gap: 40px; }
-  .index-art { aspect-ratio: 1; max-width: 320px; margin: 0 auto; }
-}
+
+/* ====== TEAM ====== */
 .team {
-  background: var(--bone); padding: 140px 48px;
-  border-top: 1px solid var(--line-strong);
-  position: relative; overflow: hidden;
+  background: var(--grey-100);
+  border-bottom: 1px solid var(--line-mid);
 }
-.team-glyph {
-  position: absolute; left: -80px; top: 100px;
-  font-family: 'Fraunces', serif; font-style: italic; font-weight: 300;
-  font-size: 480px; line-height: 0.8;
-  color: rgba(138, 111, 82, 0.06);
-  pointer-events: none; z-index: 0;
-}
-.team-grid { max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; }
 .team-header {
-  display: grid; grid-template-columns: 1fr 1.4fr;
-  gap: 80px; margin-bottom: 100px; align-items: end;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  margin-bottom: 64px;
+  align-items: end;
 }
 .team-intro-text {
-  font-size: 18px; line-height: 1.65;
-  color: var(--ink-soft); max-width: 520px; font-weight: 300;
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--grey-700);
+  max-width: 480px;
 }
-.team-list { border-top: 1px solid var(--ink); }
+.team-table {
+  background: var(--white);
+  border: 1px solid var(--line-mid);
+}
 .team-row {
-  display: grid; grid-template-columns: 60px 80px 1.4fr 1.5fr 1fr;
-  gap: 32px; align-items: center;
-  padding: 32px 0;
-  border-bottom: 1px solid var(--line-strong);
-  transition: background 0.4s, padding 0.4s;
-  position: relative;
+  display: grid;
+  grid-template-columns: 60px 60px 1.4fr 1.4fr 1fr;
+  gap: 24px;
+  align-items: center;
+  padding: 20px 32px;
+  border-bottom: 1px solid var(--line-mid);
+  transition: background 0.2s ease;
 }
-.team-row:hover {
-  background: var(--bone-deep);
-  padding-left: 24px; padding-right: 24px;
-}
+.team-row:last-child { border-bottom: none; }
+.team-row:hover { background: var(--grey-50); }
+.team-row:hover .team-monogram { background: var(--lime); border-color: var(--lime); color: var(--charcoal); }
 .team-num {
-  font-family: 'Fraunces', serif; font-weight: 300; font-style: italic;
-  font-size: 14px; color: var(--tan-deep); letter-spacing: 0.1em;
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  font-weight: 600;
+  color: var(--grey-500);
 }
 .team-monogram {
-  width: 56px; height: 56px;
-  border: 1px solid var(--ink);
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Fraunces', serif; font-weight: 400; font-style: italic;
-  font-size: 20px; color: var(--ink); background: var(--bone);
-  transition: all 0.4s; letter-spacing: 0.02em;
+  width: 44px; height: 44px;
+  border: 1.5px solid var(--charcoal);
+  background: var(--white);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  color: var(--charcoal);
+  transition: all 0.3s ease;
 }
-.team-row:hover .team-monogram { background: var(--ink); color: var(--bone); }
 .team-name {
-  font-family: 'Fraunces', serif; font-weight: 300;
-  font-size: 32px; line-height: 1.0;
-  letter-spacing: -0.02em; color: var(--ink);
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.1;
+  color: var(--charcoal);
 }
-.team-name em { font-style: italic; color: var(--tan-deep); }
 .team-role {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
-  color: var(--ink-soft); font-weight: 400;
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--grey-700);
+  font-weight: 600;
 }
 .team-discipline {
-  font-family: 'Fraunces', serif; font-style: italic; font-weight: 300;
-  font-size: 15px; color: var(--ink-soft);
-  text-align: right; opacity: 0.7;
+  font-size: 13px;
+  color: var(--grey-700);
+  text-align: right;
 }
 @media (max-width: 968px) {
   .team { padding: 80px 24px; }
   .team-header { grid-template-columns: 1fr; gap: 32px; }
   .team-row {
-    grid-template-columns: 56px 1fr;
+    grid-template-columns: 44px 1fr;
     grid-template-rows: auto auto;
-    gap: 12px 16px; padding: 20px 0;
+    gap: 8px 16px;
+    padding: 16px 20px;
   }
-  .team-row:hover { padding-left: 0; padding-right: 0; }
   .team-num { display: none; }
   .team-monogram { grid-row: 1 / 3; }
-  .team-name { grid-column: 2; grid-row: 1; font-size: 24px; }
-  .team-role { grid-column: 2; grid-row: 2; font-size: 11px; }
+  .team-name { grid-column: 2; grid-row: 1; font-size: 18px; }
+  .team-role { grid-column: 2; grid-row: 2; font-size: 10px; }
   .team-discipline { display: none; }
-  .team-glyph { font-size: 240px; }
 }
+
+/* ====== STATS ====== */
 .stats {
-  background: var(--ink); color: var(--bone);
-  padding: 120px 48px;
-  border-top: 1px solid rgba(245, 241, 234, 0.1);
-  position: relative; overflow: hidden;
+  background: var(--black);
+  color: var(--white);
+  padding: 100px 56px;
 }
+.stats-wrap { max-width: 1320px; margin: 0 auto; }
 .stats-header {
-  max-width: 1400px; margin: 0 auto 60px;
-  display: flex; justify-content: space-between; align-items: end;
-  flex-wrap: wrap; gap: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  margin-bottom: 56px;
+  flex-wrap: wrap;
+  gap: 16px;
 }
 .stats-title {
-  font-family: 'Fraunces', serif; font-weight: 300; font-style: italic;
-  font-size: 24px; color: var(--tan);
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 28px;
+  color: var(--white);
 }
+.stats-title .accent { color: var(--lime); font-style: italic; }
 .stats-meta {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
-  color: rgba(245, 241, 234, 0.4);
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--grey-500);
+  font-weight: 600;
 }
 .stats-grid {
-  max-width: 1400px; margin: 0 auto;
-  display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
-  border-top: 1px solid rgba(245, 241, 234, 0.2);
-  border-bottom: 1px solid rgba(245, 241, 234, 0.2);
-  counter-reset: stat;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0;
+  border-top: 1px solid var(--line-dark);
+  border-bottom: 1px solid var(--line-dark);
 }
 .stat-item {
-  padding: 40px 32px;
-  border-right: 1px solid rgba(245, 241, 234, 0.1);
+  padding: 40px 28px;
+  border-right: 1px solid var(--line-dark);
   position: relative;
 }
 .stat-item:last-child { border-right: none; }
-.stat-item::before {
-  content: counter(stat, decimal-leading-zero);
-  counter-increment: stat;
-  position: absolute; top: 16px; right: 24px;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px; color: rgba(184, 153, 122, 0.5);
+.stat-item-num {
+  position: absolute;
+  top: 16px; right: 24px;
+  font-size: 11px;
+  color: var(--lime);
+  font-weight: 600;
   letter-spacing: 0.1em;
 }
 .stat-num {
-  font-family: 'Fraunces', serif; font-weight: 300;
-  font-size: 76px; line-height: 1;
-  letter-spacing: -0.04em; color: var(--bone); margin-bottom: 24px;
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--white);
+  margin-bottom: 16px;
 }
-.stat-num em { font-style: italic; color: var(--tan); }
-.stat-num small { font-size: 28px; vertical-align: top; margin-left: 4px; opacity: 0.6; }
+.stat-num .accent { color: var(--lime); }
+.stat-num small { font-size: 24px; vertical-align: top; margin-left: 4px; opacity: 0.7; }
 .stat-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px; letter-spacing: 0.15em; text-transform: uppercase;
-  color: rgba(245, 241, 234, 0.55); line-height: 1.6;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--grey-500);
+  line-height: 1.5;
+  font-weight: 600;
 }
 @media (max-width: 968px) {
-  .stats { padding: 80px 24px; }
+  .stats { padding: 64px 24px; }
   .stats-grid { grid-template-columns: repeat(2, 1fr); }
-  .stat-item { border-right: 1px solid rgba(245, 241, 234, 0.1); }
+  .stat-item { border-right: 1px solid var(--line-dark); }
   .stat-item:nth-child(2n) { border-right: none; }
-  .stat-item:nth-child(-n+2) { border-bottom: 1px solid rgba(245, 241, 234, 0.1); }
-  .stat-num { font-size: 56px; }
+  .stat-item:nth-child(-n+2) { border-bottom: 1px solid var(--line-dark); }
+  .stat-num { font-size: 44px; }
 }
+
+/* ====== ENGAGEMENT ====== */
 .engagement {
-  background: var(--bone); padding: 140px 48px;
-  position: relative; overflow: hidden;
+  background: var(--white);
+  border-bottom: 1px solid var(--line-mid);
 }
-.engagement-grid { max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; }
-.engagement-header { text-align: left; margin-bottom: 80px; max-width: 900px; }
+.engagement-header {
+  margin-bottom: 64px;
+  max-width: 900px;
+}
 .engagement-intro {
-  font-size: 18px; color: var(--ink-soft);
-  max-width: 720px; margin-top: 24px;
-  font-weight: 300; line-height: 1.65;
+  font-size: 17px;
+  color: var(--grey-700);
+  max-width: 720px;
+  margin-top: 24px;
+  line-height: 1.55;
 }
 .engagement-flow {
-  display: grid; grid-template-columns: repeat(4, 1fr);
-  gap: 32px; position: relative;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
 }
-.engagement-flow::before {
-  content: ''; position: absolute;
-  top: 32px; left: 5%; right: 5%; height: 1px;
-  background-image: linear-gradient(to right, var(--line-strong) 50%, transparent 50%);
-  background-size: 12px 1px; z-index: 0;
+.flow-step {
+  position: relative;
+  padding: 32px 28px;
+  background: var(--grey-50);
+  border-top: 3px solid var(--lime);
+  transition: all 0.3s ease;
 }
-.flow-step { position: relative; z-index: 1; }
-.flow-marker {
-  width: 64px; height: 64px; border-radius: 50%;
-  background: var(--bone); border: 1px solid var(--ink);
-  display: flex; align-items: center; justify-content: center;
-  font-family: 'Fraunces', serif; font-weight: 300; font-style: italic;
-  font-size: 22px; color: var(--ink); margin-bottom: 32px;
-  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+.flow-step:hover {
+  background: var(--charcoal);
+  color: var(--white);
 }
-.flow-step:hover .flow-marker {
-  background: var(--ink); color: var(--tan); transform: rotate(-8deg);
+.flow-step:hover .flow-num { color: var(--lime); }
+.flow-step:hover .flow-title { color: var(--white); }
+.flow-step:hover .flow-text { color: var(--grey-300); }
+.flow-num {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 32px;
+  color: var(--charcoal);
+  margin-bottom: 20px;
+  transition: color 0.3s;
+  line-height: 1;
 }
 .flow-title {
-  font-family: 'Fraunces', serif; font-weight: 400;
-  font-size: 24px; line-height: 1.2;
-  margin-bottom: 12px; letter-spacing: -0.01em;
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 20px;
+  margin-bottom: 12px;
+  color: var(--charcoal);
+  transition: color 0.3s;
 }
 .flow-text {
-  font-size: 14px; line-height: 1.65;
-  color: var(--ink-soft); font-weight: 300;
+  font-size: 13px;
+  line-height: 1.55;
+  color: var(--grey-700);
+  transition: color 0.3s;
 }
 @media (max-width: 968px) {
-  .engagement-flow { grid-template-columns: 1fr; gap: 32px; }
-  .engagement-flow::before { display: none; }
+  .engagement-flow { grid-template-columns: 1fr; gap: 16px; }
 }
+
+/* ====== CONTACT ====== */
 .contact {
-  background: var(--ink); color: var(--bone);
-  padding: 160px 48px 80px;
-  position: relative; overflow: hidden;
+  background: var(--black);
+  color: var(--white);
+  padding: 120px 56px 64px;
+  position: relative;
+  overflow: hidden;
 }
-.contact-bg {
-  position: absolute; inset: 0;
-  background: radial-gradient(ellipse at 70% 40%, rgba(184, 153, 122, 0.14) 0%, transparent 60%);
+.contact-bg-accent {
+  position: absolute;
+  right: -10%; top: 50%;
+  transform: translateY(-50%);
+  width: 600px; height: 600px;
+  background: radial-gradient(circle, rgba(212, 255, 61, 0.08) 0%, transparent 70%);
   pointer-events: none;
 }
-.contact-bg-mark {
-  position: absolute; left: -50px; bottom: -50px;
-  font-family: 'Fraunces', serif; font-style: italic; font-weight: 300;
-  font-size: 400px; line-height: 0.8;
-  color: rgba(184, 153, 122, 0.06);
-  pointer-events: none;
+.contact-wrap { max-width: 1320px; margin: 0 auto; position: relative; z-index: 1; }
+.contact-label {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--lime);
+  font-weight: 600;
+  margin-bottom: 32px;
 }
-.contact-grid { max-width: 1400px; margin: 0 auto; position: relative; z-index: 1; }
+.contact-label::before {
+  content: '';
+  width: 24px; height: 1px;
+  background: var(--lime);
+}
 .contact-headline {
-  font-family: 'Fraunces', serif; font-weight: 300;
-  font-size: clamp(48px, 8vw, 120px);
-  line-height: 0.95; letter-spacing: -0.03em;
-  margin-bottom: 80px; max-width: 1100px;
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: clamp(40px, 6.5vw, 96px);
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  margin-bottom: 72px;
+  max-width: 1100px;
+  color: var(--white);
 }
-.contact-headline em { font-style: italic; color: var(--tan); }
+.contact-headline .accent {
+  color: var(--lime);
+  font-style: italic;
+}
 .contact-info {
-  display: grid; grid-template-columns: repeat(3, 1fr) auto;
-  gap: 40px; align-items: end;
-  border-top: 1px solid rgba(245, 241, 234, 0.2);
+  display: grid;
+  grid-template-columns: repeat(3, 1fr) auto;
+  gap: 40px;
+  align-items: end;
+  border-top: 1px solid var(--line-dark);
   padding-top: 40px;
 }
 .contact-block-label {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 10px; letter-spacing: 0.25em; text-transform: uppercase;
-  color: var(--tan); margin-bottom: 16px;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 12px;
+  font-weight: 600;
 }
 .contact-block-value {
-  font-family: 'Fraunces', serif; font-weight: 300;
-  font-size: 22px; line-height: 1.35; color: var(--bone);
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--white);
 }
 .contact-block-value a {
-  color: var(--bone); text-decoration: none;
-  border-bottom: 1px solid rgba(245, 241, 234, 0.3);
-  transition: border-color 0.3s;
+  color: var(--white);
+  text-decoration: none;
+  border-bottom: 1px solid var(--grey-700);
+  transition: border-color 0.2s;
 }
-.contact-block-value a:hover { border-color: var(--tan); }
+.contact-block-value a:hover { border-color: var(--lime); }
 .contact-cta {
-  display: inline-flex; align-items: center; gap: 16px;
-  background: var(--tan); color: var(--ink);
-  padding: 22px 36px; text-decoration: none;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 12px; letter-spacing: 0.15em; text-transform: uppercase;
-  font-weight: 500; transition: all 0.3s; white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--lime);
+  color: var(--black);
+  padding: 20px 32px;
+  text-decoration: none;
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: all 0.2s;
+  white-space: nowrap;
 }
-.contact-cta:hover { background: var(--bone); transform: translateX(4px); }
-.contact-cta-arrow { font-size: 18px; transition: transform 0.3s; }
+.contact-cta:hover { background: var(--lime-bright); transform: translateY(-2px); }
+.contact-cta-arrow { font-size: 16px; transition: transform 0.2s; }
 .contact-cta:hover .contact-cta-arrow { transform: translateX(4px); }
 @media (max-width: 968px) {
-  .contact { padding: 100px 24px 60px; }
-  .contact-info { grid-template-columns: 1fr; gap: 32px; }
-  .contact-bg-mark { font-size: 200px; }
+  .contact { padding: 80px 24px 48px; }
+  .contact-info { grid-template-columns: 1fr; gap: 28px; }
 }
+
+/* ====== FOOTER ====== */
 .footer {
-  background: var(--ink); color: rgba(245, 241, 234, 0.5);
-  padding: 60px 48px 40px;
-  border-top: 1px solid rgba(245, 241, 234, 0.1);
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 11px;
-  display: flex; justify-content: space-between; flex-wrap: wrap;
-  gap: 24px; align-items: center; letter-spacing: 0.05em;
+  background: var(--black-deep);
+  color: var(--grey-500);
+  padding: 40px 56px 32px;
+  border-top: 1px solid var(--line-dark);
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
 }
 .footer-mark {
-  font-family: 'Fraunces', serif; font-weight: 500;
-  font-size: 20px; color: var(--bone); letter-spacing: 0.04em;
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--white);
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.footer-mark-dot {
+  width: 6px; height: 6px;
+  background: var(--lime);
 }
 .footer-meta {
-  display: flex; gap: 32px; flex-wrap: wrap;
-  font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase;
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 @media (max-width: 768px) {
-  .footer { padding: 40px 24px 24px; flex-direction: column; align-items: flex-start; }
+  .footer { padding: 32px 24px 20px; flex-direction: column; align-items: flex-start; }
 }
+
+/* ====== SCROLL REVEAL ====== */
 .reveal {
-  opacity: 0; transform: translateY(40px);
-  transition: opacity 1s ease, transform 1s ease;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 .reveal.in-view { opacity: 1; transform: translateY(0); }
 .reveal-stagger > * {
-  opacity: 0; transform: translateY(30px);
-  transition: opacity 0.8s ease, transform 0.8s ease;
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
 }
 .reveal-stagger.in-view > *:nth-child(1) { transition-delay: 0.05s; opacity: 1; transform: translateY(0); }
-.reveal-stagger.in-view > *:nth-child(2) { transition-delay: 0.15s; opacity: 1; transform: translateY(0); }
-.reveal-stagger.in-view > *:nth-child(3) { transition-delay: 0.25s; opacity: 1; transform: translateY(0); }
-.reveal-stagger.in-view > *:nth-child(4) { transition-delay: 0.35s; opacity: 1; transform: translateY(0); }
-.reveal-stagger.in-view > *:nth-child(5) { transition-delay: 0.45s; opacity: 1; transform: translateY(0); }
-.reveal-stagger.in-view > *:nth-child(6) { transition-delay: 0.55s; opacity: 1; transform: translateY(0); }
-.reveal-stagger.in-view > *:nth-child(7) { transition-delay: 0.65s; opacity: 1; transform: translateY(0); }
-.reveal-stagger.in-view > *:nth-child(8) { transition-delay: 0.75s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.in-view > *:nth-child(2) { transition-delay: 0.12s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.in-view > *:nth-child(3) { transition-delay: 0.19s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.in-view > *:nth-child(4) { transition-delay: 0.26s; opacity: 1; transform: translateY(0); }
+.reveal-stagger.in-view > *:nth-child(5) { transition-delay: 0.33s; opacity: 1; transform: translateY(0); }
 </style>
 </head>
 <body>
 
 <nav class="nav" id="nav">
-  <a href="#" class="nav-mark"><span class="nav-mark-symbol">V</span>VUSA</a>
+  <a href="#" class="nav-mark">
+    <span class="nav-mark-dot"></span>
+    VUSA
+  </a>
   <ul class="nav-links">
-    <li><a href="#manifest">Practice</a></li>
+    <li><a href="#practice">Practice</a></li>
     <li><a href="#sectors">Sectors</a></li>
     <li><a href="#approach">Approach</a></li>
     <li><a href="#team">Team</a></li>
     <li><a href="#engagement">Engagement</a></li>
   </ul>
-  <a href="#contact" class="nav-cta">Begin a brief</a>
+  <a href="#" class="nav-cta">Pay Invoice</a>
 </nav>
 
 <section class="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-grid"></div>
-  <div class="hero-numeral">V</div>
-  <div class="hero-mark">MMXXV · INDEX · I</div>
-  <div class="hero-meta">
-    <span>EST · MMXXV</span>
-    <div class="hero-meta-line"></div>
-    <span>UNITED KINGDOM</span>
-    <div class="hero-meta-line"></div>
-    <span>VOL. I</span>
+  <div class="hero-grid-bg"></div>
+  <div class="hero-top-bar">
+    <span><span class="lime-dot"></span>EST 2024 · UNITED KINGDOM</span>
+    <span>VUSA / 01</span>
   </div>
+
   <div class="hero-content">
     <div class="hero-eyebrow">Commercial Consultancy</div>
     <h1 class="hero-title">
       <span class="word">Embedded</span>
-      <span class="word"><em>execution</em></span>
+      <span class="word"><span class="accent">execution</span></span>
       <span class="word">in</span>
       <span class="word">international</span>
       <span class="word">operations.</span>
     </h1>
     <div class="hero-bottom">
-      <p class="hero-lede">VUSA works inside the operations of corporate clients managing complex international business. We do not write reports from the outside. We sit at the desk, draft the commercial documentation, and move the work forward.</p>
-      <div class="hero-scroll">
-        <span>Read on</span>
-        <div class="hero-scroll-line"></div>
+      <p class="hero-lede">
+        VUSA works inside the operations of corporate clients managing complex international business. We sit at the desk, draft the commercial documentation, and move the work forward.
+      </p>
+      <div class="hero-stat">
+        <div class="hero-stat-label">Founded</div>
+        <div class="hero-stat-value">2024</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-label">Base</div>
+        <div class="hero-stat-value">United Kingdom</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-label">Discipline</div>
+        <div class="hero-stat-value">Execution-led</div>
       </div>
     </div>
   </div>
 </section>
 
-<div class="marquee">
-  <div class="marquee-track">
-    <span class="marquee-item">Advisory</span>
-    <span class="marquee-item">Execution</span>
-    <span class="marquee-item">Documentation</span>
-    <span class="marquee-item">Operations</span>
-    <span class="marquee-item">Due Diligence</span>
-    <span class="marquee-item">Supplier Relations</span>
-    <span class="marquee-item">Project Delivery</span>
-    <span class="marquee-item">Advisory</span>
-    <span class="marquee-item">Execution</span>
-    <span class="marquee-item">Documentation</span>
-    <span class="marquee-item">Operations</span>
-    <span class="marquee-item">Due Diligence</span>
-    <span class="marquee-item">Supplier Relations</span>
-    <span class="marquee-item">Project Delivery</span>
-  </div>
+<div class="category-strip">
+  <span class="category-strip-item">Advisory</span>
+  <span class="category-strip-divider"></span>
+  <span class="category-strip-item">Execution</span>
+  <span class="category-strip-divider"></span>
+  <span class="category-strip-item">Documentation</span>
+  <span class="category-strip-divider"></span>
+  <span class="category-strip-item">Operations</span>
 </div>
 
-<div class="section-divider">
-  <svg viewBox="0 0 200 24" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
-    <line x1="0" y1="12" x2="80" y2="12" stroke="currentColor" stroke-width="0.5"/>
-    <text x="100" y="17" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-size="14" fill="currentColor">§</text>
-    <line x1="120" y1="12" x2="200" y2="12" stroke="currentColor" stroke-width="0.5"/>
-  </svg>
-</div>
+<section class="section practice" id="practice">
+  <div class="section-wrap">
+    <div class="practice-grid">
+      <div class="practice-side reveal">
+        <div class="section-label">The Practice <span class="section-label-num">/ 01</span></div>
+        <h2 class="section-heading">A consultancy that <span class="accent">operates</span>, not one that observes.</h2>
+      </div>
+      <div class="practice-prose reveal">
+        <p>VUSA is a UK-registered commercial consultancy specialising in advisory and operational support for corporate clients managing complex international business. We are <strong>execution-led</strong>. Our clients are mid-market corporate entities operating across multiple jurisdictions.</p>
+        <p>Most consultancies sell frameworks. We sell <em>movement</em>. The agreements that close. The relationships that hold under pressure. The documentation that survives professional scrutiny. The operational discipline that turns intent into delivery.</p>
+        <p>We do not provide regulated financial, investment, or money transmission services. We support the commercial and operational discipline that real engagements require, and we hold ourselves to the standard of being useful by Tuesday morning, not impressive in a deck.</p>
 
-<section class="section manifest" id="manifest">
-  <div class="manifest-glyph">M</div>
-  <div class="manifest-grid">
-    <div class="manifest-side reveal">
-      <div class="manifest-number">01<sup>·</sup></div>
-      <div class="manifest-side-label">The Practice — A note on what we do, and what we refuse to do.</div>
-      <svg class="manifest-ornament" viewBox="0 0 80 16" xmlns="http://www.w3.org/2000/svg">
-        <path d="M0 8 L24 8 M30 8 L34 4 L38 12 L42 4 L46 12 L50 8 M56 8 L80 8" stroke="currentColor" fill="none" stroke-width="0.5"/>
-      </svg>
-    </div>
-    <div class="manifest-prose reveal">
-      <div class="section-label">The Practice <span class="section-label-num">§ 01</span></div>
-      <h2 class="section-heading">A consultancy that <em>operates</em>, not one that observes.</h2>
-      <p>VUSA is a UK-registered commercial consultancy specialising in advisory and operational support for corporate clients managing complex international business. We are <strong>execution-led</strong>. Our clients are mid-market corporate entities operating across multiple jurisdictions.</p>
-      <p>Most consultancies sell <em>frameworks</em>. We sell <em>movement</em>. The agreements that close. The relationships that hold under pressure. The documentation that survives professional scrutiny. The operational discipline that turns intent into delivery.</p>
-      <p>We do not provide regulated financial, investment, or money transmission services. We support the commercial and operational discipline that real engagements require, and we hold ourselves to the standard of being useful by Tuesday morning, not impressive in a deck.</p>
-      <div class="manifest-divider"><span class="manifest-divider-mark">✦</span></div>
-      <div class="manifest-meta">
-        <div class="manifest-meta-item">
-          <div class="manifest-meta-label">Registered</div>
-          <div class="manifest-meta-value">VUSA Group UK Ltd<br>Companies House 16124195</div>
-        </div>
-        <div class="manifest-meta-item">
-          <div class="manifest-meta-label">Operating</div>
-          <div class="manifest-meta-value">United Kingdom<br>with international engagement reach</div>
-        </div>
-        <div class="manifest-meta-item">
-          <div class="manifest-meta-label">Founded</div>
-          <div class="manifest-meta-value">MMXXV<br>(2025)</div>
-        </div>
-        <div class="manifest-meta-item">
-          <div class="manifest-meta-label">Discipline</div>
-          <div class="manifest-meta-value">Commercial consultancy<br>and operational execution</div>
+        <div class="practice-meta">
+          <div class="practice-meta-item">
+            <div class="practice-meta-label">Registered</div>
+            <div class="practice-meta-value">VUSA Group UK Ltd<br>Companies House 16124195</div>
+          </div>
+          <div class="practice-meta-item">
+            <div class="practice-meta-label">Operating</div>
+            <div class="practice-meta-value">United Kingdom<br>International engagement reach</div>
+          </div>
+          <div class="practice-meta-item">
+            <div class="practice-meta-label">Founded</div>
+            <div class="practice-meta-value">2024</div>
+          </div>
+          <div class="practice-meta-item">
+            <div class="practice-meta-label">Discipline</div>
+            <div class="practice-meta-value">Commercial consultancy<br>Operational execution</div>
+          </div>
         </div>
       </div>
     </div>
@@ -964,119 +1029,84 @@ body::before {
 </section>
 
 <section class="section sectors" id="sectors">
-  <div class="sectors-intro">
-    <div>
-      <div class="section-label">The Sectors <span class="section-label-num">§ 02</span></div>
-      <h2 class="section-heading">Three pillars. <em>One discipline.</em></h2>
+  <div class="section-wrap">
+    <div class="sectors-intro">
+      <div>
+        <div class="section-label">The Sectors <span class="section-label-num">/ 02</span></div>
+        <h2 class="section-heading">Three pillars. <span class="accent">One discipline.</span></h2>
+      </div>
+      <p class="sectors-intro-text">Our work concentrates where the documentation is heaviest, the margins are tightest, and the consequences of getting it wrong are unforgiving. We chose these sectors deliberately.</p>
     </div>
-    <p class="sectors-intro-text">Our work concentrates where the documentation is heaviest, the margins are tightest, and the consequences of getting it wrong are unforgiving. We chose these sectors deliberately.</p>
-  </div>
-  <div class="sector-list reveal-stagger">
-    <a href="#contact" class="sector-row">
-      <span class="sector-num">— 01</span>
-      <svg class="sector-graphic" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-        <circle cx="40" cy="40" r="36" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
-        <circle cx="40" cy="40" r="28" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.5"/>
-        <circle cx="40" cy="40" r="20" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.7"/>
-        <circle cx="40" cy="40" r="4" fill="currentColor"/>
-        <path d="M40 4 L40 16 M76 40 L64 40 M40 76 L40 64 M4 40 L16 40" stroke="currentColor" stroke-width="0.5" opacity="0.6"/>
-      </svg>
-      <h3 class="sector-title">Goods supply <em>operations</em></h3>
-      <p class="sector-desc">Operational support for corporate clients managing the supply of consumable goods at scale. Engagement covers commercial agreement structuring, supplier diligence, and documentation discipline through each stage of delivery.</p>
-      <div class="sector-tags">
-        <span class="sector-tag">Advisory</span>
-        <span class="sector-tag">Diligence</span>
-        <span class="sector-tag">Documentation</span>
-      </div>
-      <span class="sector-arrow">→</span>
-    </a>
-    <a href="#contact" class="sector-row">
-      <span class="sector-num">— 02</span>
-      <svg class="sector-graphic" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-        <rect x="8" y="58" width="64" height="14" fill="none" stroke="currentColor" stroke-width="0.5"/>
-        <rect x="14" y="40" width="52" height="14" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.7"/>
-        <rect x="20" y="22" width="40" height="14" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.5"/>
-        <rect x="26" y="6" width="28" height="12" fill="none" stroke="currentColor" stroke-width="0.5" opacity="0.3"/>
-        <line x1="40" y1="0" x2="40" y2="80" stroke="currentColor" stroke-width="0.3" stroke-dasharray="2 2" opacity="0.4"/>
-      </svg>
-      <h3 class="sector-title">Manufacturing <em>inputs</em></h3>
-      <p class="sector-desc">Advisory and execution support for clients sourcing industrial inputs at volume. We engage where commercial structures are bespoke, transaction values are substantial, and discipline matters more than scale.</p>
-      <div class="sector-tags">
-        <span class="sector-tag">Industrial</span>
-        <span class="sector-tag">Volume</span>
-        <span class="sector-tag">Bespoke</span>
-      </div>
-      <span class="sector-arrow">→</span>
-    </a>
-    <a href="#contact" class="sector-row">
-      <span class="sector-num">— 03</span>
-      <svg class="sector-graphic" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
-        <line x1="20" y1="20" x2="60" y2="20" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
-        <line x1="60" y1="20" x2="40" y2="60" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
-        <line x1="40" y1="60" x2="20" y2="20" stroke="currentColor" stroke-width="0.5" opacity="0.4"/>
-        <line x1="20" y1="20" x2="40" y2="40" stroke="currentColor" stroke-width="0.5" opacity="0.6"/>
-        <line x1="60" y1="20" x2="40" y2="40" stroke="currentColor" stroke-width="0.5" opacity="0.6"/>
-        <line x1="40" y1="60" x2="40" y2="40" stroke="currentColor" stroke-width="0.5" opacity="0.6"/>
-        <circle cx="20" cy="20" r="3" fill="currentColor"/>
-        <circle cx="60" cy="20" r="3" fill="currentColor"/>
-        <circle cx="40" cy="60" r="3" fill="currentColor"/>
-        <circle cx="40" cy="40" r="4" fill="currentColor" opacity="0.8"/>
-      </svg>
-      <h3 class="sector-title">International <em>logistics</em></h3>
-      <p class="sector-desc">Embedded operational support across multi-jurisdictional delivery. We integrate with procurement, finance, and compliance teams to carry engagements from initial agreement through final completion.</p>
-      <div class="sector-tags">
-        <span class="sector-tag">Operations</span>
-        <span class="sector-tag">Compliance</span>
-        <span class="sector-tag">Delivery</span>
-      </div>
-      <span class="sector-arrow">→</span>
-    </a>
+
+    <div class="sector-card-grid reveal-stagger">
+      <a href="#contact" class="sector-card">
+        <div class="sector-card-top">
+          <span class="sector-card-num">01</span>
+          <span class="sector-card-arrow">→</span>
+        </div>
+        <h3 class="sector-card-title">Goods supply operations</h3>
+        <p class="sector-card-desc">Operational support for corporate clients managing the supply of consumable goods at scale. Engagement covers commercial agreement structuring, supplier diligence, and documentation discipline through each stage of delivery.</p>
+        <div class="sector-card-tags">
+          <span class="sector-tag">Advisory</span>
+          <span class="sector-tag">Diligence</span>
+          <span class="sector-tag">Documentation</span>
+        </div>
+      </a>
+
+      <a href="#contact" class="sector-card">
+        <div class="sector-card-top">
+          <span class="sector-card-num">02</span>
+          <span class="sector-card-arrow">→</span>
+        </div>
+        <h3 class="sector-card-title">Manufacturing inputs</h3>
+        <p class="sector-card-desc">Advisory and execution support for clients sourcing industrial inputs at volume. We engage where commercial structures are bespoke, transaction values are substantial, and discipline matters more than scale.</p>
+        <div class="sector-card-tags">
+          <span class="sector-tag">Industrial</span>
+          <span class="sector-tag">Volume</span>
+          <span class="sector-tag">Bespoke</span>
+        </div>
+      </a>
+
+      <a href="#contact" class="sector-card">
+        <div class="sector-card-top">
+          <span class="sector-card-num">03</span>
+          <span class="sector-card-arrow">→</span>
+        </div>
+        <h3 class="sector-card-title">International logistics</h3>
+        <p class="sector-card-desc">Embedded operational support across multi-jurisdictional delivery. We integrate with procurement, finance, and compliance teams to carry engagements from initial agreement through final completion.</p>
+        <div class="sector-card-tags">
+          <span class="sector-tag">Operations</span>
+          <span class="sector-tag">Compliance</span>
+          <span class="sector-tag">Delivery</span>
+        </div>
+      </a>
+    </div>
   </div>
 </section>
 
 <section class="section approach" id="approach">
-  <div class="approach-grid">
+  <div class="section-wrap">
     <div class="approach-header">
       <div>
-        <div class="section-label">The Approach <span class="section-label-num">§ 03</span></div>
-        <h2 class="section-heading">Three disciplines, <em>uncompromised.</em></h2>
+        <div class="section-label">The Approach <span class="section-label-num">/ 03</span></div>
+        <h2 class="section-heading">Three disciplines, <span class="accent">uncompromised.</span></h2>
       </div>
       <p class="approach-quote reveal">The engagements that succeed are not the ones that were pitched best. They are the ones that were prepared best, drafted tightest, and chased hardest.</p>
     </div>
-    <div class="approach-pillars reveal-stagger">
+
+    <div class="approach-grid reveal-stagger">
       <div class="pillar">
-        <div class="pillar-num">I.</div>
-        <svg class="pillar-icon" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
-          <rect x="2" y="2" width="32" height="32" fill="none" stroke="currentColor" stroke-width="0.8"/>
-          <rect x="8" y="8" width="20" height="20" fill="none" stroke="currentColor" stroke-width="0.8"/>
-          <rect x="14" y="14" width="8" height="8" fill="currentColor"/>
-        </svg>
+        <span class="pillar-num">01</span>
         <h3 class="pillar-title">Embedded, not advisory</h3>
         <p class="pillar-text">We sit inside client operations rather than presenting from outside them. Daily standups, shared workflows, and a seat in the procurement and compliance reviews that matter. The output is movement, not slides.</p>
       </div>
       <div class="pillar">
-        <div class="pillar-num">II.</div>
-        <svg class="pillar-icon" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
-          <rect x="6" y="2" width="24" height="32" fill="none" stroke="currentColor" stroke-width="0.8"/>
-          <line x1="10" y1="10" x2="26" y2="10" stroke="currentColor" stroke-width="0.6"/>
-          <line x1="10" y1="14" x2="22" y2="14" stroke="currentColor" stroke-width="0.6"/>
-          <line x1="10" y1="18" x2="26" y2="18" stroke="currentColor" stroke-width="0.6"/>
-          <line x1="10" y1="22" x2="20" y2="22" stroke="currentColor" stroke-width="0.6"/>
-          <line x1="10" y1="26" x2="24" y2="26" stroke="currentColor" stroke-width="0.6"/>
-          <circle cx="28" cy="29" r="3" fill="currentColor"/>
-        </svg>
+        <span class="pillar-num">02</span>
         <h3 class="pillar-title">Documentation discipline</h3>
         <p class="pillar-text">Commercial agreements drafted to survive professional scrutiny. Operational documents prepared correctly the first time. We treat every clause as the one that will eventually be read by a lawyer.</p>
       </div>
       <div class="pillar">
-        <div class="pillar-num">III.</div>
-        <svg class="pillar-icon" viewBox="0 0 36 36" xmlns="http://www.w3.org/2000/svg">
-          <path d="M4 6 L32 6 L22 18 L22 32 L14 30 L14 18 Z" fill="none" stroke="currentColor" stroke-width="0.8"/>
-          <circle cx="10" cy="10" r="1.2" fill="currentColor"/>
-          <circle cx="18" cy="10" r="1.2" fill="currentColor"/>
-          <circle cx="26" cy="10" r="1.2" fill="currentColor"/>
-          <circle cx="18" cy="26" r="2" fill="currentColor"/>
-        </svg>
+        <span class="pillar-num">03</span>
         <h3 class="pillar-title">Selective engagement</h3>
         <p class="pillar-text">We work with a deliberately small number of clients each quarter. The economics of execution-led work mean we cannot be everywhere. We choose the engagements where our discipline genuinely changes the outcome.</p>
       </div>
@@ -1084,74 +1114,49 @@ body::before {
   </div>
 </section>
 
-<section class="index-spread">
-  <div class="index-grid">
-    <div class="index-art">
-      <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
-        <rect x="20" y="20" width="360" height="460" fill="none" stroke="#B8997A" stroke-width="0.5" opacity="0.4"/>
-        <text x="200" y="80" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="10" fill="#B8997A" letter-spacing="4" opacity="0.7">A NOTE ON METHOD</text>
-        <line x1="100" y1="100" x2="300" y2="100" stroke="#B8997A" stroke-width="0.5" opacity="0.4"/>
-        <text x="200" y="290" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-weight="300" font-size="240" fill="#B8997A" opacity="0.85">§</text>
-        <line x1="100" y1="340" x2="300" y2="340" stroke="#B8997A" stroke-width="0.5" opacity="0.4"/>
-        <text x="200" y="370" text-anchor="middle" font-family="Fraunces, serif" font-style="italic" font-size="18" fill="#F2EDE3" opacity="0.9">on the standard of work</text>
-        <text x="200" y="440" text-anchor="middle" font-family="JetBrains Mono, monospace" font-size="9" fill="#B8997A" letter-spacing="3" opacity="0.5">FOLIO · 04</text>
-        <path d="M30 30 L30 50 L50 30" fill="none" stroke="#B8997A" stroke-width="0.5" opacity="0.5"/>
-        <path d="M370 30 L370 50 L350 30" fill="none" stroke="#B8997A" stroke-width="0.5" opacity="0.5"/>
-        <path d="M30 470 L30 450 L50 470" fill="none" stroke="#B8997A" stroke-width="0.5" opacity="0.5"/>
-        <path d="M370 470 L370 450 L350 470" fill="none" stroke="#B8997A" stroke-width="0.5" opacity="0.5"/>
-      </svg>
-    </div>
-    <div>
-      <div class="index-label">Folio IV · A Note on Method</div>
-      <p class="index-quote">Execution is the <em>only</em> deliverable. Everything else is preparation, or it is theatre.</p>
-      <div class="index-attribution">VUSA Practice Note, MMXXV</div>
-    </div>
-  </div>
-</section>
-
-<section class="team" id="team">
-  <div class="team-glyph">T</div>
-  <div class="team-grid">
-    <div class="team-header reveal">
+<section class="section team" id="team">
+  <div class="section-wrap">
+    <div class="team-header">
       <div>
-        <div class="section-label">The Team <span class="section-label-num">§ 04</span></div>
-        <h2 class="section-heading">A small team. <em>By design.</em></h2>
+        <div class="section-label">The Team <span class="section-label-num">/ 04</span></div>
+        <h2 class="section-heading">A small team. <span class="accent">By design.</span></h2>
       </div>
-      <p class="team-intro-text">Execution-led work does not scale through headcount. Every engagement is led by a named practitioner with direct accountability. No analyst layers, no account managers between the work and the client.</p>
+      <p class="team-intro-text">Execution-led work does not scale through headcount. Every engagement is led by a named practitioner with direct accountability. No analyst layers between the work and the client.</p>
     </div>
-    <div class="team-list reveal-stagger">
+
+    <div class="team-table reveal-stagger">
       <div class="team-row">
-        <span class="team-num">— 01</span>
+        <span class="team-num">01</span>
         <div class="team-monogram">SA</div>
-        <h3 class="team-name">Shamim <em>A.</em></h3>
+        <h3 class="team-name">Shamim A.</h3>
         <div class="team-role">Managing Director</div>
         <div class="team-discipline">Operational leadership</div>
       </div>
       <div class="team-row">
-        <span class="team-num">— 02</span>
+        <span class="team-num">02</span>
         <div class="team-monogram">JM</div>
-        <h3 class="team-name">Jay <em>M.</em></h3>
+        <h3 class="team-name">Jay M.</h3>
         <div class="team-role">Partner</div>
         <div class="team-discipline">Commercial strategy</div>
       </div>
       <div class="team-row">
-        <span class="team-num">— 03</span>
+        <span class="team-num">03</span>
         <div class="team-monogram">TA</div>
-        <h3 class="team-name">Talha <em>A.</em></h3>
+        <h3 class="team-name">Talha A.</h3>
         <div class="team-role">Senior Consultant</div>
         <div class="team-discipline">Engagement execution</div>
       </div>
       <div class="team-row">
-        <span class="team-num">— 04</span>
+        <span class="team-num">04</span>
         <div class="team-monogram">SS</div>
-        <h3 class="team-name">Suzie <em>S.</em></h3>
+        <h3 class="team-name">Suzie S.</h3>
         <div class="team-role">Financial Consultant</div>
         <div class="team-discipline">Settlement &amp; structuring</div>
       </div>
       <div class="team-row">
-        <span class="team-num">— 05</span>
+        <span class="team-num">05</span>
         <div class="team-monogram">BK</div>
-        <h3 class="team-name">Bri <em>K.</em></h3>
+        <h3 class="team-name">Bri K.</h3>
         <div class="team-role">Process Auditor</div>
         <div class="team-discipline">Compliance &amp; documentation</div>
       </div>
@@ -1160,55 +1165,62 @@ body::before {
 </section>
 
 <section class="stats">
-  <div class="stats-header">
-    <div class="stats-title">— By the numbers</div>
-    <div class="stats-meta">§ 05 · Folio V</div>
-  </div>
-  <div class="stats-grid reveal-stagger">
-    <div class="stat-item">
-      <div class="stat-num"><em>1</em></div>
-      <div class="stat-label">Operating base<br>United Kingdom</div>
+  <div class="stats-wrap">
+    <div class="stats-header">
+      <div class="stats-title">By the <span class="accent">numbers</span></div>
+      <div class="stats-meta">VUSA / 05</div>
     </div>
-    <div class="stat-item">
-      <div class="stat-num">3<small>+</small></div>
-      <div class="stat-label">Core sectors<br>under active engagement</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num">100<small>%</small></div>
-      <div class="stat-label">Engagements led<br>by senior practitioners</div>
-    </div>
-    <div class="stat-item">
-      <div class="stat-num"><em>0</em></div>
-      <div class="stat-label">Reliance on<br>off-the-shelf playbooks</div>
+    <div class="stats-grid reveal-stagger">
+      <div class="stat-item">
+        <span class="stat-item-num">01</span>
+        <div class="stat-num"><span class="accent">1</span></div>
+        <div class="stat-label">Operating base<br>United Kingdom</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-item-num">02</span>
+        <div class="stat-num">3<small>+</small></div>
+        <div class="stat-label">Core sectors<br>under active engagement</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-item-num">03</span>
+        <div class="stat-num">100<small>%</small></div>
+        <div class="stat-label">Engagements led<br>by senior practitioners</div>
+      </div>
+      <div class="stat-item">
+        <span class="stat-item-num">04</span>
+        <div class="stat-num"><span class="accent">0</span></div>
+        <div class="stat-label">Reliance on<br>off-the-shelf playbooks</div>
+      </div>
     </div>
   </div>
 </section>
 
-<section class="engagement" id="engagement">
-  <div class="engagement-grid">
+<section class="section engagement" id="engagement">
+  <div class="section-wrap">
     <div class="engagement-header reveal">
-      <div class="section-label">The Engagement <span class="section-label-num">§ 06</span></div>
-      <h2 class="section-heading">From brief to <em>delivery.</em></h2>
+      <div class="section-label">The Engagement <span class="section-label-num">/ 06</span></div>
+      <h2 class="section-heading">From brief to <span class="accent">delivery.</span></h2>
       <p class="engagement-intro">A four-stage process that holds across every engagement, regardless of sector. Disciplined at the front so the back is clean.</p>
     </div>
+
     <div class="engagement-flow reveal-stagger">
       <div class="flow-step">
-        <div class="flow-marker">i</div>
+        <div class="flow-num">01</div>
         <h4 class="flow-title">Brief</h4>
         <p class="flow-text">Direct conversation with the principal. Scope, sector, and engagement profile assessed inside the first call.</p>
       </div>
       <div class="flow-step">
-        <div class="flow-marker">ii</div>
+        <div class="flow-num">02</div>
         <h4 class="flow-title">Structure</h4>
         <p class="flow-text">Engagement scope, commercial structure, and documentation roadmap agreed in writing. No work begins on a handshake.</p>
       </div>
       <div class="flow-step">
-        <div class="flow-marker">iii</div>
+        <div class="flow-num">03</div>
         <h4 class="flow-title">Embed</h4>
         <p class="flow-text">Integration with client procurement, finance, and compliance functions. Shared workflows, weekly delivery cadence.</p>
       </div>
       <div class="flow-step">
-        <div class="flow-marker">iv</div>
+        <div class="flow-num">04</div>
         <h4 class="flow-title">Execute</h4>
         <p class="flow-text">Agreements drafted, relationships managed, operations coordinated, engagement closed. Delivery, not deliverables.</p>
       </div>
@@ -1217,14 +1229,13 @@ body::before {
 </section>
 
 <section class="contact" id="contact">
-  <div class="contact-bg"></div>
-  <div class="contact-bg-mark">V</div>
-  <div class="contact-grid">
-    <div class="section-label" style="color: var(--tan);">
-      <span style="background: var(--tan); width: 32px; height: 1px; display: inline-block;"></span>
-      Begin a Brief <span class="section-label-num" style="color: var(--tan);">§ 07</span>
-    </div>
-    <h2 class="contact-headline reveal">Tell us the <em>engagement</em>. We will tell you whether we are the right house to <em>execute it.</em></h2>
+  <div class="contact-bg-accent"></div>
+  <div class="contact-wrap">
+    <div class="contact-label">Begin a Brief / 07</div>
+    <h2 class="contact-headline reveal">
+      Tell us the <span class="accent">engagement.</span><br>We will tell you whether we are the right house to <span class="accent">execute it.</span>
+    </h2>
+
     <div class="contact-info">
       <div>
         <div class="contact-block-label">Direct</div>
@@ -1247,9 +1258,12 @@ body::before {
 </section>
 
 <footer class="footer">
-  <div class="footer-mark">VUSA</div>
+  <div class="footer-mark">
+    <span class="footer-mark-dot"></span>
+    VUSA
+  </div>
   <div class="footer-meta">
-    <span>© MMXXV · VUSA Group UK Ltd</span>
+    <span>© 2024 VUSA Group UK Ltd</span>
     <span>Companies House 16124195</span>
     <span>United Kingdom</span>
   </div>
@@ -1273,16 +1287,6 @@ const revealObserver = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.reveal, .reveal-stagger').forEach(el => {
   revealObserver.observe(el);
-});
-
-const heroGrid = document.querySelector('.hero-grid');
-const heroNumeral = document.querySelector('.hero-numeral');
-window.addEventListener('scroll', () => {
-  const scrolled = window.scrollY;
-  if (scrolled < window.innerHeight) {
-    if (heroGrid) heroGrid.style.transform = `translateY(${scrolled * 0.3}px)`;
-    if (heroNumeral) heroNumeral.style.transform = `translateY(calc(-50% + ${scrolled * 0.2}px))`;
-  }
 });
 </script>
 
