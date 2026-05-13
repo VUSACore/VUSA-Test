@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Services Payment — VUSA Consultancy</title>
+<meta name="description" content="Secure invoice payment portal for VUSA Consultancy engagements.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@300;400;500;600&family=Inter+Tight:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --black: #0A0A0A;
+  --black-deep: #000000;
+  --charcoal: #1A1A1A;
+  --grey-900: #2A2A2A;
+  --grey-700: #4A4A4A;
+  --grey-500: #767676;
+  --grey-300: #C8C8C8;
+  --grey-200: #E5E5E5;
+  --grey-100: #F5F5F5;
+  --grey-50: #FAFAFA;
+  --white: #FFFFFF;
+  --lime: #D4FF3D;
+  --lime-bright: #E0FF5C;
+  --line-light: rgba(10, 10, 10, 0.08);
+  --line-mid: rgba(10, 10, 10, 0.15);
+  --line-dark: rgba(255, 255, 255, 0.12);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  background: var(--white);
+  color: var(--charcoal);
+  font-family: 'Inter Tight', -apple-system, sans-serif;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.55;
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+.serif { font-family: 'Fraunces', serif; }
+
+/* ====== NAVIGATION ====== */
+.nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  padding: 22px 56px;
+  display: flex; justify-content: space-between; align-items: center;
+  background: var(--black);
+  border-bottom: 1px solid var(--line-dark);
+  transition: padding 0.3s ease;
+}
+.nav.scrolled { padding: 16px 56px; }
+.nav-mark {
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 700;
+  font-size: 22px;
+  letter-spacing: 0.04em;
+  color: var(--white);
+  text-decoration: none;
+  display: flex; align-items: center; gap: 12px;
+}
+.nav-mark-dot {
+  width: 8px; height: 8px;
+  background: var(--lime);
+  display: inline-block;
+}
+.nav-links { display: flex; gap: 36px; list-style: none; }
+.nav-links a {
+  color: var(--white);
+  text-decoration: none;
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+.nav-links a:hover { color: var(--lime); }
+.nav-back {
+  color: var(--white);
+  background: transparent;
+  border: 1px solid var(--line-dark);
+  text-decoration: none;
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.02em;
+  font-weight: 500;
+  padding: 12px 24px;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+.nav-back:hover { border-color: var(--lime); color: var(--lime); }
+.nav-back::before { content: '←'; transition: transform 0.2s; }
+.nav-back:hover::before { transform: translateX(-3px); }
+@media (max-width: 768px) {
+  .nav { padding: 18px 24px; }
+  .nav.scrolled { padding: 14px 24px; }
+  .nav-links { display: none; }
+}
+
+/* ====== HEADER ====== */
+.page-header {
+  background: var(--black);
+  color: var(--white);
+  padding: 160px 56px 100px;
+  position: relative;
+  overflow: hidden;
+  border-bottom: 1px solid var(--line-dark);
+}
+.page-header-grid-bg {
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 80px 80px;
+  pointer-events: none;
+}
+.page-header-content {
+  max-width: 1320px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+.page-eyebrow {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 28px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+}
+.page-eyebrow::before {
+  content: '';
+  width: 24px; height: 1px;
+  background: var(--lime);
+}
+.page-title {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: clamp(40px, 6.5vw, 96px);
+  line-height: 1.0;
+  letter-spacing: -0.03em;
+  margin-bottom: 24px;
+  color: var(--white);
+}
+.page-title .accent { color: var(--lime); font-style: italic; }
+.page-subtitle {
+  font-size: 17px;
+  line-height: 1.55;
+  color: var(--grey-300);
+  max-width: 640px;
+  font-weight: 400;
+}
+@media (max-width: 768px) {
+  .page-header { padding: 120px 24px 60px; }
+}
+
+/* ====== PRODUCTS SECTION ====== */
+.products {
+  background: var(--white);
+  padding: 100px 56px;
+}
+.products-wrap {
+  max-width: 1320px;
+  margin: 0 auto;
+}
+.product {
+  border-top: 2px solid var(--charcoal);
+  padding: 56px 0;
+  display: grid;
+  grid-template-columns: 1fr 1.4fr;
+  gap: 80px;
+  align-items: start;
+}
+.product:last-of-type { border-bottom: 2px solid var(--charcoal); }
+.product-info {
+  position: sticky;
+  top: 100px;
+}
+.product-num {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  font-weight: 600;
+  color: var(--charcoal);
+  background: var(--lime);
+  display: inline-block;
+  padding: 4px 10px;
+  margin-bottom: 24px;
+}
+.product-name {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: clamp(28px, 3.5vw, 44px);
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--charcoal);
+  margin-bottom: 20px;
+}
+.product-description {
+  font-size: 15px;
+  line-height: 1.6;
+  color: var(--grey-700);
+  margin-bottom: 24px;
+}
+.product-sku {
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  font-weight: 600;
+  color: var(--grey-500);
+  padding-top: 16px;
+  border-top: 1px solid var(--line-mid);
+}
+
+/* ====== VARIANT BUTTONS ====== */
+.variants {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.variant-btn {
+  background: var(--grey-50);
+  border: 1px solid var(--line-mid);
+  padding: 24px 24px;
+  text-decoration: none;
+  color: var(--charcoal);
+  transition: all 0.25s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  position: relative;
+  cursor: pointer;
+}
+.variant-btn:hover {
+  background: var(--charcoal);
+  color: var(--white);
+  border-color: var(--charcoal);
+  transform: translateY(-2px);
+}
+.variant-btn:hover .variant-price { color: var(--lime); }
+.variant-btn:hover .variant-arrow { color: var(--lime); transform: translate(4px, -4px); }
+.variant-btn:hover .variant-tier { color: var(--grey-300); }
+.variant-tier {
+  font-size: 11px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--grey-700);
+  font-weight: 600;
+  transition: color 0.25s;
+}
+.variant-price {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 28px;
+  letter-spacing: -0.02em;
+  color: var(--charcoal);
+  margin-top: 4px;
+  transition: color 0.25s;
+  line-height: 1;
+}
+.variant-arrow {
+  position: absolute;
+  top: 22px;
+  right: 22px;
+  font-size: 14px;
+  color: var(--grey-500);
+  transition: all 0.25s ease;
+}
+@media (max-width: 968px) {
+  .product { grid-template-columns: 1fr; gap: 32px; }
+  .product-info { position: relative; top: 0; }
+  .variants { grid-template-columns: 1fr; }
+}
+@media (max-width: 768px) {
+  .products { padding: 60px 24px; }
+}
+
+/* ====== TRUST SECTION ====== */
+.trust {
+  background: var(--grey-100);
+  padding: 80px 56px;
+  border-top: 1px solid var(--line-mid);
+}
+.trust-wrap {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px;
+  align-items: start;
+}
+.trust-item-label {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 12px;
+  font-weight: 600;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.trust-item-label::before {
+  content: '';
+  width: 18px; height: 1px;
+  background: var(--lime);
+}
+.trust-item-heading {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  color: var(--charcoal);
+  margin-bottom: 10px;
+}
+.trust-item-text {
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--grey-700);
+}
+@media (max-width: 768px) {
+  .trust { padding: 60px 24px; }
+  .trust-wrap { grid-template-columns: 1fr; gap: 32px; }
+}
+
+/* ====== CONTACT BAR ====== */
+.contact-bar {
+  background: var(--black);
+  color: var(--white);
+  padding: 60px 56px;
+  border-top: 1px solid var(--line-dark);
+}
+.contact-bar-wrap {
+  max-width: 1320px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.contact-bar-text {
+  font-family: 'Fraunces', serif;
+  font-weight: 400;
+  font-size: 24px;
+  letter-spacing: -0.015em;
+  color: var(--white);
+  max-width: 700px;
+  line-height: 1.3;
+}
+.contact-bar-text .accent { color: var(--lime); font-style: italic; }
+.contact-bar-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--lime);
+  color: var(--black);
+  padding: 16px 28px;
+  text-decoration: none;
+  font-family: 'Inter Tight', sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+.contact-bar-cta:hover { background: var(--lime-bright); transform: translateY(-2px); }
+@media (max-width: 768px) {
+  .contact-bar { padding: 48px 24px; }
+  .contact-bar-text { font-size: 19px; }
+}
+
+/* ====== FOOTER ====== */
+.footer {
+  background: var(--black-deep);
+  color: var(--grey-500);
+  padding: 40px 56px 32px;
+  border-top: 1px solid var(--line-dark);
+  font-size: 12px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+}
+.footer-mark {
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 700;
+  font-size: 16px;
+  color: var(--white);
+  letter-spacing: 0.04em;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.footer-mark-dot {
+  width: 6px; height: 6px;
+  background: var(--lime);
+}
+.footer-meta {
+  display: flex;
+  gap: 28px;
+  flex-wrap: wrap;
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+@media (max-width: 768px) {
+  .footer { padding: 32px 24px 20px; flex-direction: column; align-items: flex-start; }
+}
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a href="/" class="nav-mark">
+    <span class="nav-mark-dot"></span>
+    VUSA
+  </a>
+  <ul class="nav-links">
+    <li><a href="/#practice">Practice</a></li>
+    <li><a href="/#sectors">Sectors</a></li>
+    <li><a href="/#approach">Approach</a></li>
+    <li><a href="/#team">Team</a></li>
+    <li><a href="/#engagement">Engagement</a></li>
+  </ul>
+  <a href="/" class="nav-back">Back to site</a>
+</nav>
+
+<section class="page-header">
+  <div class="page-header-grid-bg"></div>
+  <div class="page-header-content">
+    <div class="page-eyebrow">Services Payment Portal</div>
+    <h1 class="page-title">Settle your <span class="accent">engagement.</span></h1>
+    <p class="page-subtitle">Secure invoice payment for VUSA Consultancy engagements. Select the matching service tier below to complete payment via our processor.</p>
+  </div>
+</section>
+
+<section class="products">
+  <div class="products-wrap">
+
+    <!-- ============ PRODUCT 1: Audit Consultation ============ -->
+    <div class="product">
+      <div class="product-info">
+        <span class="product-num">01</span>
+        <h2 class="product-name">Audit Consultation</h2>
+        <p class="product-description">Initial audit followed by a one-hour consultation with a senior practitioner. Includes review of commercial structure and documentation, with a written summary of findings and recommended next steps.</p>
+        <div class="product-sku">SKU: VUSA-AUD-006</div>
+      </div>
+      <div class="variants">
+        <a href="https://app.tagadapay.com/api/public/v1/checkout/init?currency=USD&items=%5B%7B%22variantId%22%3A%22variant_3bd71d1a49a9%22%2C%22quantity%22%3A1%2C%22priceId%22%3A%22price_0c2d80db2cb8%22%7D%5D&storeId=store_345e95a6c09b&funnelId=funnelv2_ec65b9c19cb6&checkoutUrl=https%3A%2F%2Fcheckout.vusaconsultancy.com%2Fcheckout&includeCheckoutToken=checkoutToken" class="variant-btn" target="_blank" rel="noopener">
+          <span class="variant-tier">Audit Consultation</span>
+          <span class="variant-price">$120</span>
+          <span class="variant-arrow">↗</span>
+        </a>
+        <a href="https://app.tagadapay.com/api/public/v1/checkout/init?currency=USD&items=%5B%7B%22variantId%22%3A%22variant_ab42f29d9419%22%2C%22quantity%22%3A1%2C%22priceId%22%3A%22price_1f5d11e96e77%22%7D%5D&storeId=store_345e95a6c09b&funnelId=funnelv2_ec65b9c19cb6&checkoutUrl=https%3A%2F%2Fcheckout.vusaconsultancy.com%2Fcheckout&includeCheckoutToken=checkoutToken" class="variant-btn" target="_blank" rel="noopener">
+          <span class="variant-tier">Telephone Advisory</span>
+          <span class="variant-price">$35</span>
+          <span class="variant-arrow">↗</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ============ PRODUCT 2: Documentation & Contract Support ============ -->
+    <div class="product">
+      <div class="product-info">
+        <span class="product-num">02</span>
+        <h2 class="product-name">Documentation &amp; Contract Support</h2>
+        <p class="product-description">Specialist documentation support covering commercial agreement drafting, contract review, clause-by-clause negotiation support, and full documentation workflow management for international corporate engagements. Includes coordination with client legal counsel where required.</p>
+        <div class="product-sku">SKU: VUSA-DOC-003</div>
+      </div>
+      <div class="variants">
+        <a href="https://app.tagadapay.com/api/public/v1/checkout/init?currency=USD&items=%5B%7B%22variantId%22%3A%22variant_0745da3e1ffb%22%2C%22quantity%22%3A1%2C%22priceId%22%3A%22price_6979e40deabf%22%7D%5D&storeId=store_345e95a6c09b&funnelId=funnelv2_ec65b9c19cb6&checkoutUrl=https%3A%2F%2Fcheckout.vusaconsultancy.com%2Fcheckout&includeCheckoutToken=checkoutToken" class="variant-btn" target="_blank" rel="noopener">
+          <span class="variant-tier">Starter</span>
+          <span class="variant-price">$400</span>
+          <span class="variant-arrow">↗</span>
+        </a>
+        <a href="https://app.tagadapay.com/api/public/v1/checkout/init?currency=USD&items=%5B%7B%22variantId%22%3A%22variant_d517de708058%22%2C%22quantity%22%3A1%2C%22priceId%22%3A%22price_c3b59fc28828%22%7D%5D&storeId=store_345e95a6c09b&funnelId=funnelv2_ec65b9c19cb6&checkoutUrl=https%3A%2F%2Fcheckout.vusaconsultancy.com%2Fcheckout&includeCheckoutToken=checkoutToken" class="variant-btn" target="_blank" rel="noopener">
+          <span class="variant-tier">Professional</span>
+          <span class="variant-price">$750</span>
+          <span class="variant-arrow">↗</span>
+        </a>
+        <a href="https://app.tagadapay.com/api/public/v1/checkout/init?currency=USD&items=%5B%7B%22variantId%22%3A%22variant_a040ac810bb7%22%2C%22quantity%22%3A1%2C%22priceId%22%3A%22price_ed2613771ec6%22%7D%5D&storeId=store_345e95a6c09b&funnelId=funnelv2_ec65b9c19cb6&checkoutUrl=https%3A%2F%2Fcheckout.vusaconsultancy.com%2Fcheckout&includeCheckoutToken=checkoutToken" class="variant-btn" target="_blank" rel="noopener">
+          <span class="variant-tier">Scale</span>
+          <span class="variant-price">$1,250</span>
+          <span class="variant-arrow">↗</span>
+        </a>
+        <a href="https://app.tagadapay.com/api/public/v1/checkout/init?currency=USD&items=%5B%7B%22variantId%22%3A%22variant_b28ed4dba028%22%2C%22quantity%22%3A1%2C%22priceId%22%3A%22price_1b22fbbfcd6d%22%7D%5D&storeId=store_345e95a6c09b&funnelId=funnelv2_ec65b9c19cb6&checkoutUrl=https%3A%2F%2Fcheckout.vusaconsultancy.com%2Fcheckout&includeCheckoutToken=checkoutToken" class="variant-btn" target="_blank" rel="noopener">
+          <span class="variant-tier">Enterprise</span>
+          <span class="variant-price">$1,800</span>
+          <span class="variant-arrow">↗</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ============ PRODUCT 3: Operations & SOP Implementation ============ -->
+    <div class="product">
+      <div class="product-info">
+        <span class="product-num">03</span>
+        <h2 class="product-name">Operations &amp; SOP Implementation</h2>
+        <p class="product-description">Operational consulting engagement covering standard operating procedure design, workflow mapping, process implementation, and team training. Embedded support across procurement, compliance, and delivery functions.</p>
+        <div class="product-sku">SKU: VUSA-OPS-004</div>
+      </div>
+      <div class="variants">
+        <a href="https://app.tagadapay.com/api/public/v1/checkout/init?currency=USD&items=%5B%7B%22variantId%22%3A%22variant_088d996aeb81%22%2C%22quantity%22%3A1%2C%22priceId%22%3A%22price_2e5b66d23b72%22%7D%5D&storeId=store_345e95a6c09b&funnelId=funnelv2_ec65b9c19cb6&checkoutUrl=https%3A%2F%2Fcheckout.vusaconsultancy.com%2Fcheckout&includeCheckoutToken=checkoutToken" class="variant-btn" target="_blank" rel="noopener">
+          <span class="variant-tier">Starter</span>
+          <span class="variant-price">$4,975</span>
+          <span class="variant-arrow">↗</span>
+        </a>
+        <a href="https://app.tagadapay.com/api/public/v1/checkout/init?currency=USD&items=%5B%7B%22variantId%22%3A%22variant_9675625e0948%22%2C%22quantity%22%3A1%2C%22priceId%22%3A%22price_2297bf035473%22%7D%5D&storeId=store_345e95a6c09b&funnelId=funnelv2_ec65b9c19cb6&checkoutUrl=https%3A%2F%2Fcheckout.vusaconsultancy.com%2Fcheckout&includeCheckoutToken=checkoutToken" class="variant-btn" target="_blank" rel="noopener">
+          <span class="variant-tier">Professional</span>
+          <span class="variant-price">$5,180</span>
+          <span class="variant-arrow">↗</span>
+        </a>
+        <a href="https://app.tagadapay.com/api/public/v1/checkout/init?currency=USD&items=%5B%7B%22variantId%22%3A%22variant_4173452530af%22%2C%22quantity%22%3A1%2C%22priceId%22%3A%22price_51a9fca612af%22%7D%5D&storeId=store_345e95a6c09b&funnelId=funnelv2_ec65b9c19cb6&checkoutUrl=https%3A%2F%2Fcheckout.vusaconsultancy.com%2Fcheckout&includeCheckoutToken=checkoutToken" class="variant-btn" target="_blank" rel="noopener">
+          <span class="variant-tier">Scale</span>
+          <span class="variant-price">$7,590</span>
+          <span class="variant-arrow">↗</span>
+        </a>
+        <a href="https://app.tagadapay.com/api/public/v1/checkout/init?currency=USD&items=%5B%7B%22variantId%22%3A%22variant_dbc430c4dda9%22%2C%22quantity%22%3A1%2C%22priceId%22%3A%22price_e798351057af%22%7D%5D&storeId=store_345e95a6c09b&funnelId=funnelv2_ec65b9c19cb6&checkoutUrl=https%3A%2F%2Fcheckout.vusaconsultancy.com%2Fcheckout&includeCheckoutToken=checkoutToken" class="variant-btn" target="_blank" rel="noopener">
+          <span class="variant-tier">Enterprise</span>
+          <span class="variant-price">$11,250</span>
+          <span class="variant-arrow">↗</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ============ PRODUCT 4: Advisory Retainer ============ -->
+    <div class="product">
+      <div class="product-info">
+        <span class="product-num">04</span>
+        <h2 class="product-name">Advisory Retainer</h2>
+        <p class="product-description">Retained advisory engagement providing weekly check-in calls, document review, on-demand consultation, and senior practitioner oversight on live workstreams. Designed for clients running multiple concurrent engagements who require continuous expert input.</p>
+        <div class="product-sku">SKU: VUSA-ADV-002</div>
+      </div>
+      <div class="variants">
+        <a href="https://app.tagadapay.com/api/public/v1/checkout/init?currency=USD&items=%5B%7B%22variantId%22%3A%22variant_0fcfb23ad15e%22%2C%22quantity%22%3A1%2C%22priceId%22%3A%22price_ec9770c076d2%22%7D%5D&storeId=store_345e95a6c09b&funnelId=funnelv2_ec65b9c19cb6&checkoutUrl=https%3A%2F%2Fcheckout.vusaconsultancy.com%2Fcheckout&includeCheckoutToken=checkoutToken" class="variant-btn" target="_blank" rel="noopener">
+          <span class="variant-tier">Starter</span>
+          <span class="variant-price">$2,750</span>
+          <span class="variant-arrow">↗</span>
+        </a>
+        <a href="https://app.tagadapay.com/api/public/v1/checkout/init?currency=USD&items=%5B%7B%22variantId%22%3A%22variant_7ba4d9fdb8ee%22%2C%22quantity%22%3A1%2C%22priceId%22%3A%22price_df83248000d3%22%7D%5D&storeId=store_345e95a6c09b&funnelId=funnelv2_ec65b9c19cb6&checkoutUrl=https%3A%2F%2Fcheckout.vusaconsultancy.com%2Fcheckout&includeCheckoutToken=checkoutToken" class="variant-btn" target="_blank" rel="noopener">
+          <span class="variant-tier">Professional</span>
+          <span class="variant-price">$4,350</span>
+          <span class="variant-arrow">↗</span>
+        </a>
+        <a href="https://app.tagadapay.com/api/public/v1/checkout/init?currency=USD&items=%5B%7B%22variantId%22%3A%22variant_16102bd11313%22%2C%22quantity%22%3A1%2C%22priceId%22%3A%22price_b4accea8ff1a%22%7D%5D&storeId=store_345e95a6c09b&funnelId=funnelv2_ec65b9c19cb6&checkoutUrl=https%3A%2F%2Fcheckout.vusaconsultancy.com%2Fcheckout&includeCheckoutToken=checkoutToken" class="variant-btn" target="_blank" rel="noopener">
+          <span class="variant-tier">Scale</span>
+          <span class="variant-price">$6,900</span>
+          <span class="variant-arrow">↗</span>
+        </a>
+        <a href="https://app.tagadapay.com/api/public/v1/checkout/init?currency=USD&items=%5B%7B%22variantId%22%3A%22variant_610a6913fcc7%22%2C%22quantity%22%3A1%2C%22priceId%22%3A%22price_e32071c016fc%22%7D%5D&storeId=store_345e95a6c09b&funnelId=funnelv2_ec65b9c19cb6&checkoutUrl=https%3A%2F%2Fcheckout.vusaconsultancy.com%2Fcheckout&includeCheckoutToken=checkoutToken" class="variant-btn" target="_blank" rel="noopener">
+          <span class="variant-tier">Enterprise</span>
+          <span class="variant-price">$8,800</span>
+          <span class="variant-arrow">↗</span>
+        </a>
+      </div>
+    </div>
+
+    <!-- ============ PRODUCT 5: Deal Structuring & Execution Pack ============ -->
+    <div class="product">
+      <div class="product-info">
+        <span class="product-num">05</span>
+        <h2 class="product-name">Deal Structuring &amp; Execution Pack</h2>
+        <p class="product-description">Full engagement structuring service converting a commercial opportunity into an executable engagement. Scope includes commercial framework definition, specification alignment, delivery and milestone planning, documentation checklist, full agreement workflow, stakeholder map, communication cadence, and live engagement tracker.</p>
+        <div class="product-sku">SKU: VUSA-DSP-001</div>
+      </div>
+      <div class="variants">
+        <a href="https://app.tagadapay.com/api/public/v1/checkout/init?currency=USD&items=%5B%7B%22variantId%22%3A%22variant_3a78ce7f587f%22%2C%22quantity%22%3A1%2C%22priceId%22%3A%22price_58c50020557c%22%7D%5D&storeId=store_345e95a6c09b&funnelId=funnelv2_ec65b9c19cb6&checkoutUrl=https%3A%2F%2Fcheckout.vusaconsultancy.com%2Fcheckout&includeCheckoutToken=checkoutToken" class="variant-btn" target="_blank" rel="noopener">
+          <span class="variant-tier">Starter</span>
+          <span class="variant-price">$3,500</span>
+          <span class="variant-arrow">↗</span>
+        </a>
+        <a href="https://app.tagadapay.com/api/public/v1/checkout/init?currency=USD&items=%5B%7B%22variantId%22%3A%22variant_3aba9f911735%22%2C%22quantity%22%3A1%2C%22priceId%22%3A%22price_07cc5dc3fb1d%22%7D%5D&storeId=store_345e95a6c09b&funnelId=funnelv2_ec65b9c19cb6&checkoutUrl=https%3A%2F%2Fcheckout.vusaconsultancy.com%2Fcheckout&includeCheckoutToken=checkoutToken" class="variant-btn" target="_blank" rel="noopener">
+          <span class="variant-tier">Professional</span>
+          <span class="variant-price">$5,000</span>
+          <span class="variant-arrow">↗</span>
+        </a>
+        <a href="https://app.tagadapay.com/api/public/v1/checkout/init?currency=USD&items=%5B%7B%22variantId%22%3A%22variant_a9ee939daf97%22%2C%22quantity%22%3A1%2C%22priceId%22%3A%22price_6bc77caf9ed2%22%7D%5D&storeId=store_345e95a6c09b&funnelId=funnelv2_ec65b9c19cb6&checkoutUrl=https%3A%2F%2Fcheckout.vusaconsultancy.com%2Fcheckout&includeCheckoutToken=checkoutToken" class="variant-btn" target="_blank" rel="noopener">
+          <span class="variant-tier">Scale</span>
+          <span class="variant-price">$8,000</span>
+          <span class="variant-arrow">↗</span>
+        </a>
+        <a href="https://app.tagadapay.com/api/public/v1/checkout/init?currency=USD&items=%5B%7B%22variantId%22%3A%22variant_bb079008912f%22%2C%22quantity%22%3A1%2C%22priceId%22%3A%22price_3847cd1045aa%22%7D%5D&storeId=store_345e95a6c09b&funnelId=funnelv2_ec65b9c19cb6&checkoutUrl=https%3A%2F%2Fcheckout.vusaconsultancy.com%2Fcheckout&includeCheckoutToken=checkoutToken" class="variant-btn" target="_blank" rel="noopener">
+          <span class="variant-tier">Enterprise</span>
+          <span class="variant-price">$12,000</span>
+          <span class="variant-arrow">↗</span>
+        </a>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="trust">
+  <div class="trust-wrap">
+    <div class="trust-item">
+      <div class="trust-item-label">Secure</div>
+      <h3 class="trust-item-heading">Encrypted payment processing</h3>
+      <p class="trust-item-text">All payments are processed via PCI-compliant infrastructure with end-to-end encryption. Card details are never stored on VUSA systems.</p>
+    </div>
+    <div class="trust-item">
+      <div class="trust-item-label">Direct</div>
+      <h3 class="trust-item-heading">Matched to your engagement</h3>
+      <p class="trust-item-text">Enter your invoice reference number at checkout. Every payment is reconciled to the correct engagement on receipt, with confirmation sent within minutes.</p>
+    </div>
+    <div class="trust-item">
+      <div class="trust-item-label">Support</div>
+      <h3 class="trust-item-heading">Questions on your invoice</h3>
+      <p class="trust-item-text">If you are unsure which service tier matches your invoice, contact your VUSA engagement lead directly before payment.</p>
+    </div>
+  </div>
+</section>
+
+<section class="contact-bar">
+  <div class="contact-bar-wrap">
+    <p class="contact-bar-text">Need to <span class="accent">discuss</span> the engagement before payment?</p>
+    <a href="mailto:talha@vusaconsultancy.com?subject=Payment%20enquiry" class="contact-bar-cta">
+      Email the team
+      <span>→</span>
+    </a>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="footer-mark">
+    <span class="footer-mark-dot"></span>
+    VUSA
+  </div>
+  <div class="footer-meta">
+    <span>© 2024 VUSA Group UK Ltd</span>
+    <span>Companies House 16124195</span>
+    <span>United Kingdom</span>
+  </div>
+</footer>
+
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 60) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+});
+</script>
+
+</body>
+</html>
